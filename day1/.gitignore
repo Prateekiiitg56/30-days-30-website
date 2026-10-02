@@ -1,7 +1,33 @@
-node_modules
-.next
+# Dependencies
+node_modules/
+
+# Next.js build
+.next/
 next-env.d.ts
-.env*.local
-__pycache__
 *.tsbuildinfo
+
+# Environment secrets
+.env*.local
+.env
+
+# Raw video footage (not needed for the website)
 content/
+*.MOV
+*greenscreen*
+
+# Duplicate images (webp versions are used by the site)
+public/images/products/*.png
+public/images/editorial/*.png
+
+# Python
+__pycache__/
+*.pyc
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Playwright
+.playwright-mcp/
