@@ -1,0 +1,13 @@
+{
+  "name": "tamm-assistant-demo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "AI property assistant demo for TAMM Real Estate, built by unbias.xai",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": "22.x"
+  }
+}

@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TAMM Assistant Demo</title>
+  <meta name="description" content="Live demo of a 24/7 AI property assistant for TAMM Real Estate, prepared by unbias.xai.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0d1b2a; --navy-2: #1b2d44; --gold: #c9a24b; --gold-2: #e3c27a;
+      --bg: #faf8f4; --card: #fff; --text: #1d2430; --muted: #6b7380; --line: #e7e2d8;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--text); font-family: Inter, "Segoe UI", system-ui, sans-serif; line-height: 1.55; }
+    a { color: inherit; }
+    .ribbon { background: var(--gold); color: var(--navy); text-align: center; font-size: 13px; font-weight: 600; padding: 8px 16px; }
+    .wrap { max-width: 1180px; margin: 0 auto; padding: 0 20px; }
+    nav { background: var(--navy); color: #fff; }
+    nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+    .logo { display: flex; align-items: center; gap: 12px; font-family: "Playfair Display", serif; font-size: 22px; letter-spacing: 1px; }
+    .logo img { height: 40px; background: #fff; border-radius: 8px; padding: 4px; }
+    nav ul { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; font-size: 14px; color: #c8d0db; }
+    .hero { background: linear-gradient(180deg, rgba(13,27,42,.82), rgba(13,27,42,.6)), url('https://tammrealestate.ae/wp-content/uploads/2026/09/9-8.png') center/cover; color: #fff; }
+    .hero .wrap { padding: 96px 20px 110px; }
+    .eyebrow { color: var(--gold-2); font-size: 13px; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 600; }
+    h1 { font-family: "Playfair Display", serif; font-size: clamp(34px, 5vw, 56px); line-height: 1.12; margin: 14px 0 18px; max-width: 760px; }
+    .hero p { font-size: 18px; color: #dde3ea; max-width: 620px; margin: 0 0 30px; }
+    .btn { display: inline-flex; align-items: center; gap: 10px; border: 0; cursor: pointer; font: 600 15px Inter, sans-serif; padding: 15px 26px; border-radius: 12px; text-decoration: none; }
+    .btn-gold { background: linear-gradient(145deg, var(--gold-2), var(--gold)); color: var(--navy); box-shadow: 0 10px 24px rgba(201,162,75,.35); }
+    .btn-ghost { background: rgba(255,255,255,.1); color: #fff; border: 1px solid rgba(255,255,255,.35); margin-left: 10px; }
+    .try { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; }
+    .try button { background: rgba(255,255,255,.08); color: #fff; border: 1px solid rgba(255,255,255,.25); border-radius: 999px; padding: 8px 14px; font: 13px Inter, sans-serif; cursor: pointer; }
+    .try button:hover { background: rgba(255,255,255,.18); }
+
+    section { padding: 72px 0; }
+    h2 { font-family: "Playfair Display", serif; font-size: 34px; margin: 6px 0 10px; color: var(--navy); }
+    .sub { color: var(--muted); margin: 0 0 34px; max-width: 640px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
+    .listing { background: var(--card); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; transition: transform .2s, box-shadow .2s; display: flex; flex-direction: column; }
+    .listing:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(13,27,42,.12); }
+    .listing .img { height: 210px; background: #ddd center/cover; position: relative; }
+    .listing .tag { position: absolute; top: 14px; left: 14px; background: rgba(13,27,42,.88); color: var(--gold-2); font-size: 12px; font-weight: 600; padding: 5px 11px; border-radius: 999px; }
+    .listing .body { padding: 18px 20px 20px; display: flex; flex-direction: column; flex: 1; }
+    .listing h3 { margin: 0; font-size: 18px; color: var(--navy); }
+    .listing .loc { color: var(--muted); font-size: 14px; margin: 4px 0 12px; }
+    .listing .price { font-size: 15px; margin: 0 0 6px; } .listing .price b { color: #9a7524; font-size: 18px; }
+    .listing .meta { color: var(--muted); font-size: 13px; margin: 0 0 18px; }
+    .listing .ask { margin-top: auto; width: 100%; justify-content: center; background: var(--navy); color: var(--gold-2); }
+
+    .features { background: var(--navy); color: #fff; }
+    .features h2 { color: #fff; }
+    .features .sub { color: #b9c3cf; }
+    .fgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+    .f { background: var(--navy-2); border: 1px solid rgba(255,255,255,.08); border-radius: 16px; padding: 24px; }
+    .f .n { color: var(--gold-2); font-family: "Playfair Display", serif; font-size: 28px; }
+    .f h3 { margin: 8px 0 6px; font-size: 17px; }
+    .f p { margin: 0; color: #b9c3cf; font-size: 14px; }
+
+    footer { padding: 30px 0; text-align: center; color: var(--muted); font-size: 13px; }
+    @media (max-width: 760px) {
+      nav ul { display: none; }
+      .hero .wrap { padding: 64px 16px 72px; }
+      .wrap { padding: 0 16px; }
+      .btn-ghost { margin: 10px 0 0; }
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="ribbon">Live demo prepared for TAMM Real Estate by unbias.xai · Tap the gold chat button to try the assistant</div>
+
+  <nav>
+    <div class="wrap">
+      <div class="logo"><img src="https://tammrealestate.ae/wp-content/uploads/2026/09/Untitled-design-1.png" alt="TAMM Real Estate"><span>TAMM</span></div>
+      <ul><li>Off Plan</li><li>Off Market</li><li>Area Guide</li><li>Developers</li><li>Contact</li></ul>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="wrap">
+      <div class="eyebrow">24/7 AI Property Assistant</div>
+      <h1>Every enquiry answered in seconds, day or night.</h1>
+      <p>Visitors ask about projects, prices and payment plans. The assistant answers from TAMM's own listings, qualifies the buyer, and sends the lead straight to your team.</p>
+      <button class="btn btn-gold" onclick="TammAssistant.open()">Try the assistant</button>
+      <a class="btn btn-ghost" href="#listings">See featured projects</a>
+      <div class="try" aria-label="Example questions">
+        <button data-q="I have AED 2 million, what can I buy off-plan?">"I have AED 2M, what can I buy?"</button>
+        <button data-q="Which project has the best payment plan?">"Best payment plan?"</button>
+        <button data-q="أبحث عن فيلا في دبي مع خطة دفع">"أبحث عن فيلا في دبي"</button>
+        <button data-q="Is my money safe if I buy off-plan?">"Is off-plan safe?"</button>
+      </div>
+    </div>
+  </header>
+
+  <section id="listings">
+    <div class="wrap">
+      <div class="eyebrow" style="color:#9a7524">Featured projects</div>
+      <h2>Trained on TAMM's current listings</h2>
+      <p class="sub">The assistant knows these projects: prices, payment plans, handover dates and amenities. When a detail is not published, it says so and offers an advisor instead of guessing.</p>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="wrap">
+      <h2>What the assistant does</h2>
+      <p class="sub">Built to turn website visitors into qualified, ready-to-call leads.</p>
+      <div class="fgrid">
+        <div class="f"><div class="n">01</div><h3>Answers instantly, 24/7</h3><p>Prices, payment plans, handover, amenities and escrow questions, from your own data only.</p></div>
+        <div class="f"><div class="n">02</div><h3>English and Arabic</h3><p>Replies in the visitor's language, with full right-to-left layout for Arabic.</p></div>
+        <div class="f"><div class="n">03</div><h3>Qualifies every buyer</h3><p>Budget, area, purpose, bedrooms and timeline, gathered naturally in conversation.</p></div>
+        <div class="f"><div class="n">04</div><h3>Leads to your WhatsApp</h3><p>Name, number and a short summary sent to your team the moment a buyer is ready.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>Demo by <a href="https://unbiasxai.xyz/portfolio" target="_blank" rel="noopener">unbias.xai</a> · Listing data from tammrealestate.ae · Not a live TAMM service</footer>
+
+  <script src="/widget.js" defer></script>
+  <script>
+    const grid = document.getElementById('grid');
+    const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+    const ask = (q) => window.TammAssistant && TammAssistant.open(q);
+
+    document.querySelectorAll('.try button').forEach((b) => b.addEventListener('click', () => ask(b.dataset.q)));
+
+    fetch('/api/listings').then((r) => r.json()).then((items) => {
+      grid.innerHTML = items.map((l) => `
+        <article class="listing">
+          <div class="img" style="background-image:url('${encodeURI(l.image)}')"><span class="tag">${esc(l.status)} · ${esc(l.type)}</span></div>
+          <div class="body">
+            <h3>${esc(l.name)}</h3>
+            <div class="loc">${esc(l.area)}</div>
+            <p class="price">${l.priceFrom ? `From <b>AED ${l.priceFrom.toLocaleString('en-US')}</b>` : '<b>Price on request</b>'}</p>
+            <p class="meta">${[l.bedrooms, l.handover && 'Handover ' + l.handover, l.paymentPlan && l.paymentPlan.split(':')[0] + ' plan'].filter(Boolean).map(esc).join(' · ')}</p>
+            <button class="btn ask" data-name="${esc(l.name)}">Ask the assistant</button>
+          </div>
+        </article>`).join('');
+      grid.querySelectorAll('.ask').forEach((b) =>
+        b.addEventListener('click', () => ask(`Tell me more about ${b.dataset.name}`)));
+    });
+  </script>
+</body>
+</html>
