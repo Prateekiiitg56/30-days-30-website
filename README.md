@@ -4,12 +4,18 @@ A challenge to build **30 websites in 30 days** — one project per day, each ex
 
 ## 📅 Progress
 
-| Day | Project | Status |
-|-----|---------|--------|
-| 01  | Day 1   | ✅ Done |
-| 02  | Day 2   | 🔜 Coming Soon |
-| ... | ...     | ... |
-| 30  | Day 30  | 🔜 Coming Soon |
+| Day | Project | Live demo | Status |
+|-----|---------|-----------|--------|
+| 01  | [ORVAN — fashion e-commerce](day1) | — | ✅ Done |
+| 02  | [TAMM real estate AI assistant](day2) | [tamm-assistant-demo.vercel.app](https://tamm-assistant-demo.vercel.app) | ✅ Done |
+| 03  | [Qasbah Lounge & Restro](day3) | [qasbah-lounge.vercel.app](https://qasbah-lounge.vercel.app) | ✅ Done |
+| 04  | [Bong Fish](day4) | [bongfish-demo.vercel.app](https://bongfish-demo.vercel.app) | ✅ Done |
+| 05  | [Guwahati Greens](day5) | [guwahatigreens-demo.vercel.app](https://guwahatigreens-demo.vercel.app) | ✅ Done |
+| 06  | Day 6   | — | 🔜 Coming Soon |
+| ... | ...     | ... | ... |
+| 30  | Day 30  | — | 🔜 Coming Soon |
+
+Open any project's folder to see its README, with the live link at the top.
 
 ## 📁 Structure
 

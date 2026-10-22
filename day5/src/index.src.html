@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Guwahati Greens | Riverside dining in Amingaon</title>
+<meta name="description" content="Riverside restaurant on the Brahmaputra in Amingaon, Guwahati. Assamese thali, river fish, juice bar and a lantern-lit deck. Open daily 11 am to 10 pm.">
+<meta name="theme-color" content="#14223B">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Onest:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="img/hero-video-poster.webp">
+<style>
+:root{
+  --river:#14223B;--river-2:#1C2D4D;--river-3:#26395E;
+  --lantern:#F4B860;--teak:#C8692E;--rose:#E48A8F;
+  --gamosa:#B8232F;--cloth:#F3EEE6;--leaf:#3E7A5A;
+  --ink:#EDE7DD;--mute:#A9B3C8;--line:rgba(237,231,221,.14);
+  --display:'Gloock',Georgia,serif;--body:'Onest',system-ui,sans-serif;
+  --sky:#1E2A44;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--river);color:var(--ink);font:400 16px/1.6 var(--body);overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+svg{width:1.15em;height:1.15em;flex:none}
+:focus-visible{outline:2px solid var(--lantern);outline-offset:3px;border-radius:4px}
+.wrap{width:min(1180px,100% - 32px);margin-inline:auto}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.02;letter-spacing:-.01em}
+h2{font-size:clamp(34px,4.4vw,60px)}
+.lead{color:var(--mute);max-width:52ch;font-size:17px}
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 22px;border-radius:999px;font-weight:600;font-size:15px;text-decoration:none;transition:background .2s,color .2s,transform .2s}
+.btn.gold{background:var(--lantern);color:var(--river)}
+.btn.gold:hover{background:#FFCB7A}
+.btn.ghost{border:1px solid rgba(237,231,221,.4)}
+.btn.ghost:hover{background:rgba(237,231,221,.1)}
+.btn:active{transform:scale(.97)}
+
+/* Gamosa: the red-and-white woven border of the Assamese gamosa, used as the page's divider */
+.gamosa{height:24px;background:
+  linear-gradient(var(--gamosa) 0 3px,transparent 3px 5px,var(--gamosa) 5px 6px,transparent 6px calc(100% - 6px),var(--gamosa) calc(100% - 6px) calc(100% - 5px),transparent calc(100% - 5px) calc(100% - 3px),var(--gamosa) calc(100% - 3px)),
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='12'%3E%3Cpath d='M15 1.5l4.5 4.5-4.5 4.5-4.5-4.5z M2 6h6 M22 6h6' stroke='%23B8232F' stroke-width='1.6' fill='none'/%3E%3Ccircle cx='15' cy='6' r='1.3' fill='%23B8232F'/%3E%3C/svg%3E") repeat-x center/30px 12px,
+  var(--cloth)}
+
+/* Nav */
+.nav{position:absolute;inset:0 0 auto;z-index:5;padding:18px 0}
+.nav .wrap{display:flex;align-items:center;gap:28px}
+.brand{font-family:var(--display);font-size:24px;text-decoration:none;margin-right:auto;display:flex;align-items:center;gap:10px}
+.brand i{width:10px;height:10px;border-radius:50%;background:var(--leaf);box-shadow:0 0 0 3px rgba(62,122,90,.35)}
+.nav a.l{text-decoration:none;font-size:15px;color:rgba(237,231,221,.85)}
+.nav a.l:hover{color:#fff}
+.nav .tel{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15px;text-decoration:none;padding:9px 16px;border-radius:999px;background:rgba(20,34,59,.55);backdrop-filter:blur(8px);border:1px solid var(--line)}
+
+/* Hero: a sticky scene. Scrolling narrows the full-screen river into an arched deck window,
+   swinging it a little in 3D on the way (set per frame in JS from smoothed scroll progress). */
+.hero{position:relative;height:240svh;background:var(--river)}
+.hstick{position:sticky;top:0;height:100svh;min-height:560px;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end}
+.frame{position:absolute;inset:0;will-change:clip-path,transform;transform-origin:50% 55%}
+.frame video,.frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:68% 50%;will-change:transform}
+.frame video{opacity:0;transition:opacity 1s}
+.hero.vid .frame video{opacity:1}
+.shade{position:absolute;inset:0;pointer-events:none;background:
+  linear-gradient(90deg,rgba(20,34,59,.9) 0%,rgba(20,34,59,.55) 34%,rgba(20,34,59,0) 60%),
+  linear-gradient(0deg,rgba(20,34,59,.8) 0%,rgba(20,34,59,0) 36%)}
+.arch{position:absolute;pointer-events:none;border:1px solid rgba(244,184,96,.55);opacity:0;box-shadow:0 0 80px rgba(244,184,96,.18)}
+.hcopy{position:relative;z-index:2;padding-bottom:clamp(36px,7vh,72px);will-change:transform,opacity}
+.where{display:flex;align-items:center;gap:10px;color:var(--lantern);font-size:15px;font-weight:500;margin-bottom:18px}
+.hero h1{font-size:clamp(50px,7.4vw,118px);max-width:9.5em}
+.hero h1 span{display:block}
+.hcopy p{margin:22px 0 30px;max-width:44ch;font-size:clamp(16px,1.3vw,18px);color:rgba(237,231,221,.86)}
+.hcta{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.open{position:absolute;right:max(16px,calc((100% - 1180px)/2));bottom:clamp(40px,7vh,76px);z-index:2;display:flex;align-items:center;gap:10px;font-size:14px;padding:10px 16px;border-radius:999px;background:rgba(20,34,59,.6);backdrop-filter:blur(8px);border:1px solid var(--line)}
+.open b{width:8px;height:8px;border-radius:50%;background:#6FCF8E;box-shadow:0 0 10px #6FCF8E}
+.open.shut b{background:var(--rose);box-shadow:none}
+.hstick>.gamosa{position:relative;z-index:2}
+/* second state: words on either side of the deck window */
+.side{position:absolute;z-index:2;top:50%;width:min(300px,calc((100vw - var(--aw,400px))/2 - 72px));opacity:0;pointer-events:none}
+.side.l{right:calc(50% + var(--aw,400px)/2 + 48px);text-align:right}
+.side.r{left:calc(50% + var(--aw,400px)/2 + 48px)}
+.side.on{pointer-events:auto}
+.side h2{font-size:clamp(30px,3.2vw,46px)}
+.side p{color:var(--mute);margin:14px 0 22px}
+.side.l p{margin-left:auto;max-width:30ch}
+@media (prefers-reduced-motion:no-preference){
+  .frame{animation:dusk 1.8s ease-out both}
+  @keyframes dusk{from{filter:brightness(.25) saturate(.6)}to{filter:none}}
+  .hero h1 span,.hero .where,.hcopy p,.hcopy .hcta{animation:rise 1s cubic-bezier(.2,.7,.2,1) both}
+  .hero .where{animation-delay:.5s}.hero h1 span:nth-child(1){animation-delay:.65s}.hero h1 span:nth-child(2){animation-delay:.8s}
+  .hcopy p{animation-delay:1s}.hcopy .hcta{animation-delay:1.15s}
+  @keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+}
+@media (prefers-reduced-motion:reduce){.hero{height:auto}.side{display:none}}
+
+section{padding:clamp(72px,10vw,128px) 0}
+
+/* Day: drag the sun from opening to closing time */
+.day{background:var(--sky);transition:background .6s}
+.day .wrap{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:center}
+.stage{position:relative;aspect-ratio:4/3;border-radius:6px;overflow:hidden;background:#0d1626}
+.stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .7s}
+.stage img.on{opacity:1}
+.clock{font-family:var(--display);font-size:clamp(64px,8vw,112px);line-height:1;margin:22px 0 8px;font-variant-numeric:tabular-nums}
+.cap{font-size:19px;min-height:2.6em}
+.track{position:relative;margin-top:34px}
+.track input{width:100%;appearance:none;-webkit-appearance:none;background:transparent;height:48px;cursor:pointer}
+.track input::-webkit-slider-runnable-track{height:2px;background:linear-gradient(90deg,#F7D58A,var(--rose) 60%,#7C8BB5)}
+.track input::-moz-range-track{height:2px;background:linear-gradient(90deg,#F7D58A,var(--rose) 60%,#7C8BB5)}
+.track input::-webkit-slider-thumb{-webkit-appearance:none;width:30px;height:30px;margin-top:-14px;border-radius:50%;background:var(--lantern);box-shadow:0 0 0 6px rgba(244,184,96,.25),0 0 24px rgba(244,184,96,.7)}
+.track input::-moz-range-thumb{width:30px;height:30px;border:0;border-radius:50%;background:var(--lantern);box-shadow:0 0 0 6px rgba(244,184,96,.25),0 0 24px rgba(244,184,96,.7)}
+.ends{display:flex;justify-content:space-between;font-size:13px;color:var(--mute);margin-top:4px}
+.ends span{display:flex;align-items:center;gap:6px}
+
+/* Menu + order ticket */
+.menu{background:var(--river)}
+.mhead{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:clamp(24px,4vw,56px);align-items:end;margin-bottom:36px}
+.thali{display:flex;align-items:center;gap:18px;padding:14px 18px 14px 14px;border:1px solid var(--line);border-radius:999px}
+.thali img{width:104px;height:104px;border-radius:50%;object-fit:cover;flex:none;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.thali figcaption{font-size:14px;color:var(--mute);line-height:1.45}
+.thali figcaption b{color:var(--ink);font-weight:600}
+.mbody{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:clamp(24px,4vw,56px);align-items:start}
+.cat{border-top:1px solid var(--line)}
+.cat:last-of-type{border-bottom:1px solid var(--line)}
+.cat summary{list-style:none;display:flex;align-items:center;gap:16px;min-height:76px;padding:12px 4px;cursor:pointer}
+.cat summary::-webkit-details-marker{display:none}
+.cat summary h3{font-size:clamp(24px,2.4vw,32px);flex:1}
+.cat summary small{color:var(--mute);font-size:14px;text-align:right}
+.cat summary i{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;flex:none;transition:transform .3s,background .2s,color .2s}
+.cat summary:hover i{border-color:var(--lantern);color:var(--lantern)}
+.cat[open] summary i{transform:rotate(45deg);background:var(--lantern);color:var(--river);border-color:var(--lantern)}
+.cat .list{padding:0 4px 18px}
+.cat[open] .list{animation:unfold .35s ease-out}
+@keyframes unfold{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+.dish{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 18px;padding:16px 0;border-top:1px dashed var(--line)}
+.dish h3{font-size:21px}
+.dish p{grid-column:1;color:var(--mute);font-size:15px;max-width:56ch}
+.dish .pr{font-weight:600;font-variant-numeric:tabular-nums;align-self:start;padding-top:4px}
+.dish .row{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.vr{min-height:40px;padding:0 14px;border-radius:8px;border:1px solid var(--line);font-size:14px;display:inline-flex;align-items:center;gap:8px}
+.vr:hover{border-color:var(--lantern);color:var(--lantern)}
+.vr svg{width:14px;height:14px}
+.also{margin-top:26px;font-size:15px;color:var(--mute)}
+.also button{color:var(--lantern);text-decoration:underline;text-underline-offset:3px}
+
+/* Ticket: styled after a Brahmaputra ferry ticket, with a torn stub */
+.ticket{position:sticky;top:20px;background:var(--cloth);color:#1D2433;border-radius:8px;padding:22px 22px 18px;
+  -webkit-mask:radial-gradient(circle 9px at 0 112px,transparent 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 9px at 100% 112px,transparent 98%,#000) right/51% 100% no-repeat;
+  mask:radial-gradient(circle 9px at 0 112px,transparent 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 9px at 100% 112px,transparent 98%,#000) right/51% 100% no-repeat}
+.ticket .th{display:flex;justify-content:space-between;align-items:flex-start;height:80px}
+.ticket .th b{font-family:var(--display);font-size:24px;font-weight:400;display:block;line-height:1.1}
+.ticket .th small{font-size:13px;color:#5B6274}
+.ticket .no{font-size:12px;color:#5B6274;text-align:right;line-height:1.4}
+.ticket .no strong{display:block;font-size:15px;color:var(--gamosa);font-variant-numeric:tabular-nums}
+.perf{border-top:2px dashed rgba(29,36,51,.25);margin:10px -4px 14px}
+.lines{list-style:none;max-height:300px;overflow:auto}
+.lines li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 10px;padding:9px 0;border-bottom:1px dotted rgba(29,36,51,.2);font-size:15px}
+.lines li span{font-weight:600}
+.lines li em{font-style:normal;font-size:13px;color:#5B6274}
+.lines .q{grid-row:span 2;display:flex;align-items:center;gap:4px}
+.lines .q button{width:32px;height:32px;border-radius:50%;border:1px solid rgba(29,36,51,.25);display:grid;place-items:center}
+.lines .q svg{width:14px;height:14px}
+.lines .q b{min-width:18px;text-align:center;font-variant-numeric:tabular-nums}
+.empty{font-size:15px;color:#5B6274;padding:8px 0 4px}
+.mode{display:flex;gap:6px;margin:16px 0 12px}
+.mode button{flex:1;min-height:40px;border-radius:8px;border:1px solid rgba(29,36,51,.25);font-size:14px}
+.mode button[aria-pressed=true]{background:#1D2433;color:var(--cloth);border-color:#1D2433}
+.tot{display:flex;justify-content:space-between;align-items:baseline;font-size:15px;margin:6px 0 14px}
+.tot b{font-weight:600;font-size:28px;font-variant-numeric:tabular-nums}
+.send{width:100%;justify-content:center;background:#1E6B47;color:#fff}
+.send:hover{background:#228052}
+.send[disabled]{opacity:.45;cursor:not-allowed}
+.note{font-size:12px;color:#5B6274;margin-top:10px;text-align:center}
+.bar{position:fixed;left:12px;right:84px;bottom:14px;z-index:20;display:none;align-items:center;justify-content:space-between;gap:12px;min-height:54px;padding:0 18px;border-radius:999px;background:var(--cloth);color:#1D2433;font-weight:600;box-shadow:0 10px 30px rgba(0,0,0,.35);transform:translateY(calc(100% + 30px));visibility:hidden;transition:transform .3s,visibility .3s}
+.bar.on{transform:none;visibility:visible}
+
+/* Drinks */
+.drinks{background:linear-gradient(180deg,var(--river) 0%,#18283F 100%)}
+.dhead{display:flex;justify-content:space-between;align-items:end;gap:30px;flex-wrap:wrap;margin-bottom:40px}
+.mosaic{display:grid;grid-template-columns:minmax(0,1.25fr) repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,260px));gap:14px}
+.mosaic figure{position:relative;overflow:hidden;border-radius:6px;background:#0d1626}
+.mosaic figure:first-child{grid-row:span 2}
+.mosaic img{width:100%;height:100%;object-fit:cover}
+.mosaic figcaption{position:absolute;left:0;right:0;bottom:0;padding:40px 16px 14px;font-size:15px;font-weight:500;background:linear-gradient(0deg,rgba(13,22,38,.85),transparent)}
+
+/* Celebrations */
+.cele .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(28px,5vw,72px);align-items:center}
+.cele img{border-radius:6px;aspect-ratio:4/3;object-fit:cover}
+.occ{list-style:none;margin:28px 0 32px;border-top:1px solid var(--line)}
+.occ li{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
+.occ li svg{color:var(--rose);width:24px;height:24px;margin-top:2px}
+.occ b{display:block;font-weight:600}
+.occ span{color:var(--mute);font-size:15px}
+
+/* Visit */
+.visit{background:var(--river-2)}
+.visit .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:center}
+.visit img{border-radius:6px;aspect-ratio:4/3;object-fit:cover}
+.facts{margin:28px 0 32px;display:grid;gap:18px}
+.facts>div{display:flex;gap:14px}
+.facts svg{color:var(--lantern);width:22px;height:22px;margin-top:3px}
+.facts b{display:block;font-weight:600}
+.facts span{color:var(--mute)}
+footer{padding:36px 0 110px;color:var(--mute);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+footer a{color:var(--ink)}
+
+/* Luit chat */
+.fab{position:fixed;right:18px;bottom:18px;z-index:30;display:flex;align-items:center;gap:10px;min-height:54px;padding:0 20px 0 16px;border-radius:999px;background:var(--lantern);color:var(--river);font-weight:600;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.fab svg{width:24px;height:24px}
+.chat{position:fixed;right:18px;bottom:18px;z-index:40;width:min(380px,calc(100vw - 24px));height:min(560px,calc(100svh - 36px));display:flex;flex-direction:column;background:#101B30;border:1px solid var(--line);border-radius:14px;box-shadow:0 24px 60px rgba(0,0,0,.5);overflow:hidden;opacity:0;transform:translateY(16px) scale(.98);visibility:hidden;transition:opacity .25s,transform .25s,visibility .25s}
+.chat.on{opacity:1;transform:none;visibility:visible}
+.chead{display:flex;align-items:center;gap:12px;padding:14px 14px 12px 16px;border-bottom:1px solid var(--line)}
+.av{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--river-3);color:var(--lantern)}
+.av svg{width:22px;height:22px}
+.chead b{font-family:var(--display);font-weight:400;font-size:21px;display:block;line-height:1.1}
+.chead small{font-size:13px;color:var(--mute)}
+.chead button{margin-left:auto;width:40px;height:40px;border-radius:50%;display:grid;place-items:center}
+.chead button:hover{background:rgba(255,255,255,.08)}
+#msgs{flex:1;overflow:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
+.m{max-width:86%;padding:10px 14px;border-radius:14px;font-size:15px;line-height:1.5}
+.m.b{background:var(--river-3);border-bottom-left-radius:4px}
+.m.u{background:var(--lantern);color:var(--river);align-self:flex-end;border-bottom-right-radius:4px}
+.m p+p,.m p+ul,.m ul+p{margin-top:6px}
+.m ul{padding-left:18px;margin:4px 0}
+.m li+li{margin-top:3px}
+.m b{font-weight:600;color:#FFD99A}
+.typing{display:flex;gap:5px;padding:14px}
+.typing i{width:7px;height:7px;border-radius:50%;background:var(--mute);animation:blink 1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes blink{50%{opacity:.25}}
+#sug{display:flex;flex-wrap:wrap;gap:8px;padding:0 16px 12px}
+#sug button{min-height:36px;padding:0 12px;border-radius:999px;border:1px solid var(--line);font-size:13px;color:var(--ink)}
+#sug button:hover{border-color:var(--lantern)}
+#cf{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line)}
+#ci{flex:1;min-width:0;min-height:46px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:#0b1424;color:var(--ink);font:inherit;font-size:16px}
+#cf button{width:46px;height:46px;border-radius:50%;background:var(--lantern);color:var(--river);display:grid;place-items:center}
+.toast{position:fixed;left:50%;bottom:90px;z-index:50;transform:translate(-50%,20px);opacity:0;visibility:hidden;padding:12px 18px;border-radius:999px;background:var(--cloth);color:#1D2433;font-weight:600;font-size:14px;transition:.3s}
+.toast.on{opacity:1;visibility:visible;transform:translate(-50%,0)}
+
+@media (max-width:980px){
+  .nav a.l{display:none}
+  .day .wrap,.cele .wrap,.visit .wrap{grid-template-columns:minmax(0,1fr)}
+  .mhead{grid-template-columns:minmax(0,1fr)}
+  .thali{max-width:420px;border-radius:16px}
+  .thali img{width:80px;height:80px}
+  .cat summary small{display:none}
+  .mbody{grid-template-columns:minmax(0,1fr)}
+  .ticket{position:static}
+  .ticket.none{display:none}
+  .bar{display:flex}
+  .mosaic{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:none;grid-auto-rows:220px}
+}
+@media (max-width:640px){
+  .nav .tel span{display:none}
+  .frame video,.frame img{right:auto;width:auto;aspect-ratio:1920/848;transform-origin:0 0}
+  .shade{background:linear-gradient(0deg,rgba(20,34,59,.96) 0%,rgba(20,34,59,.7) 42%,rgba(20,34,59,0) 72%)}
+  .open{position:relative;right:auto;bottom:auto;align-self:flex-start;margin:0 16px 18px}
+  .side{width:auto;left:16px!important;right:16px!important;text-align:center!important;top:calc(var(--at,60svh) + 24px)}
+  .side.l{display:none}
+  .side h2{font-size:28px}.side p{margin:8px auto 14px;font-size:15px}
+  .hcopy{padding-bottom:14px}
+  .mosaic figure:first-child{grid-row:span 1;grid-column:span 2}
+  .fab span{display:none}.fab{padding:0 15px}
+  .chat{right:12px;bottom:12px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="hero" id="top">
+ <div class="hstick">
+  <div class="frame" id="frame" aria-hidden="true">
+    <img src="img/hero-video-poster.webp" alt="">
+    <video id="hv" muted playsinline loop autoplay preload="auto"></video>
+    <div class="shade" id="shade"></div>
+  </div>
+  <div class="arch" id="arch" aria-hidden="true"></div>
+  <nav class="nav" aria-label="Main">
+    <div class="wrap">
+      <a class="brand" href="#top"><i></i>Guwahati Greens</a>
+      <a class="l" href="#day">The place</a>
+      <a class="l" href="#menu">Menu</a>
+      <a class="l" href="#drinks">Juice bar</a>
+      <a class="l" href="#celebrate">Celebrations</a>
+      <a class="l" href="#visit">Visit</a>
+      <a class="tel" href="tel:+916002183048">{{phone}}<span>60021 83048</span></a>
+    </div>
+  </nav>
+  <div class="hcopy wrap" id="hcopy">
+    <div class="where">{{waves}}Amingaon, on the north bank of the Brahmaputra</div>
+    <h1><span>Dinner on the</span><span>Brahmaputra</span></h1>
+    <p>A lantern-lit deck over the river, an Assamese kitchen and a juice bar. Open every day, 11 am to 10 pm.</p>
+    <div class="hcta">
+      <button class="btn gold" data-ask="I'd like to book a table">{{calendar-blank}}Reserve a table</button>
+      <a class="btn ghost" href="#menu">See the menu</a>
+    </div>
+  </div>
+  <div class="side l" id="sideL">
+    <h2>The river is the view</h2>
+    <p>Tables run along the deck, so every seat looks out over the Brahmaputra.</p>
+  </div>
+  <div class="side r" id="sideR">
+    <h2>Come for sunset, stay for dinner</h2>
+    <p>The lanterns come on as the sky turns pink. Deck tables go first in the evening.</p>
+    <button class="btn gold" data-ask="I'd like to book a deck table for this evening">{{calendar-blank}}Book a deck table</button>
+  </div>
+  <div class="open" id="open"><b></b><span>Open every day, 11 am to 10 pm</span></div>
+  <div class="gamosa" aria-hidden="true"></div>
+ </div>
+</header>
+
+<main>
+<section class="day" id="day" aria-labelledby="dayH">
+  <div class="wrap">
+    <div class="stage" id="stage"></div>
+    <div>
+      <h2 id="dayH">From noon to lantern light</h2>
+      <p class="lead" style="margin-top:16px">Drag the sun across our opening hours and watch the riverside change.</p>
+      <div class="clock" id="clock" aria-live="polite">11:00 am</div>
+      <p class="cap" id="cap"></p>
+      <div class="track">
+        <label for="sun" class="sr" style="position:absolute;left:-9999px">Time of day</label>
+        <input id="sun" type="range" min="11" max="22" step="0.25" value="11">
+        <div class="ends"><span>{{sun}}11 am, we open</span><span>10 pm, last orders{{moon}}</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="menu" id="menu" aria-labelledby="menuH">
+  <div class="wrap">
+    <div class="mhead">
+      <div>
+        <h2 id="menuH">The Assamese kitchen</h2>
+        <p class="lead" style="margin-top:16px">Lunch thali and river fish, cooked the way Assam eats at home. Open a section, add dishes to your ticket, then send the order to us on WhatsApp.</p>
+      </div>
+      <figure class="thali">
+        <img src="img/thali-sq.webp" alt="Assamese thali on a brass plate with rice, dal, khar and pitika" loading="lazy" width="104" height="104">
+        <figcaption><b>Veg Thali, ₹150.</b> Rice, two dals, khar, xaak, pitika and payokh.</figcaption>
+      </figure>
+    </div>
+    <div class="mbody">
+      <div>
+        <div id="cats"></div>
+        <p class="also">Also cooking: soups, tandoor, Chinese, wood-fired pizza, burgers, sandwiches, shakes and desserts. <button data-ask="What else is on the menu apart from Assamese food?">Ask Luit about them</button></p>
+      </div>
+      <aside class="ticket" id="ticket" aria-label="Your order">
+        <div class="th">
+          <div><b>Guwahati Greens</b><small>Order ticket, Amingaon</small></div>
+          <div class="no">No.<strong id="tno">GG-0000</strong></div>
+        </div>
+        <div class="perf"></div>
+        <ul class="lines" id="lines"></ul>
+        <p class="empty" id="empty">Your ticket is empty. Tap a dish to add it.</p>
+        <div class="mode" id="mode">
+          <button aria-pressed="true">Dine-in</button><button aria-pressed="false">Takeaway</button><button aria-pressed="false">Delivery</button>
+        </div>
+        <div class="tot"><span>Total</span><b id="tot">₹0</b></div>
+        <button class="btn send" id="send" disabled>{{whatsapp-logo}}Send order on WhatsApp</button>
+        <p class="note">Prices from our current menu. We confirm on WhatsApp.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="drinks" id="drinks" aria-labelledby="drH">
+  <div class="wrap">
+    <div class="dhead">
+      <div>
+        <h2 id="drH">Coffee with the wind</h2>
+        <p class="lead" style="margin-top:16px">A juice bar and a coffee counter on the deck. The river breeze comes free.</p>
+      </div>
+      <button class="btn ghost" data-ask="What drinks and mocktails do you have?">{{coffee}}Ask about drinks</button>
+    </div>
+    <div class="mosaic">
+      <figure><img src="img/juicebar.webp" alt="Juice bar counter with a blue neon sign" loading="lazy"><figcaption>The juice bar</figcaption></figure>
+      <figure><img src="img/lime-cooler.webp" alt="Fresh lime cooler on a deck table at night" loading="lazy"><figcaption>Fresh lime cooler</figcaption></figure>
+      <figure><img src="img/sunrise-cooler.webp" alt="Orange mocktail with mint beside the river" loading="lazy"><figcaption>Riverview mocktail</figcaption></figure>
+      <figure><img src="img/coffee.webp" alt="Cappuccino with latte art on a table by the river" loading="lazy"><figcaption>Riverside cappuccino</figcaption></figure>
+      <figure><img src="img/iced-tea.webp" alt="Iced tea in a glass mug with lime" loading="lazy"><figcaption>Iced tea with lime</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="cele" id="celebrate" aria-labelledby="ceH">
+  <div class="wrap">
+    <img src="img/bar.webp" alt="Dining hall with hanging bamboo lanterns and a lit counter" loading="lazy">
+    <div>
+      <h2 id="ceH">Birthdays, engagements and long family lunches</h2>
+      <ul class="occ">
+        <li>{{cake}}<div><b>Birthday setups</b><span>Decor and a table by the river, ready when you arrive.</span></div></li>
+        <li>{{heart}}<div><b>Engagements and small ceremonies</b><span>A stage and seating for your families, planned with our team.</span></div></li>
+        <li>{{users-three}}<div><b>Family gatherings</b><span>Long tables, a thali for the elders and pizza for the kids.</span></div></li>
+      </ul>
+      <button class="btn gold" data-ask="I want to plan a celebration">{{confetti}}Plan a celebration with Luit</button>
+    </div>
+  </div>
+</section>
+
+<section class="visit" id="visit" aria-labelledby="viH">
+  <div class="wrap">
+    <div>
+      <h2 id="viH">Find us in Amingaon</h2>
+      <div class="facts">
+        <div>{{map-pin}}<div><b>Lachitpur, near Army Camp</b><span>Amingaon, Guwahati, Assam</span></div></div>
+        <div>{{clock}}<div><b>Every day, 11 am to 10 pm</b><span>Assamese thali at lunch, lanterns from sunset</span></div></div>
+        <div>{{phone}}<div><b>+91 60021 83048</b><span>Dine-in, takeaway and delivery</span></div></div>
+      </div>
+      <div class="hcta">
+        <a class="btn gold" href="https://www.google.com/maps/search/?api=1&query=Guwahati+Greens+Amingaon" target="_blank" rel="noopener">{{map-pin}}Get directions</a>
+        <a class="btn ghost" href="tel:+916002183048">{{phone}}Call us</a>
+      </div>
+    </div>
+    <img src="img/noon.webp" alt="View over the trees to the Brahmaputra on a clear day" loading="lazy">
+  </div>
+</section>
+</main>
+
+<div class="gamosa" aria-hidden="true"></div>
+<footer>
+  <div class="wrap">
+    <span>© Guwahati Greens, Amingaon</span>
+    <span>Demo website by <a href="https://unbiasxai.xyz" target="_blank" rel="noopener">Unbias.xai</a></span>
+  </div>
+</footer>
+
+<button class="bar" id="bar" aria-label="View your order ticket"><span id="barN">0 items</span><span id="barT">₹0</span></button>
+<button class="fab" id="fab" aria-label="Chat with Luit">{{waves}}<span>Ask Luit</span></button>
+<div class="chat" id="chat" role="dialog" aria-label="Chat with Luit">
+  <div class="chead">
+    <div class="av">{{waves}}</div>
+    <div><b>Luit</b><small>Guwahati Greens host, replies instantly</small></div>
+    <button id="chatX" aria-label="Close chat">{{x}}</button>
+  </div>
+  <div id="msgs" aria-live="polite"></div>
+  <div id="sug"><button>What's in the lunch thali?</button><button>Book a table for tonight</button><button>Best river fish dishes?</button><button>Plan a birthday</button></div>
+  <form id="cf"><input id="ci" placeholder="Ask about food, timings, bookings" autocomplete="off" aria-label="Message"><button aria-label="Send">{{paper-plane-right}}</button></form>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const WA='916002183048';
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('on'),2600)}
+const rs=n=>'₹'+n.toLocaleString('en-IN');
+
+/* Hero scene. The river loop plays full screen; scrolling narrows it into an arched window over the deck,
+   swinging it in 3D on the way. Progress is smoothed so the turn glides in both directions. */
+(function(){const hero=$('#top'),fr=$('#frame'),hv=$('#hv'),media=fr.querySelectorAll('img,video'),shade=$('#shade'),arch=$('#arch'),
+copy=$('#hcopy'),open=$('#open'),L=$('#sideL'),R=$('#sideR');
+hv.addEventListener('playing',()=>hero.classList.add('vid'));
+hv.src=innerWidth<=900?'video/hero-sm.mp4':'video/hero-wide.mp4';hv.play().catch(()=>{});
+if(reduce)return;
+const ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2,cl=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)),seg=(p,a,b)=>cl((p-a)/(b-a));
+let cur=0,tgt=0,raf=0;
+const target=()=>cl(-hero.getBoundingClientRect().top/(hero.offsetHeight-innerHeight));
+function draw(p){const W=innerWidth,H=innerHeight,m=W<=640,e=ease(seg(p,0,.82));
+ const aw=m?W*.84:Math.min(W*.3,430),ah=m?Math.min(H*.46,aw*1.25):Math.min(H*.74,aw*1.5);
+ const ax=(W-aw)/2,ay=m?H*.14:(H-ah)/2+H*.02,rad=aw/2,rr=rad*e,br=10*e;
+ fr.style.clipPath=`inset(${ay*e}px ${ax*e}px ${(H-ay-ah)*e}px ${ax*e}px round ${rr}px ${rr}px ${br}px ${br}px)`;
+ /* the turn: swing to one side mid-way, settle facing front */
+ const sw=Math.sin(Math.PI*seg(p,0,.9));fr.style.transform=`perspective(1600px) rotateY(${-16*sw}deg) rotateZ(${1.2*sw}deg) scale(${1-.04*sw})`;
+ /* keep the lantern pillar centred in the window as it narrows */
+ if(m){/* phone: start on the lantern deck, end with the window looking out over the river and the pink horizon */
+  const VW=H*1920/848,sc=1+((ah*1.12)/H-1)*e,fx=.76+(.47-.76)*e,cy=H/2+(ay+ah*.5-H/2)*e;
+  const tx=W/2-fx*VW*sc,ty=cy-.5*H*sc;media.forEach(v=>v.style.transform=`translate(${tx}px,${ty}px) scale(${sc})`)}
+ else{const s=1+.18*e,shift=-.3*W*s*e;media.forEach(v=>v.style.transform=`translateX(${shift}px) scale(${s})`)}
+ shade.style.opacity=1-seg(p,.05,.5);
+ const c=seg(p,0,.3);copy.style.opacity=1-c;copy.style.transform=`translateY(${-60*c}px)`;open.style.opacity=1-c;copy.style.visibility=c>.98?'hidden':'';
+ const a=seg(p,.72,1);arch.style.cssText=`left:${ax}px;top:${ay}px;width:${aw}px;height:${ah}px;border-radius:${rad}px ${rad}px 10px 10px;opacity:${a};transform:scale(${1.03-.03*a})`;
+ hero.style.setProperty('--aw',aw+'px');hero.style.setProperty('--at',(ay+ah)+'px');
+ const k=seg(p,.6,.95);[L,R].forEach((el,i)=>{el.style.opacity=k;el.style.transform=m?`translateY(${20*(1-k)}px)`:`translate(${(i?1:-1)*30*(1-k)}px,-50%)`;el.classList.toggle('on',k>.5)})}
+function tick(){cur+=(tgt-cur)*.09;if(Math.abs(tgt-cur)<.0004)cur=tgt;draw(cur);raf=cur===tgt?0:requestAnimationFrame(tick)}
+addEventListener('scroll',()=>{tgt=target();if(!raf)raf=requestAnimationFrame(tick)},{passive:true});
+addEventListener('resize',()=>{tgt=target();draw(cur=tgt)});
+tgt=cur=target();draw(cur)})();
+
+/* Live open/closed status in Guwahati time */
+(function(){const h=+new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Kolkata',hour:'numeric',hour12:false}).format(new Date());
+const o=$('#open');if(h>=11&&h<22)o.lastChild.textContent='Open now, until 10 pm';else{o.classList.add('shut');o.lastChild.textContent='Closed now, opens 11 am'}})();
+
+/* Day slider */
+const STOPS=[
+ {t:11,img:'noon',cap:'Late morning. The road from the gate runs down to the river.',sky:'#3E6C9A'},
+ {t:13.5,img:'afternoon',cap:'Afternoon tables on the riverside deck, the Brahmaputra wide and calm.',sky:'#5E7488'},
+ {t:16.5,img:'evening',cap:'The pines turn pink and the first lanterns come on.',sky:'#7A5E70'},
+ {t:18,img:'hero-tall',cap:'Sunset from the deck. This is the hour to book.',sky:'#3A3653'},
+ {t:19.5,img:'night',cap:'The garden after dark, lit up like a riverside village.',sky:'#1B2742'},
+ {t:21,img:'late',cap:'Dinner under a hundred bamboo lanterns, until 10 pm.',sky:'#141C30'}];
+(function(){const st=$('#stage');STOPS.forEach((s,i)=>{const im=new Image();im.src='img/'+s.img+'.webp';im.alt='';im.loading=i?'lazy':'eager';st.append(im)});
+const imgs=[...st.children],sun=$('#sun');
+const fmtT=v=>{const h=Math.floor(v),m=Math.round((v-h)*60),hh=h>12?h-12:h;return hh+':'+String(m).padStart(2,'0')+(h>=12?' pm':' am')};
+function set(v){let k=0;STOPS.forEach((s,i)=>{if(v>=s.t)k=i});imgs.forEach((im,i)=>im.classList.toggle('on',i===k));
+$('#clock').textContent=fmtT(v);$('#cap').textContent=STOPS[k].cap;$('#day').style.setProperty('--sky',STOPS[k].sky);sun.setAttribute('aria-valuetext',fmtT(v))}
+sun.addEventListener('input',()=>set(+sun.value));
+const now=new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Kolkata'}));const v=Math.min(22,Math.max(11,now.getHours()+Math.round(now.getMinutes()/15)/4));
+sun.value=v;set(v)})();
+
+/* Menu (Assamese section of the current menu) */
+const MENU=[
+ {g:'Thali & sides',items:[
+  {n:'Veg Thali',d:'Plain rice, yellow dal, black dal, khar, xaak, veg anja, pitika, chutney and payokh.',p:150},
+  {n:'Pitika',d:'Smoked brinjal, potato or tomato mashed with ginger, chilli, onion and coriander.',v:[['Bengena',100],['Aloo',100],['Bilahi',100]]},
+  {n:'Aloo Bhaji',d:'Potato fried with fresh green chilli and onion.',p:150},
+  {n:'Green Salad',d:'Cucumber, onion, carrot, green chilli and tomato.',p:120}]},
+ {g:'Chicken',items:[
+  {n:'Chicken Khorika',d:'Smoky, traditional Assamese roasted chicken.',p:350},
+  {n:'Chicken Fry',d:'Crispy fry with onions and chilli.',v:[['Farm',350],['Local',400]]},
+  {n:'Chicken with Til',d:'Chef\'s special with sesame seeds and a secret spice blend.',v:[['Farm',350],['Local',450]]},
+  {n:'Chicken with Rice Flour',d:'Assamese chicken cooked with rice flour and spices.',v:[['Farm',350],['Local',400]]},
+  {n:'Chicken with Potato',d:'Assamese-style curry with potatoes.',v:[['Farm',350],['Local',450]]},
+  {n:'Chicken Bamboo Shoot',d:'In mustard sauce with rice flour and bamboo shoot.',p:380},
+  {n:'Chicken Pitika',d:'Smoked chicken mashed with ginger, chilli, onion and coriander.',p:350}]},
+ {g:'River fish',items:[
+  {n:'Ilish Bhapot Diya',d:'Ilish steamed with mustard, green chilli and Assamese spices.',p:580},
+  {n:'Patot Diya Mas',d:'Fish in mustard, wrapped and cooked in banana leaf. Ilish on order only.',v:[['Bhokuwa',350],['Ari or Chital',450],['Ilish',580]]},
+  {n:'Ari Fish',d:'River fish the traditional way, in the curry you choose.',v:[['Tenga',350],['Mustard',350],['Local herb',350]]},
+  {n:'Boriola Fish Fry',d:'Crispy small river fish, an Assamese favourite.',p:350},
+  {n:'Bhokuwa Fish',d:'Cooked in traditional Assamese style with regional spices.',p:300},
+  {n:'Borali',d:'River fish, cooked the Assamese way.',p:350},
+  {n:'Mas Pitika',d:'Smoked fish mashed with ginger, chilli, onion and coriander.',p:300}]},
+ {g:'Duck & mutton',items:[
+  {n:'Duck with Kumura',d:'Tender duck with white gourd.',p:400},
+  {n:'Duck with Black Dal',d:'Duck with earthy, creamy mati dal.',p:400},
+  {n:'Duck with Potato',d:'Chef\'s special with potatoes and Assamese spices.',p:450},
+  {n:'Duck Fry',d:'Savoury duck with warm spices and a crisp crust.',p:450},
+  {n:'Mutton Fry',d:'Marinated mutton fried with onions and green chillies.',p:450},
+  {n:'Mutton with Potato',d:'Traditional Assamese mutton curry with potatoes.',p:450}]}];
+const cart=new Map();let mode='Dine-in';
+const PLUS='{{plus}}',MINUS='{{minus}}';
+/* Each section starts folded; tapping its name opens the dishes */
+function renderMenu(){$('#cats').innerHTML=MENU.map((m,g)=>{const lo=Math.min(...m.items.flatMap(it=>(it.v||[[0,it.p]]).map(o=>o[1])));
+ return `<details class="cat"><summary><h3>${m.g}</h3><small>${m.items.length} dishes, from ${rs(lo)}</small><i>${PLUS}</i></summary><div class="list">`+m.items.map((it,j)=>{const opts=it.v||[[null,it.p]];
+ const a=Math.min(...opts.map(o=>o[1])),b=Math.max(...opts.map(o=>o[1]));
+ return `<article class="dish"><h3>${it.n}</h3><span class="pr">${a===b?rs(a):rs(a)+' to '+rs(b)}</span><p>${it.d}</p><div class="row">${opts.map((o,k)=>`<button class="vr" data-g="${g}" data-j="${j}" data-k="${k}">${PLUS}${o[0]?o[0]+', '+rs(o[1]):'Add to ticket'}</button>`).join('')}</div></article>`}).join('')+'</div></details>'}).join('')}
+$('#cats').onclick=e=>{const b=e.target.closest('.vr');if(!b)return;const it=MENU[b.dataset.g].items[b.dataset.j],o=(it.v||[[null,it.p]])[b.dataset.k];
+ const key=it.n+(o[0]?' ('+o[0]+')':'');const c=cart.get(key)||{name:it.n,v:o[0],p:o[1],q:0};c.q++;cart.set(key,c);renderCart();toast(key+' added')};
+function renderCart(){const L=[...cart.entries()];$('#lines').innerHTML=L.map(([k,c])=>`<li><span>${c.name}</span><div class="q"><button data-k="${k}" data-d="-1" aria-label="One less ${k}">${MINUS}</button><b>${c.q}</b><button data-k="${k}" data-d="1" aria-label="One more ${k}">${PLUS}</button></div><em>${c.v?c.v+', ':''}${rs(c.p*c.q)}</em></li>`).join('');
+ const n=L.reduce((a,[,c])=>a+c.q,0),t=L.reduce((a,[,c])=>a+c.q*c.p,0);
+ $('#empty').hidden=!!n;$('#ticket').classList.toggle('none',!n);$('#tot').textContent=rs(t);$('#send').disabled=!n;
+ $('#barN').textContent=n+(n===1?' item on your ticket':' items on your ticket');$('#barT').textContent=rs(t);$('#bar').classList.toggle('on',!!n)}
+$('#lines').onclick=e=>{const b=e.target.closest('button');if(!b)return;const c=cart.get(b.dataset.k);c.q+=+b.dataset.d;if(c.q<1)cart.delete(b.dataset.k);renderCart()};
+$('#mode').onclick=e=>{const b=e.target.closest('button');if(!b)return;mode=b.textContent;$$('#mode button').forEach(x=>x.setAttribute('aria-pressed',x===b))};
+$('#bar').onclick=()=>$('#ticket').scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});
+$('#tno').textContent='GG-'+String(Math.floor(1000+Math.random()*9000));
+$('#send').onclick=()=>{const L=[...cart.values()];const t=L.reduce((a,c)=>a+c.q*c.p,0);
+ const msg=`Hello Guwahati Greens, I'd like to order (${mode}). Ticket ${$('#tno').textContent}\n\n`+L.map(c=>`${c.q} x ${c.name}${c.v?' ('+c.v+')':''}: ${rs(c.q*c.p)}`).join('\n')+`\n\nTotal: ${rs(t)}`;
+ open('https://wa.me/'+WA+'?text='+encodeURIComponent(msg),'_blank','noopener')};
+renderMenu();renderCart();
+
+/* Luit chat */
+const hist=[];let busy=false;
+/* Render the assistant's reply as clean HTML: escape everything, then allow **bold**, "- " bullet lists and paragraphs. */
+function fmt(t){const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');const bold=s=>esc(s).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\*(.+?)\*/g,'$1');
+const out=[];let list=null;for(const raw of String(t).replace(/\r/g,'').split('\n')){const l=raw.trim();const m=l.match(/^(?:[-*•]|\d+[.)])\s+(.*)/);
+if(m){if(!list){list=[];out.push(list)}list.push(m[1])}else{list=null;if(l)out.push(l)}}
+return out.map(x=>Array.isArray(x)?'<ul>'+x.map(i=>'<li>'+bold(i)+'</li>').join('')+'</ul>':'<p>'+bold(x)+'</p>').join('')}
+function add(t,w){const d=document.createElement('div');d.className='m '+w;if(w==='b')d.innerHTML=fmt(t);else d.textContent=t;$('#msgs').append(d);$('#msgs').scrollTop=1e9}
+function openChat(q){$('#chat').classList.add('on');$('#fab').style.display='none';if(!$('#msgs').children.length)add('Hello! I am Luit, the host at Guwahati Greens. Ask me about the thali, river fish, timings or booking a table by the river.','b');if(q)send(q);else $('#ci').focus()}
+function closeChat(){$('#chat').classList.remove('on');$('#fab').style.display=''}
+$('#fab').onclick=()=>openChat();$('#chatX').onclick=closeChat;
+$$('[data-ask]').forEach(b=>b.onclick=()=>openChat(b.dataset.ask));
+$('#sug').onclick=e=>{if(e.target.tagName==='BUTTON')send(e.target.textContent)};
+$('#cf').onsubmit=e=>{e.preventDefault();const v=$('#ci').value.trim();if(v){$('#ci').value='';send(v)}};
+async function send(t){if(busy)return;busy=true;$('#sug').style.display='none';add(t,'u');hist.push({role:'user',content:t});
+const ty=document.createElement('div');ty.className='m b typing';ty.innerHTML='<i></i><i></i><i></i>';$('#msgs').append(ty);$('#msgs').scrollTop=1e9;
+try{const r=await fetch('/api/chat',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({messages:hist})});const j=await r.json();ty.remove();const reply=j.reply||j.error||'Luit could not answer. Try again in a moment.';add(reply,'b');if(j.reply)hist.push({role:'assistant',content:reply});if(j.booked)toast('Table request sent')}
+catch{ty.remove();add('No connection. Check your internet and try again.','b')}busy=false}
+addEventListener('keydown',e=>{if(e.key==='Escape'&&$('#chat').classList.contains('on'))closeChat()});
+</script>
+</body>
+</html>

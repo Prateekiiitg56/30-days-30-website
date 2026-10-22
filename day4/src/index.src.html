@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bong Fish | Bengali Fish Restaurant in Khanapara, Guwahati</title>
+<meta name="description" content="34 kinds of fish cooked the Bengali way. Thalis, kosha and payesh in Khanapara, Guwahati. Open till 2 AM. Order on WhatsApp.">
+<meta name="theme-color" content="#F6C90E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23F6C90E'/%3E%3Cpath d='M8 32c9-12 25-15 38-6l10-8v28l-10-8c-13 9-29 6-38-6z' fill='%231C1A17'/%3E%3Ccircle cx='19' cy='30' r='3' fill='%23F6C90E'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Galada&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--yellow:#F6C90E;--ink:#1C1A17;--red:#D7261E;--green:#0E4D3A;--green2:#145c46;--leaf:#3E8E41;--white:#FFFDF8;--news:#EFE9DC;--mute:#5d564d}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--white);color:var(--ink);font:400 17px/1.65 'Hind Siliguri',system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:'Rozha One',Georgia,serif;font-weight:400;line-height:1.02}
+.bn{font-family:Galada,'Hind Siliguri',serif;font-weight:400}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+button{font:inherit;cursor:pointer;border:0;color:inherit;background:none}
+svg{flex:none}
+:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 26px;border-radius:999px;font-weight:700;font-size:1rem;transition:transform .2s,background .2s,color .2s}
+.btn svg{width:22px;height:22px}
+.btn:active{transform:scale(.97)}
+.btn-ink{background:var(--ink);color:var(--yellow)}
+.btn-ink:hover{background:#000}
+.btn-line{border:2px solid var(--ink)}
+.btn-line:hover{background:var(--ink);color:var(--yellow)}
+.btn-red{background:var(--red);color:#fff}
+.btn-red:hover{background:#b81d16}
+/* checker strip from the Kolkata taxi */
+.checker{height:22px;background:conic-gradient(var(--ink) 25%,var(--yellow) 0 50%,var(--ink) 0 75%,var(--yellow) 0) 0 0/22px 22px}
+/* nav */
+nav{position:fixed;inset:0 0 auto;z-index:50;transition:background .25s,box-shadow .25s}
+nav.s{background:var(--yellow);box-shadow:0 2px 0 var(--ink)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+.brand{display:flex;align-items:center;gap:10px}
+.brand svg{width:46px;height:28px}
+.brand b{font:400 1.5rem 'Rozha One',serif}
+.links{display:flex;gap:30px;font-weight:600}
+.links a{padding:6px 0;border-bottom:2px solid transparent}
+.links a:hover{border-color:var(--ink)}
+.bag{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 16px;border-radius:999px;background:var(--ink);color:var(--yellow);font-weight:700}
+.bag svg{width:20px;height:20px}
+@media(max-width:860px){.links{display:none}}
+/* hero */
+.hero{position:relative;overflow:hidden;padding-top:72px}
+/* hero: the video fills the right side and its yellow blends into the page */
+.hero{background:linear-gradient(90deg,#F8D460 0,#F3CB4E 45%,#EBBF35 100%)}
+.hgrid{display:grid;grid-template-columns:minmax(0,38%) 1fr;align-items:center;min-height:calc(100svh - 94px);position:relative}
+.hvid{position:absolute;top:72px;bottom:22px;right:0;width:61%;z-index:0;pointer-events:none;-webkit-mask:linear-gradient(90deg,transparent 0,#000 12%),linear-gradient(transparent 0,#000 6%,#000 94%,transparent);-webkit-mask-composite:source-in;mask:linear-gradient(90deg,transparent 0,#000 12%),linear-gradient(transparent 0,#000 6%,#000 94%,transparent);mask-composite:intersect}
+.hero .checker{position:relative;z-index:1}
+.hvid video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:50% 50%}
+#hl{opacity:0;transition:opacity .45s ease}#hl.on{opacity:1}
+.hcopy{position:relative;z-index:2;padding:28px 0}
+.hcopy .bn{font-size:clamp(1.5rem,2.6vw,2rem);color:var(--red);line-height:1.2;margin-bottom:6px}
+.hero h1{font-size:clamp(3.4rem,6.4vw,6.4rem);letter-spacing:-.02em;margin-bottom:16px}
+.hcopy p{font-size:1.15rem;max-width:34ch;margin-bottom:30px}
+.hbtns{display:flex;flex-wrap:wrap;gap:12px}
+.open{display:inline-flex;align-items:center;gap:8px;margin-bottom:22px;font-weight:600;font-size:.95rem}
+.open i{width:10px;height:10px;border-radius:50%;background:var(--red);box-shadow:0 0 0 4px rgba(215,38,30,.18)}
+.open i.on{background:var(--leaf);box-shadow:0 0 0 4px rgba(62,142,65,.22)}
+@media(max-width:900px){.hgrid{grid-template-columns:1fr;min-height:auto}.hvid{position:relative;top:auto;bottom:auto;width:100%;height:auto;aspect-ratio:16/9;-webkit-mask:linear-gradient(transparent 0,#000 10%,#000 85%,transparent);mask:linear-gradient(transparent 0,#000 10%,#000 85%,transparent)}.hvid video{object-position:50% 50%}.hcopy{padding:0 0 40px}}
+/* Bengali words reveal English on hover, focus or tap */
+.bn[data-en]{cursor:help;transition:opacity .12s;text-decoration:underline dotted;text-decoration-thickness:1px;text-underline-offset:.22em;text-decoration-color:currentColor}
+.bn.swap{opacity:0}
+.bn.en{font-family:'Hind Siliguri',sans-serif;font-weight:600;letter-spacing:-.01em}
+.ph figcaption.en{font-size:1.05rem}
+.tag .bn.en{font-size:1.05rem}
+.lang-hint{display:inline-flex;align-items:center;gap:6px;font-size:.88rem;color:var(--mute);margin-top:18px}
+.lang-hint svg{width:18px;height:18px}
+/* thali */
+.sec{padding:clamp(64px,10vh,110px) 0}
+.shead{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;margin-bottom:10px}
+.shead .bn{font-size:clamp(2.6rem,5vw,3.6rem);color:var(--red);line-height:1}
+.shead h2{font-size:clamp(2rem,3.6vw,2.9rem)}
+.sub{color:var(--mute);max-width:56ch;margin-bottom:34px}
+.tgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:56px;align-items:center}
+.thali{--size:min(560px,88vw);position:relative;width:var(--size);aspect-ratio:1;margin:0 auto;border-radius:50%;background:radial-gradient(circle,#e9c46a 0 58%,#c99a3b 58.5% 60%,#f2d78a 60.5% 63%,#b8862f 63.5% 64.5%,#e9c46a 65% 100%);box-shadow:inset 0 0 0 10px #d7ab4c,inset 0 0 40px rgba(120,80,10,.35),0 30px 60px -28px rgba(28,26,23,.55)}
+.leaf{position:absolute;inset:24%;border-radius:50%;background:radial-gradient(circle at 40% 35%,#58a64f,#2f6f2b 70%);transform:rotate(-20deg)}
+.centre{position:absolute;inset:25.5%;border-radius:50%;overflow:hidden;box-shadow:0 10px 24px rgba(0,0,0,.35)}
+.centre img{width:100%;height:100%;object-fit:cover}
+.katori{position:absolute;width:20%;aspect-ratio:1;border-radius:50%;padding:5px;background:linear-gradient(145deg,#f4dc93,#b9872c);box-shadow:0 8px 16px -6px rgba(60,40,0,.55);transform:translate(-50%,-50%);transition:transform .25s}
+.katori img{width:100%;height:100%;border-radius:50%;object-fit:cover}
+.katori:hover{transform:translate(-50%,-50%) scale(1.08)}
+.katori[aria-selected=true]{background:var(--red);transform:translate(-50%,-50%) scale(1.12)}
+.dish .bn{font-size:2rem;color:var(--red);line-height:1.1}
+.dish h3{font-size:clamp(2.2rem,4vw,3.2rem);margin:4px 0 14px}
+.dish p{color:var(--mute);max-width:44ch;margin-bottom:18px}
+.dish ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px 18px;margin-bottom:26px;font-weight:600}
+.dish li{display:flex;align-items:center;gap:6px}
+.dish li svg{width:18px;height:18px;color:var(--leaf)}
+@media(max-width:900px){.tgrid{grid-template-columns:1fr;gap:34px}}
+/* fish tags */
+.tags{background:var(--green);color:#fff}
+.tags .shead .bn{color:var(--yellow)}
+.tags .sub{color:rgba(255,255,255,.75)}
+.taglist{display:flex;flex-wrap:wrap;gap:14px 12px}
+.tag{position:relative;display:flex;align-items:center;gap:12px;padding:10px 18px 10px 30px;background:var(--white);color:var(--ink);border-radius:6px 14px 14px 6px;clip-path:polygon(14px 0,100% 0,100% 100%,14px 100%,0 50%)}
+.tag:before{content:"";position:absolute;left:14px;top:50%;width:7px;height:7px;margin-top:-3.5px;border-radius:50%;background:var(--green)}
+.tag .bn{font-size:1.35rem;color:var(--red);line-height:1}
+.tag span{font-weight:600}
+.tags .note{margin-top:26px;font-size:.95rem;color:rgba(255,255,255,.7)}
+/* place */
+.pgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:60px;align-items:center}
+.stack{position:relative;height:min(520px,70vw);cursor:pointer}
+.ph{position:absolute;inset:6% 8%;background:#fff;padding:12px 12px 46px;box-shadow:0 18px 40px -16px rgba(28,26,23,.45);transition:transform .5s cubic-bezier(.2,.9,.3,1),opacity .4s}
+.ph img{width:100%;height:100%;object-fit:cover}
+.ph figcaption{position:absolute;left:14px;bottom:12px;font:400 1.25rem Galada,serif;color:var(--ink)}
+.stack-hint{display:flex;align-items:center;gap:8px;margin-top:14px;color:var(--mute);font-size:.92rem}
+.stack-hint svg{width:18px;height:18px}
+.facts{list-style:none;margin-top:26px;border-top:2px solid var(--ink)}
+.facts li{display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:center;padding:14px 0;border-bottom:1px solid rgba(28,26,23,.15)}
+.facts b{font:400 1.9rem/1 'Rozha One',serif}
+@media(max-width:900px){.pgrid{grid-template-columns:1fr;gap:30px}.stack{height:100vw;max-height:460px}}
+/* order */
+.order-sec{background:var(--green);color:#fff}
+.order-sec .shead .bn{color:var(--yellow)}
+.order-sec .sub{color:rgba(255,255,255,.75)}
+.ogrid{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:36px;align-items:start}
+.ogrid>*{min-width:0}
+.board{background:var(--green2);border:2px solid rgba(255,255,255,.12);border-radius:18px;padding:8px 28px 26px}
+.cats{position:sticky;top:72px;z-index:3;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:14px 0;background:var(--green2)}
+.cats a{white-space:nowrap;padding:8px 16px;border-radius:999px;border:1.5px solid rgba(255,255,255,.3);font-weight:600;font-size:.95rem}
+.cats a.on{background:var(--yellow);border-color:var(--yellow);color:var(--ink)}
+.grp{scroll-margin-top:150px;padding-top:18px}
+.grp h3{font-size:1.6rem;color:var(--yellow);padding-bottom:8px;border-bottom:2px solid rgba(246,201,14,.35)}
+.it{display:grid;grid-template-columns:1fr auto;gap:2px 16px;align-items:center;padding:14px 0;border-bottom:1px dashed rgba(255,255,255,.18)}
+.it:last-child{border-bottom:0}
+.it h4{font:600 1.12rem 'Hind Siliguri',sans-serif;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.it p{grid-column:1;color:rgba(255,255,255,.7);font-size:.95rem}
+.it p .bn{color:var(--yellow);font-size:1.05rem;margin-right:6px}
+.it .pr{grid-column:1;font-size:.9rem;color:rgba(255,255,255,.55)}
+.veg{width:14px;height:14px;border:1.5px solid;border-radius:2px;display:inline-grid;place-items:center;flex:none}
+.veg:after{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.veg.v{color:#7bd389}.veg.n{color:#ff8a80}
+.fav{font-size:.78rem;font-weight:700;background:var(--yellow);color:var(--ink);padding:1px 8px;border-radius:4px}
+.ctl{grid-column:2;grid-row:1/4;display:flex;justify-content:flex-end;min-width:110px}
+.add{display:inline-flex;align-items:center;gap:6px;height:44px;padding:0 16px;border-radius:999px;background:var(--yellow);color:var(--ink);font-weight:700}
+.add svg{width:16px;height:16px}
+.add:hover{background:#ffd93d}
+.qty{display:flex;align-items:center;height:44px;border-radius:999px;background:#fff;color:var(--ink)}
+.qty button{width:40px;height:44px;display:grid;place-items:center}
+.qty svg{width:15px;height:15px}
+.qty span{min-width:22px;text-align:center;font-weight:700}
+.bnote{margin-top:18px;font-size:.92rem;color:rgba(255,255,255,.6)}
+/* the newspaper paper bag ("thonga") holding your order */
+.thonga{position:sticky;top:92px;color:var(--ink)}
+.tbag{position:relative;background:var(--news);padding:30px 22px 24px;border-radius:2px 2px 10px 10px;box-shadow:0 20px 40px -18px rgba(0,0,0,.6);overflow:hidden;color:var(--ink)}
+.tbag:before{content:"আজকের খবর ইলিশের দাম বাড়ল কলকাতা বাজার মাছ ভাত বাঙালি রবিবার সকাল আনন্দ খেলা খবর আজকের খবর ইলিশের দাম বাড়ল কলকাতা বাজার মাছ ভাত বাঙালি রবিবার সকাল আনন্দ খেলা খবর আজকের খবর ইলিশের দাম বাড়ল কলকাতা বাজার মাছ ভাত বাঙালি রবিবার সকাল আনন্দ খেলা খবর আজকের খবর ইলিশের দাম বাড়ল কলকাতা বাজার মাছ ভাত বাঙালি";position:absolute;inset:0;padding:10px;font:400 13px/1.9 'Hind Siliguri',sans-serif;color:rgba(28,26,23,.08);column-count:3;column-gap:12px;pointer-events:none;word-break:break-all}
+.tbag:after{content:"";position:absolute;left:0;right:0;top:0;height:14px;background:linear-gradient(135deg,transparent 7px,var(--news) 7px) 0 0/14px 14px,linear-gradient(-135deg,transparent 7px,var(--news) 7px) 0 0/14px 14px;filter:brightness(.9)}
+.tbag>*{position:relative}
+.tbag h3{font-size:1.6rem;display:flex;align-items:center;gap:10px}
+.tbag h3 svg{width:26px;height:26px;color:var(--red)}
+.tsub{font-size:.88rem;color:var(--mute);margin-bottom:12px}
+.line{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;padding:8px 0;border-bottom:1px dashed rgba(28,26,23,.25)}
+.line b{font-weight:600}
+.line .q{display:flex;align-items:center;gap:4px}
+.line .q button{width:30px;height:30px;border-radius:50%;background:#fff;display:grid;place-items:center;border:1px solid rgba(28,26,23,.2)}
+.line .q svg{width:12px;height:12px}
+.line .q span{min-width:20px;text-align:center;font-weight:700}
+.empty{text-align:center;padding:18px 0;color:var(--mute)}
+.empty svg{width:42px;height:42px;color:rgba(28,26,23,.35);margin:0 auto 6px;display:block}
+.modes{display:flex;gap:6px;margin:16px 0 12px}
+.modes label{flex:1;position:relative;text-align:center;padding:10px 4px;border-radius:999px;border:1.5px solid var(--ink);font-weight:600;font-size:.88rem;cursor:pointer;background:#fff}
+.modes input{position:absolute;opacity:0;pointer-events:none}
+.modes label:has(input:checked){background:var(--ink);color:var(--yellow)}
+.modes label:has(input:focus-visible){outline:3px solid var(--red);outline-offset:2px}
+.tbag label.nl{display:block;font-size:.88rem;font-weight:600;margin-bottom:6px}
+.tbag textarea{width:100%;font:inherit;font-size:.92rem;border:1.5px solid rgba(28,26,23,.25);border-radius:10px;padding:10px;background:#fff;resize:vertical;min-height:58px}
+.send{width:100%;margin-top:14px;display:flex;align-items:center;justify-content:center;gap:10px;min-height:52px;border-radius:999px;background:#1f7a4d;color:#fff;font-weight:700}
+.send:hover{background:#18663f}
+.send[disabled]{opacity:.45;cursor:not-allowed}
+.send svg{width:22px;height:22px}
+.fine{font-size:.82rem;color:var(--mute);margin-top:10px}
+.bagbar{position:fixed;left:12px;right:12px;bottom:76px;z-index:55;display:none;align-items:center;justify-content:space-between;gap:10px;padding:8px 8px 8px 18px;border-radius:999px;background:var(--ink);color:var(--yellow);font-weight:700;box-shadow:0 14px 30px -10px rgba(0,0,0,.6);transform:translateY(calc(100% + 120px));visibility:hidden;transition:transform .35s cubic-bezier(.2,1.1,.3,1),visibility 0s .35s}
+.bagbar.on{transform:none;visibility:visible;transition:transform .35s cubic-bezier(.2,1.1,.3,1)}
+.bagbar u{text-decoration:none;background:var(--yellow);color:var(--ink);padding:10px 18px;border-radius:999px}
+@media(max-width:980px){.ogrid{grid-template-columns:minmax(0,1fr)}.thonga{display:none}.bagbar{display:flex}}
+@media(max-width:600px){.board{padding:4px 16px 20px}.ctl{min-width:auto}}
+/* visit */
+.visit{background:var(--yellow)}
+.vgrid{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;padding:clamp(56px,9vh,96px) 20px}
+.vgrid h2{font-size:clamp(3rem,7vw,6rem);line-height:.95}
+.vgrid h2 .bn{display:block;font-size:.45em;color:var(--red);margin-bottom:6px}
+.vgrid p{font-size:1.1rem;margin:16px 0 26px;max-width:38ch}
+.vbtns{display:flex;flex-wrap:wrap;gap:12px}
+.door{border:10px solid var(--ink);border-radius:200px 200px 16px 16px;overflow:hidden;aspect-ratio:3/4;max-height:520px;margin-left:auto}
+.door img{width:100%;height:100%;object-fit:cover}
+@media(max-width:900px){.vgrid{grid-template-columns:1fr}.door{margin:0 auto;max-width:360px}}
+footer{background:var(--ink);color:rgba(255,255,255,.7);padding:30px 0 110px;font-size:.92rem}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+footer b{color:var(--yellow);font:400 1.2rem 'Rozha One',serif}
+/* drawer, mobile bar */
+.drawer{visibility:hidden;position:fixed;top:0;right:0;height:100%;width:min(400px,100%);background:var(--green);z-index:80;transform:translateX(100%);transition:transform .35s;padding:60px 16px 16px;overflow:auto}
+.drawer.on{transform:none;visibility:visible}
+.dclose{position:absolute;top:12px;right:12px;width:44px;height:44px;display:grid;place-items:center;color:#fff}
+.dclose svg{width:24px;height:24px}
+.veil{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:70;opacity:0;pointer-events:none;transition:opacity .3s}
+.veil.on{opacity:1;pointer-events:auto}
+.mbar{display:none}
+@media(max-width:700px){.mbar{display:grid;grid-template-columns:repeat(3,1fr);position:fixed;bottom:0;left:0;right:0;z-index:40;background:var(--ink);padding:10px 12px;gap:8px}.mbar a{display:flex;align-items:center;justify-content:center;gap:6px;min-height:46px;border-radius:999px;font-weight:700;font-size:.92rem;color:#fff;background:rgba(255,255,255,.08)}.mbar a svg{width:20px;height:20px}.mbar a:last-child{background:var(--yellow);color:var(--ink)}}
+/* Ilish chat */
+#fab{position:fixed;right:20px;bottom:22px;z-index:60;display:flex;align-items:center;gap:10px;height:56px;padding:0 22px 0 16px;border-radius:999px;background:var(--red);color:#fff;font-weight:700;box-shadow:0 12px 30px -8px rgba(215,38,30,.6)}
+#fab svg{width:26px;height:26px}
+@media(max-width:700px){#fab{bottom:136px;right:14px;width:56px;padding:0;justify-content:center}#fab span{display:none}}
+#chat{position:fixed;right:20px;bottom:22px;z-index:90;width:min(390px,calc(100vw - 24px));height:min(600px,calc(100svh - 40px));background:var(--white);border-radius:22px;display:none;flex-direction:column;overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,.4);border:2px solid var(--ink)}
+#chat.on{display:flex;animation:pop .25s ease-out}
+@keyframes pop{from{opacity:0;transform:translateY(16px)}}
+.ch{display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--yellow);border-bottom:2px solid var(--ink)}
+.ch .av{width:44px;height:44px;border-radius:50%;background:var(--ink);color:var(--yellow);display:grid;place-items:center}
+.ch .av svg{width:26px;height:26px}
+.ch b{display:block;font:400 1.3rem 'Rozha One',serif;line-height:1.1}
+.ch small{font-size:.85rem}
+.ch button{margin-left:auto;width:44px;height:44px;display:grid;place-items:center}
+.ch button svg{width:22px;height:22px}
+#msgs{flex:1;overflow:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
+.m{max-width:86%;padding:10px 14px;border-radius:16px;font-size:.98rem;white-space:pre-wrap}
+.m.b{background:var(--news);border-bottom-left-radius:4px;align-self:flex-start}
+.m.u{background:var(--green);color:#fff;border-bottom-right-radius:4px;align-self:flex-end}
+.typing{display:flex;gap:4px}
+.typing i{width:7px;height:7px;border-radius:50%;background:var(--green);animation:bl 1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes bl{50%{opacity:.25}}
+.sug{display:flex;gap:8px;flex-wrap:wrap;padding:0 16px 10px}
+.sug button{padding:8px 14px;border-radius:999px;border:1.5px solid var(--ink);font-size:.88rem;font-weight:600}
+.sug button:hover{background:var(--yellow)}
+.cf{display:flex;gap:8px;padding:12px;border-top:2px solid var(--ink)}
+.cf input{flex:1;min-width:0;border:1.5px solid rgba(28,26,23,.3);border-radius:999px;padding:0 16px;height:46px;font:inherit}
+.cf button{width:46px;height:46px;border-radius:50%;background:var(--ink);color:var(--yellow);display:grid;place-items:center}
+.cf button svg{width:20px;height:20px}
+.toast{position:fixed;left:50%;bottom:100px;translate:-50% 16px;background:var(--ink);color:var(--yellow);padding:12px 22px;border-radius:999px;font-weight:600;z-index:100;opacity:0;transition:opacity .25s,translate .25s;pointer-events:none}
+.toast.on{opacity:1;translate:-50% 0}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media(min-width:1024px) and (max-height:860px){body{font-size:16px}.thali{--size:min(480px,calc(100svh - 220px))}}
+.m.b{white-space:normal}.m p+p,.m p+ul,.m ul+p{margin-top:8px}.m ul{margin:6px 0 0;padding-left:18px}.m li{margin:3px 0}.m b{font-weight:700}
+</style>
+</head>
+<body>
+<nav id="nav"><div class="wrap nav">
+  <a href="#top" class="brand" aria-label="Bong Fish home"><svg viewBox="0 0 64 36" aria-hidden="true"><path d="M2 18C12 4 32 0 48 10l12-9v34l-12-9C32 36 12 32 2 18z" fill="#1C1A17"/><circle cx="13" cy="15" r="3" fill="#F6C90E"/><path d="M22 10c3 5 3 11 0 16" stroke="#F6C90E" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg><b>Bong Fish</b></a>
+  <div class="links"><a href="#thali">Dishes</a><a href="#fish">Our fish</a><a href="#place">The place</a><a href="#order">Order</a><a href="#visit">Visit</a></div>
+  <button class="bag" id="bagOpen" aria-label="Your order">{{shopping-bag}}<span id="cc">0</span></button>
+</div></nav>
+
+<header class="hero" id="top">
+  <div class="hvid" aria-hidden="true"><video id="hv" muted playsinline preload="auto" poster="video/hero-poster.webp"><source src="video/hero.mp4" type="video/mp4"></video><video id="hl" muted playsinline loop preload="auto"><source src="video/hero-loop.mp4" type="video/mp4"></video></div>
+  <div class="wrap hgrid">
+    <div class="hcopy">
+      <div class="open"><i id="dot"></i><span id="stat">Khanapara, Guwahati</span></div>
+      <p class="bn" data-en="Fish and rice make a Bengali">মাছে ভাতে বাঙালি</p>
+      <h1>Bong Fish</h1>
+      <p>34 kinds of fish, cooked the Bengali way. Thalis, kosha and payesh in Khanapara, served till 2 AM.</p>
+      <div class="hbtns"><a href="#order" class="btn btn-ink">{{shopping-bag}}Order now</a><a href="#thali" class="btn btn-line">See the thali</a></div>
+      <p class="lang-hint">{{translate}}Hover or tap any Bengali word to read it in English</p>
+    </div>
+    
+  </div>
+  <div class="checker" aria-hidden="true"></div>
+</header>
+
+<section class="sec" id="thali"><div class="wrap">
+  <div class="shead"><span class="bn" data-en="Thali">থালি</span><h2>Pick a dish off the thali</h2></div>
+  <p class="sub">Our most-ordered plates. Tap a bowl to bring it to the centre.</p>
+  <div class="tgrid">
+    <div class="thali" id="plate" role="tablist" aria-label="Signature dishes"><div class="leaf"></div><div class="centre"><img id="cimg" alt=""></div></div>
+    <div class="dish" aria-live="polite"><p class="bn" id="dbn" data-en=""></p><h3 id="dname"></h3><p id="ddesc"></p><ul id="dlist"></ul><button class="btn btn-red" id="dadd">{{plus}}Add to order</button></div>
+  </div>
+</div></section>
+
+<section class="sec tags" id="fish"><div class="wrap">
+  <div class="shead"><span class="bn" data-en="Today's fish">আজকের মাছ</span><h2>The fish we cook</h2></div>
+  <p class="sub">Freshwater and sea fish, cooked in mustard, curd, coconut or a light jhol.</p>
+  <div class="taglist" id="taglist"></div>
+  <p class="note">Ilish and a few others depend on the season. Ask us what's in today.</p>
+</div></section>
+
+<section class="sec" id="place"><div class="wrap pgrid">
+  <div>
+    <div class="shead"><span class="bn" data-en="Adda: long, happy chats">আড্ডা</span><h2>Made for long meals</h2></div>
+    <p class="sub">Woven bamboo ceilings, warm lamps and wooden tables. Come with family, stay for one more round of payesh.</p>
+    <ul class="facts">
+      <li><b>34</b><span>kinds of fish on the menu</span></li>
+      <li><b>2 AM</b><span>closing time, every night</span></li>
+      <li><b>₹700</b><span>for two, roughly</span></li>
+    </ul>
+  </div>
+  <div>
+    <div class="stack" id="stack" role="button" tabindex="0" aria-label="Show next photo of the restaurant">
+      <figure class="ph"><img src="img/room-4.webp" alt="Dining room with bamboo lamps" loading="lazy"><figcaption class="bn" data-en="Dining room">খাওয়ার ঘর</figcaption></figure>
+      <figure class="ph"><img src="img/room-3.webp" alt="Woven bamboo ceiling with warm lights" loading="lazy"><figcaption class="bn" data-en="Bamboo ceiling">বাঁশের ছাদ</figcaption></figure>
+      <figure class="ph"><img src="img/room-1.webp" alt="Bright dining hall with city views" loading="lazy"><figcaption class="bn" data-en="By the window">জানালার ধারে</figcaption></figure>
+      <figure class="ph"><img src="img/room-2.webp" alt="Long dining hall with bamboo lanterns" loading="lazy"><figcaption class="bn" data-en="The long hall">লম্বা হল</figcaption></figure>
+      <figure class="ph"><img src="img/entrance.webp" alt="Bong Fish entrance and signboard" loading="lazy"><figcaption class="bn" data-en="Welcome">স্বাগতম</figcaption></figure>
+    </div>
+    <p class="stack-hint">{{hand-tap}}Tap the photo to see the next one</p>
+  </div>
+</div></section>
+
+<section class="sec order-sec" id="order"><div class="wrap">
+  <div class="shead"><span class="bn" data-en="Order">অর্ডার</span><h2>Order on WhatsApp</h2></div>
+  <p class="sub">Add dishes to your bag, choose delivery, takeaway or dine-in, and send it to us. We confirm before we start cooking.</p>
+  <div class="ogrid">
+    <div class="board"><nav class="cats" id="cats" aria-label="Menu sections"></nav><div id="groups"></div><p class="bnote">Demo menu. Dishes and prices will come from the Bong Fish menu card.</p></div>
+    <aside class="thonga" aria-label="Your order"><div class="tbag" id="bag1"></div></aside>
+  </div>
+</div></section>
+<button class="bagbar" id="bagbar"><span id="bagtxt">0 items in your bag</span><u>View bag</u></button>
+
+<section class="visit" id="visit"><div class="wrap vgrid">
+  <div>
+    <h2><span class="bn" data-en="Come, eat with us">আসুন, খেয়ে যান</span>Open till 2 AM, every night</h2>
+    <p>Rajiv Gandhi Path, Udaynagar, Koinadhara, Khanapara, Guwahati 781022. Doors open at 11 AM.</p>
+    <div class="vbtns"><a class="btn btn-ink" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Bong+Fish+Khanapara+Guwahati">{{map-pin}}Get directions</a><a class="btn btn-line" href="#order">{{shopping-bag}}Order now</a></div>
+  </div>
+  <div class="door"><img src="img/entrance.webp" alt="The Bong Fish entrance" loading="lazy"></div>
+</div><div class="checker" aria-hidden="true"></div></section>
+
+<footer><div class="wrap"><div><b>Bong Fish</b><br>Pure taste of Bengal in Khanapara, Guwahati.</div><div>© 2026 Bong Fish</div></div></footer>
+
+<div class="veil" id="veil"></div>
+<aside class="drawer" id="drawer" aria-label="Your order"><button id="bagClose" class="dclose" aria-label="Close your bag">{{x}}</button><div class="tbag" id="bag2"></div></aside>
+<div class="mbar"><a href="#visit">{{map-pin}}Visit</a><a href="#thali">{{fish}}Dishes</a><a href="#order">{{shopping-bag}}Order</a></div>
+
+<button id="fab" aria-label="Chat with Ilish">{{chat-circle-dots}}<span>Ask Ilish</span></button>
+<section id="chat" role="dialog" aria-label="Chat with Ilish">
+  <div class="ch"><div class="av">{{fish}}</div><div><b>Ilish</b><small>Answers about dishes, timings and tables</small></div><button id="chatX" aria-label="Close chat">{{x}}</button></div>
+  <div id="msgs"></div>
+  <div class="sug" id="sug"><button>Which fish should I try?</button><button>What comes in the thali?</button><button>Are you open now?</button><button>Book a table</button></div>
+  <form class="cf" id="cf"><input id="ci" placeholder="Ask Ilish anything" autocomplete="off" maxlength="400" aria-label="Your message"><button aria-label="Send message">{{paper-plane-right}}</button></form>
+</section>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+const $=s=>document.querySelector(s);
+const WA=''; // restaurant WhatsApp number with country code, e.g. '919876543210'
+const PH='₹ ——', PLUS=`{{plus}}`, MINUS=`{{minus}}`, WAI=`{{whatsapp-logo}}`, BOWL=`{{bowl-food}}`, CHECK=`{{check-circle}}`, BAG=`{{shopping-bag}}`;
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('on'),2200)}
+(function(){const h=+new Intl.DateTimeFormat('en-GB',{hour:'numeric',hour12:false,timeZone:'Asia/Kolkata'}).format(new Date());const open=h>=11||h<2;$('#dot').classList.toggle('on',open);$('#stat').textContent=open?'Open now, till 2 AM':'Closed now, opens at 11 AM'})();
+addEventListener('scroll',()=>$('#nav').classList.toggle('s',scrollY>40),{passive:true});
+
+/* the thali */
+const SIG=[
+ {k:'maharaja-thali',n:'Maharaja Thali',bn:'মহারাজা থালি',d:'The full Bengali spread on one brass plate: rice, pulao, dal, bhaja, fish and meat curries, chutney, papad and mishti.',l:['Fish and meat','Sweets included','Serves one, generously']},
+ {k:'paturi',n:'Maach Paturi',bn:'মাছের পাতুরি',d:'Fish coated in mustard paste and green chilli, wrapped in banana leaf and steamed until it flakes.',l:['Steamed','Mustard','Fish']},
+ {k:'khichdi',n:'Special Khichdi',bn:'স্পেশাল খিচুড়ি',d:'Moong dal khichdi with fried fish, beguni, papad and chutney. The dish Bengalis want on a rainy day.',l:['With fish fry','Comfort food','Thali style']},
+ {k:'lau-pata-chingri',n:'Lau Pata Chingri Bharta',bn:'লাউ পাতা চিংড়ি ভর্তা',d:'Bottle-gourd leaves mashed with prawns, mustard oil and green chilli, topped with whole prawns.',l:['Prawns','Mustard oil','Village style']},
+ {k:'kosha',n:'Kosha',bn:'কষা',d:'Cooked low and slow with onion and whole spices until the gravy clings to every piece. Order it with luchi.',l:['Slow-cooked','Thick gravy','Goes with luchi']},
+ {k:'biryani',n:'Biryani',bn:'বিরিয়ানি',d:'Long-grain rice and tender meat cooked dum style, the way Kolkata likes it.',l:['Dum cooked','Fragrant rice','Easy to share']},
+ {k:'thali',n:'Bengali Thali',bn:'বাঙালি থালি',d:'An everyday plate of rice, dal, bhaja, curries, curd and papad. Simple and filling.',l:['Everyday meal','Rice and dal','Curd included']},
+ {k:'payesh',n:'Special Payesh',bn:'পায়েস',d:'Rice slow-cooked in milk until thick, finished with cashews and raisins.',l:['Sweet','Cashews and raisins','Vegetarian']}];
+let si=-1;
+const plate=$('#plate');
+SIG.forEach((d,i)=>{const a=-Math.PI/2+i*2*Math.PI/SIG.length,r=40.5;const b=document.createElement('button');b.className='katori';b.setAttribute('role','tab');b.setAttribute('aria-label',d.n);b.dataset.i=i;
+b.style.left=50+Math.cos(a)*r+'%';b.style.top=50+Math.sin(a)*r+'%';b.innerHTML=`<img src="img/sq-${d.k}.webp" alt="" loading="lazy">`;plate.append(b)});
+function pick(i){if(i===si)return;const first=si<0;si=i;const d=SIG[i],im=$('#cimg');
+document.querySelectorAll('.katori').forEach((b,j)=>{b.setAttribute('aria-selected',j===i);b.tabIndex=j===i?0:-1});
+const db=$('#dbn');db.dataset.en=d.n;db.dataset.bnText=d.bn;db.textContent=d.bn;db.classList.remove('en');$('#dname').textContent=d.n;$('#ddesc').textContent=d.d;$('#dlist').innerHTML=d.l.map(x=>`<li>${CHECK}${x}</li>`).join('');
+if(first||matchMedia('(prefers-reduced-motion:reduce)').matches){im.src='img/sq-'+d.k+'.webp';im.alt=d.n;return}
+im.animate([{transform:'rotate(0) scale(1)',opacity:1},{transform:'rotate(-40deg) scale(.6)',opacity:0}],{duration:180,easing:'ease-in'}).onfinish=()=>{im.src='img/sq-'+d.k+'.webp';im.alt=d.n;im.animate([{transform:'rotate(40deg) scale(.6)',opacity:0},{transform:'rotate(0) scale(1)',opacity:1}],{duration:320,easing:'cubic-bezier(.2,1.2,.4,1)'})}}
+plate.addEventListener('click',e=>{const b=e.target.closest('.katori');if(b)pick(+b.dataset.i)});
+plate.addEventListener('keydown',e=>{const k={ArrowRight:1,ArrowDown:1,ArrowLeft:-1,ArrowUp:-1}[e.key];if(!k)return;e.preventDefault();const n=(si+k+SIG.length)%SIG.length;pick(n);document.querySelectorAll('.katori')[n].focus()});
+pick(0);
+
+/* fish tags */
+const FISH=[['Ilish','ইলিশ'],['Bhetki','ভেটকি'],['Rui','রুই'],['Katla','কাতলা'],['Pabda','পাবদা'],['Tangra','ট্যাংরা'],['Parshe','পার্শে'],['Chitol','চিতল'],['Boal','বোয়াল'],['Koi','কই'],['Magur','মাগুর'],['Shol','শোল'],['Aar','আড়'],['Pomfret','পমফ্রেট'],['Golda Chingri','গলদা চিংড়ি'],['Bagda Chingri','বাগদা চিংড়ি'],['Mourola','মৌরলা'],['Tilapia','তেলাপিয়া']];
+$('#taglist').innerHTML=FISH.map(([e,b])=>`<div class="tag"><span class="bn" data-en="${e}">${b}</span></div>`).join('');
+
+/* photo stack: tap to send the top photo to the back */
+(function(){const st=$('#stack'),ph=[...st.querySelectorAll('.ph')];let order=ph.map((_,i)=>i);
+const tilt=[-4,3,-2,5,-6];
+function lay(){order.forEach((p,pos)=>{const el=ph[p];el.style.zIndex=ph.length-pos;el.style.transform=`rotate(${pos?tilt[p]:0}deg) translate(${pos*6}px,${pos*6}px)`;el.style.opacity=pos>3?0:1})}
+function next(){const top=ph[order[0]];top.style.transform='translate(-120%,-10%) rotate(-18deg)';setTimeout(()=>{order.push(order.shift());lay()},matchMedia('(prefers-reduced-motion:reduce)').matches?0:280)}
+st.addEventListener('click',next);st.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();next()}});lay()})();
+
+/* menu (demo): [name, bengali, description, veg, popular] */
+const MENU={
+ 'Fish':[['Shorshe Ilish','সর্ষে ইলিশ','Hilsa in sharp mustard gravy',0,1],['Ilish Bhapa','ইলিশ ভাপা','Steamed hilsa with mustard and coconut',0,0],['Maach Paturi','মাছের পাতুরি','Fish steamed in banana leaf',0,1],['Doi Katla','দই কাতলা','Katla in a mild curd gravy',0,0],['Rui Kalia','রুই কালিয়া','Rohu in rich onion-tomato gravy',0,0],['Pabda Jhal','পাবদা ঝাল','Pabda in mustard and chilli',0,0],['Tangra Macher Jhol','ট্যাংরা মাছের ঝোল','Light everyday fish curry',0,0],['Bhetki Fish Fry','ভেটকি ফিশ ফ্রাই','Crumb-fried bhetki, Kolkata style',0,1]],
+ 'Prawns':[['Chingri Malai Curry','চিংড়ি মালাইকারি','Prawns in coconut milk gravy',0,1],['Lau Pata Chingri Bharta','লাউ পাতা চিংড়ি ভর্তা','Prawns with bottle-gourd leaves',0,0],['Chingri Bhapa','চিংড়ি ভাপা','Steamed prawns in mustard',0,0]],
+ 'Thali':[['Maharaja Thali','মহারাজা থালি','The full Bengali spread',0,1],['Bengali Thali','বাঙালি থালি','Rice, dal, bhaja, curries, curd',0,0],['Veg Thali','নিরামিষ থালি','Rice, dal, bhaja, sabji, chutney',1,0],['Special Khichdi','স্পেশাল খিচুড়ি','With fish fry, beguni and papad',0,1]],
+ 'Rolls & rice':[['Fish Roll','ফিশ রোল','Spiced fish in flaky paratha',0,0],['Egg Roll','ডিম রোল','Kolkata street classic',0,0],['Biryani','বিরিয়ানি','Dum-cooked, fragrant',0,1],['Kosha with Luchi','কষা ও লুচি','Slow-cooked kosha, fluffy luchi',0,0]],
+ 'Sweets':[['Special Payesh','পায়েস','Rice cooked in milk',1,1],['Mishti Doi','মিষ্টি দই','Sweet set curd',1,0],['Rosogolla','রসগোল্লা','Soft cottage-cheese balls in syrup',1,0]]};
+const NAMES=Object.values(MENU).flat().map(r=>r[0]);
+const cart={};let mode='Delivery',note='';
+const slug=s=>s.toLowerCase().replace(/[^a-z]+/g,'-');
+const ctl=n=>cart[n]?`<div class="qty"><button data-m="${n}" aria-label="Remove one ${n}">${MINUS}</button><span>${cart[n]}</span><button data-a="${n}" aria-label="Add one more ${n}">${PLUS}</button></div>`:`<button class="add" data-a="${n}" aria-label="Add ${n} to your bag">${PLUS}Add</button>`;
+function drawMenu(){
+$('#cats').innerHTML=Object.keys(MENU).map((k,i)=>`<a href="#g-${slug(k)}" class="${i?'':'on'}">${k}</a>`).join('');
+$('#groups').innerHTML=Object.entries(MENU).map(([k,rows])=>`<section class="grp" id="g-${slug(k)}" aria-label="${k}"><h3>${k}</h3>${rows.map(([n,bn,d,v,f])=>`<div class="it"><h4><i class="veg ${v?'v':'n'}" role="img" aria-label="${v?'Vegetarian':'Non-vegetarian'}"></i>${n}${f?' <span class="fav">Popular</span>':''}</h4><p><span class="bn" data-en="${n}">${bn}</span>${d}</p><span class="pr">${PH}</span><div class="ctl" data-n="${n}">${ctl(n)}</div></div>`).join('')}</section>`).join('');
+const links=[...document.querySelectorAll('#cats a')];
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id))}),{rootMargin:'-45% 0px -50% 0px'});
+document.querySelectorAll('.grp').forEach(s=>io.observe(s))}
+function change(n,d){if(d>0){cart[n]=(cart[n]||0)+1;if(cart[n]===1)toast(n+' added to your bag')}else if(cart[n]&&--cart[n]<=0)delete cart[n];
+document.querySelectorAll('.ctl').forEach(c=>{if(c.dataset.n===n){const f=c.contains(document.activeElement);c.innerHTML=ctl(n);if(f)(c.querySelector(d>0?'[data-a]':'[data-m]')||c.querySelector('button')).focus()}});drawBag()}
+$('#groups').onclick=e=>{const a=e.target.closest('[data-a]')?.dataset.a,m=e.target.closest('[data-m]')?.dataset.m;if(a)change(a,1);if(m)change(m,-1)};
+$('#dadd').onclick=()=>{const n=SIG[si].n;change(NAMES.find(x=>x===n)||NAMES.find(x=>x.startsWith(n))||n,1)};
+function bagHTML(){const k=Object.keys(cart),q=k.reduce((s,n)=>s+cart[n],0);
+return `<h3>${BAG}Your bag</h3><p class="tsub">${q?`${q} ${q===1?'item':'items'}. Prices are confirmed on WhatsApp.`:'Empty for now.'}</p>`+
+(k.length?k.map(n=>`<div class="line"><b>${n}</b><span class="q"><button data-m="${n}" aria-label="Remove one ${n}">${MINUS}</button><span>${cart[n]}</span><button data-a="${n}" aria-label="Add one more ${n}">${PLUS}</button></span></div>`).join('')
+:`<div class="empty">${BOWL}Add a dish from the menu to start your order.</div>`)+
+`<div class="modes" role="radiogroup" aria-label="How do you want it">${['Delivery','Takeaway','Dine-in'].map(m=>`<label><input type="radio" name="mode-${Math.random().toString(36).slice(2,7)}" value="${m}" ${m===mode?'checked':''}>${m}</label>`).join('')}</div>`+
+`<label class="nl">Note for the kitchen</label><textarea class="knote" maxlength="200" placeholder="Less spicy, extra mustard">${note.replace(/</g,'&lt;')}</textarea>`+
+`<button class="send" ${k.length?'':'disabled'}>${WAI}Send order on WhatsApp</button><p class="fine">We reply on WhatsApp with the total before we start cooking.</p>`}
+function drawBag(){const k=Object.keys(cart),q=k.reduce((s,n)=>s+cart[n],0);
+$('#cc').textContent=q;$('#bagtxt').textContent=`${q} ${q===1?'item':'items'} in your bag`;$('#bagbar').classList.toggle('on',q>0);
+const fe=document.activeElement,host=fe&&fe.closest&&fe.closest('.tbag'),sel=host&&fe.dataset&&(fe.dataset.a?`[data-a="${fe.dataset.a}"]`:fe.dataset.m?`[data-m="${fe.dataset.m}"]`:null);
+['#bag1','#bag2'].forEach(s=>$(s).innerHTML=bagHTML());if(sel){const el=document.getElementById(host.id).querySelector(sel);if(el)el.focus()}}
+document.addEventListener('click',e=>{if(!e.target.closest('.tbag'))return;const a=e.target.closest('[data-a]')?.dataset.a,m=e.target.closest('[data-m]')?.dataset.m;if(a)change(a,1);if(m)change(m,-1);if(e.target.closest('.send'))sendOrder()});
+document.addEventListener('change',e=>{if(e.target.closest('.modes')){mode=e.target.value;drawBag()}});
+document.addEventListener('input',e=>{if(e.target.classList.contains('knote')){note=e.target.value;document.querySelectorAll('.knote').forEach(t=>{if(t!==e.target)t.value=note})}});
+function sendOrder(){const k=Object.keys(cart);if(!k.length)return;const msg=`Hello Bong Fish, I would like to order (${mode}):\n`+k.map(n=>`${cart[n]} x ${n}`).join('\n')+(note?`\nNote: ${note}`:'')+`\nPlease confirm the total.`;
+if(!WA){toast('Demo: WhatsApp number not connected yet');return}window.open(`https://wa.me/${WA}?text=`+encodeURIComponent(msg),'_blank')}
+const dr=v=>{$('#drawer').classList.toggle('on',v);$('#veil').classList.toggle('on',v);if(v)$('#bagClose').focus()};
+$('#bagOpen').onclick=()=>{innerWidth>980?$('#order').scrollIntoView({behavior:'smooth'}):dr(true)};
+$('#bagbar').onclick=()=>dr(true);$('#bagClose').onclick=$('#veil').onclick=()=>dr(false);
+addEventListener('keydown',e=>{if(e.key==='Escape'){dr(false);closeChat()}});
+drawMenu();drawBag();
+/* bilingual: Bengali text shows its English meaning on hover, keyboard focus or tap */
+function bilingual(root){root.querySelectorAll('.bn[data-en]').forEach(el=>{if(el.dataset.bound)return;el.dataset.bound=1;el.lang='bn';if(!el.closest('button,a'))el.tabIndex=0;
+const show=en=>{if(el.classList.contains('en')===en)return;if(!el.dataset.bnText)el.dataset.bnText=el.textContent;el.classList.add('swap');setTimeout(()=>{el.textContent=en?el.dataset.en:el.dataset.bnText;el.lang=en?'en':'bn';el.classList.toggle('en',en);el.classList.remove('swap')},120)};
+el.addEventListener('mouseenter',()=>show(true));el.addEventListener('mouseleave',()=>show(false));el.addEventListener('focus',()=>show(true));el.addEventListener('blur',()=>show(false));
+el.addEventListener('click',()=>{if(matchMedia('(hover:none)').matches)show(!el.classList.contains('en'))})})}
+bilingual(document);
+
+/* Ilish chat */
+const hist=[];let busy=false;
+/* Render the assistant's reply as clean HTML: escape everything, then allow **bold**, "- " bullet lists and paragraphs. */
+function fmt(t){const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');const bold=s=>esc(s).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\*(.+?)\*/g,'$1');
+const out=[];let list=null;for(const raw of String(t).replace(/\r/g,'').split('\n')){const l=raw.trim();const m=l.match(/^(?:[-*•]|\d+[.)])\s+(.*)/);
+if(m){if(!list){list=[];out.push(list)}list.push(m[1])}else{list=null;if(l)out.push(l)}}
+return out.map(x=>Array.isArray(x)?'<ul>'+x.map(i=>'<li>'+bold(i)+'</li>').join('')+'</ul>':'<p>'+bold(x)+'</p>').join('')}
+function add(t,w){const d=document.createElement('div');d.className='m '+w;if(w==='b')d.innerHTML=fmt(t);else d.textContent=t;$('#msgs').append(d);$('#msgs').scrollTop=1e9}
+function openChat(q){$('#chat').classList.add('on');$('#fab').style.display='none';if(!$('#msgs').children.length)add('Nomoshkar! I am Ilish. Ask me about our fish, the thali, timings or booking a table.','b');if(q)send(q);else $('#ci').focus()}
+function closeChat(){$('#chat').classList.remove('on');$('#fab').style.display=''}
+$('#fab').onclick=()=>openChat();$('#chatX').onclick=closeChat;
+$('#sug').onclick=e=>{if(e.target.tagName==='BUTTON')send(e.target.textContent)};
+$('#cf').onsubmit=e=>{e.preventDefault();const v=$('#ci').value.trim();if(v){$('#ci').value='';send(v)}};
+async function send(t){if(busy)return;busy=true;$('#sug').style.display='none';add(t,'u');hist.push({role:'user',content:t});
+const ty=document.createElement('div');ty.className='m b typing';ty.innerHTML='<i></i><i></i><i></i>';$('#msgs').append(ty);$('#msgs').scrollTop=1e9;
+try{const r=await fetch('/api/chat',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({messages:hist})});const j=await r.json();ty.remove();const reply=j.reply||j.error||'Ilish could not answer. Try again in a moment.';add(reply,'b');if(j.reply)hist.push({role:'assistant',content:reply});if(j.booked)toast('Table request sent')}
+catch{ty.remove();add('No connection. Check your internet and try again.','b')}busy=false}
+</script>
+<script>
+/* Hero choreography: the dishes land on the leaf when the page opens, the steaming plate then loops,
+   and as you scroll down the dishes slide off (scroll back up and they return). */
+(function(){const hv=$('#hv'),hl=$('#hl'),hero=$('.hero'),copy=$('.hcopy'),reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const HOLD=4.85,FULL=6.9,GONE=7.85;let mode='intro',target=FULL,raf=0;
+if(reduce){hv.addEventListener('loadedmetadata',()=>{hv.currentTime=FULL},{once:true});return}
+[...copy.children].forEach((el,i)=>el.animate([{opacity:0,transform:'translateX(-40px)'},{opacity:1,transform:'none'}],{duration:700,delay:500+i*140,easing:'cubic-bezier(.2,.8,.2,1)',fill:'backwards'}));
+function startLoop(){hl.currentTime=0;hl.play().then(()=>hl.classList.add('on')).catch(()=>{})}
+function stopLoop(){hl.classList.remove('on');hl.pause()}
+hv.play().catch(()=>{mode='hold';hv.currentTime=FULL;startLoop()});
+hv.addEventListener('timeupdate',()=>{if(mode==='intro'&&hv.currentTime>=HOLD){hv.pause();mode='hold';startLoop()}});
+function progress(){return Math.min(Math.max(scrollY/(hero.offsetHeight*.75),0),1)}
+function onScroll(){const p=progress();
+copy.style.transform=`translateX(${-p*140}px)`;copy.style.opacity=String(1-p*1.25);
+if(p>0.002){if(mode!=='scrub'){hv.pause();mode='scrub';stopLoop()}target=FULL+p*(GONE-FULL)}
+else if(mode==='scrub'){target=FULL;mode='return'}
+if((mode==='scrub'||mode==='return')&&!raf)raf=requestAnimationFrame(seek)}
+function seek(){raf=0;if(Math.abs(hv.currentTime-target)>.02){if(!hv.seeking)hv.currentTime=target;raf=requestAnimationFrame(seek)}else if(mode==='return'){mode='hold';startLoop()}}
+addEventListener('scroll',onScroll,{passive:true});
+hv.addEventListener('seeked',()=>{if((mode==='scrub'||mode==='return')&&!raf)raf=requestAnimationFrame(seek)});
+if(scrollY>0)onScroll()})();
+</script>
+</body>
+</html>
