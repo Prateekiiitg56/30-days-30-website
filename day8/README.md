@@ -10,7 +10,7 @@ A website demo for Pragya Bamboo Restaurant, a thatched bamboo restaurant on NH 
 
 ## ✨ Features
 
-- 🌗 **Afternoon to neon night** — the hero is a cinematic video of the restaurant going from golden afternoon to night; the neon "Pragya" sign switches on together with the restaurant's lights, fireflies keep the last frame alive, and scrolling sinks the scene into the page.
+- 🌗 **Scroll through afternoon to neon night** — scrolling plays the restaurant's film frame by frame (forwards and backwards); the neon "Pragya" sign switches on exactly when the restaurant's lights do, and the address, timings, rating and booking buttons come in one at a time on cue.
 - 🎞️ **Smooth page transitions** — three pages (Home, Menu, Cabin) with cross-document View Transitions: the next page rolls down like a bamboo blind.
 - ↔️ **Day / night slider** — drag between the thatched front by day and the neon hall by night.
 - 🎋 **Bamboo details** — reviews hang from a bamboo pole, the menu categories sit on a bamboo stalk rail.

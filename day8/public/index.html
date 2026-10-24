@@ -22,27 +22,22 @@
 <main>
 <section id="hero" aria-label="Welcome">
   <div class="stage">
-    <div class="cam">
-      <video id="hv" muted playsinline preload="auto" aria-hidden="true"></video>
-      <img class="hv-still" alt="" aria-hidden="true">
-    </div>
+    <canvas id="film" aria-hidden="true"></canvas>
     <div class="grade"></div>
     <div class="vignette"></div>
     <div class="grain"></div>
     <div class="flies" aria-hidden="true"><i style="left:12%;top:58%;--x:40px;--y:-60px;--d:9s;animation-delay:-1s,-0.5s"></i><i style="left:22%;top:70%;--x:-30px;--y:-50px;--d:11s;animation-delay:-3s,-1.5s"></i><i style="left:30%;top:48%;--x:50px;--y:-30px;--d:8s;animation-delay:-2s,-1.0s"></i><i style="left:68%;top:55%;--x:-40px;--y:-70px;--d:10s;animation-delay:-4s,-2.0s"></i><i style="left:78%;top:66%;--x:30px;--y:-40px;--d:12s;animation-delay:-1s,-0.5s"></i><i style="left:86%;top:48%;--x:-50px;--y:-30px;--d:9s;animation-delay:-5s,-2.5s"></i><i style="left:45%;top:74%;--x:20px;--y:-60px;--d:13s;animation-delay:-2s,-1.0s"></i><i style="left:58%;top:40%;--x:-30px;--y:-40px;--d:10s;animation-delay:-6s,-3.0s"></i><i style="left:8%;top:40%;--x:30px;--y:-30px;--d:11s;animation-delay:-3s,-1.5s"></i><i style="left:92%;top:72%;--x:-20px;--y:-50px;--d:9s;animation-delay:-2s,-1.0s"></i></div>
     <div class="shade"></div>
     <div class="dim"></div>
-    <div class="hero-copy">
-      <div>
-        <h1 class="sign" id="sign">Pragya<small>Bamboo Restaurant</small></h1>
-        <p class="later tag-top">Bamboo, thatch and neon lights on NH 15, Madhabpur.</p>
-      </div>
-      <div>
-        <p class="later tag-low">Bamboo, thatch and neon lights on NH 15, Madhabpur. Open every day, 9 am to midnight.</p>
-        <div class="cta later b"><a class="btn" href="menu.html">Order food</a><a class="btn ghost" href="cabin.html">Book the cabin</a></div>
-      </div>
+    <h1 class="sign" id="sign">Pragya<small>Bamboo Restaurant</small></h1>
+    <div class="beats">
+      <div class="beat"><h2>On NH 15, Madhabpur.</h2><p>Bamboo and thatch under tall trees, near the Gas Agency in Dangiyapar.</p></div>
+      <div class="beat"><h2>Lights on at sunset.</h2><p>Open every day, 9 am to midnight. The busiest hour is 10 pm.</p></div>
+      <div class="beat"><h2>4.1 on Google.</h2><p>₹1 to ₹400 per person. Thalis, pork with bamboo shoot, momos and lal saah.</p></div>
+      <div class="beat end"><h2>Pull up a bamboo chair.</h2><div class="cta"><a class="btn" href="menu.html">Order food</a><a class="btn ghost" href="cabin.html">Book the cabin</a></div></div>
     </div>
-    <div class="hint" aria-hidden="true"></div>
+    <ol class="rail" aria-hidden="true"><li></li><li></li><li></li><li></li></ol>
+    <div class="hint" aria-hidden="true">Scroll to step in<i></i></div>
   </div>
 </section>
 
@@ -143,31 +138,51 @@
 
 <script src="js/site.js"></script>
 <script>
-/* ---------- hero: afternoon to neon night, then the page takes over as you scroll ---------- */
+/* ---------- hero: scrolling plays the film, afternoon to neon night, and the facts come in on cue ---------- */
 (function(){
-  const hero=$('#hero'),stage=$('.stage',hero),v=$('#hv'),still=$('.hv-still'),sign=$('#sign'),copy=$('.hero-copy'),dim=$('.dim'),hint=$('.hint');
-  const tall=innerWidth/innerHeight<.8, name=tall?'tall':'wide';
-  const LIGHT_AT=tall?2.1:2.3;              // seconds into the video when the neon switches on
-  v.poster=`media/hero-${name}-first.webp`;still.src=`media/hero-${name}-last.webp`;
-  let lit=false;
-  const light=()=>{if(lit)return;lit=true;sign.classList.add('lit')};
-  const ready=()=>stage.classList.add('ready');
-  const finish=()=>{stage.classList.add('still');light();ready()};   // no video: show the night frame, sign on
-  if(reduce){finish();}
-  else{
-    v.src=`media/hero-${name}.mp4`;
-    v.addEventListener('timeupdate',()=>{if(v.currentTime>=LIGHT_AT)light();if(v.currentTime>=LIGHT_AT+1.6)ready()});
-    v.addEventListener('ended',()=>{light();ready()});
-    v.addEventListener('error',finish);
-    v.play().catch(finish);
-    setTimeout(()=>{if(v.paused&&!v.ended&&v.currentTime===0)finish()},4000);   // autoplay blocked (low power mode)
+  const hero=$('#hero'),stage=$('.stage',hero),cv=$('#film'),cx=cv.getContext('2d'),sign=$('#sign'),dim=$('.dim'),hint=$('.hint');
+  const beats=$$('.beat',hero),nodes=$$('.rail li',hero);
+  const tall=innerWidth/innerHeight<.8, dir=tall?'t':'w', N=64;
+  const LIT=tall?21:19;                     // frame where the restaurant's neon switches on
+  const FILM_END=.8;                        // the film finishes at 80% of the scroll; the rest holds the night frame
+  const CUES=[[.1,.3],[.32,.52],[.54,.74],[.8,1.2]];
+  const frames=new Array(N);
+  const src=i=>`media/${dir}/${String(i+1).padStart(2,'0')}.webp`;
+  /* load coarse to fine so scrubbing works right away: first frame, every 16th, every 8th ... then the rest */
+  const order=[];for(const step of [64,16,8,4,2,1])for(let i=0;i<N;i+=step)if(!order.includes(i))order.push(i);
+  order.push(N-1);
+  let loading=0,next=0;
+  function pump(){while(loading<6&&next<order.length){const i=order[next++];if(frames[i])continue;const im=new Image();loading++;
+    im.decoding='async';im.onload=()=>{frames[i]=im;loading--;if(Math.abs(i-want)<=1||!drawn)draw();pump()};im.onerror=()=>{loading--;pump()};im.src=src(i)}}
+  const near=i=>{for(let d=0;d<N;d++){if(frames[i-d])return frames[i-d];if(frames[i+d])return frames[i+d]}return null};
+
+  let W=0,H=0,want=0,drawn=false,p=0,raf=0;
+  function size(){const r=Math.min(devicePixelRatio,2);W=cv.width=Math.round(innerWidth*r);H=cv.height=Math.round(innerHeight*r);draw()}
+  function cover(im,alpha,zoom){const s=Math.max(W/im.width,H/im.height)*zoom,w=im.width*s,h=im.height*s;
+    cx.globalAlpha=alpha;cx.drawImage(im,(W-w)/2,(H-h)*.55,w,h)}
+  function draw(){
+    const f=clamp(p/FILM_END)*(N-1), i=Math.floor(f), t=f-i, zoom=1+p*.06;
+    want=i;
+    const a=frames[i]||near(i);if(!a)return;
+    cover(a,1,zoom);
+    const b=frames[i+1];if(b&&frames[i]&&t>.02)cover(b,t,zoom);   // crossfade into the next frame for smooth motion
+    cx.globalAlpha=1;drawn=true;
   }
-  /* scrolling out: the scene sinks into the page colour and the title lifts away */
-  let raf=0;
-  function paint(){raf=0;const k=clamp(scrollY/(hero.offsetHeight-innerHeight));
-    if(!reduce){const z=1+k*.08;v.style.transform=still.style.transform=`scale(${z})`;copy.style.transform=`translateY(${-k*70}px)`}
-    dim.style.opacity=k*.85;copy.style.opacity=1-k*1.3;hint.style.opacity=k>.02?0:1;document.body.classList.toggle('in-hero',k<.5)}
-  addEventListener('scroll',()=>{if(!raf)raf=requestAnimationFrame(paint)},{passive:true});paint()
+  function paint(){raf=0;
+    p=clamp(-hero.getBoundingClientRect().top/(hero.offsetHeight-innerHeight));
+    draw();
+    const lit=clamp(p/FILM_END)*(N-1)>=LIT;
+    sign.classList.toggle('lit',lit);stage.classList.toggle('night',lit);
+    beats.forEach((el,k)=>{const [a,b]=CUES[k],o=Math.min(clamp((p-a)/.05),clamp((b-p)/.05));
+      el.style.opacity=o;el.style.transform=reduce?'':`translateY(${(1-o)*(p<a?28:-28)}px)`;el.style.visibility=o>0?'visible':'hidden'});
+    nodes.forEach((n,k)=>n.classList.toggle('on',p>=CUES[k][0]));
+    dim.style.opacity=clamp((p-.94)/.06)*.7;
+    hint.style.opacity=p>.03?0:1;
+    document.body.classList.toggle('in-hero',p<.97);
+  }
+  addEventListener('scroll',()=>{if(!raf)raf=requestAnimationFrame(paint)},{passive:true});
+  let lastW=innerWidth;addEventListener('resize',()=>{if(innerWidth!==lastW){lastW=innerWidth;size()}paint()});   // ignore the phone address bar
+  pump();size();paint();
 })();
 
 /* day / night slider */

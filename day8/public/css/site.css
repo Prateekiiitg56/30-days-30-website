@@ -69,48 +69,59 @@ h2+.lede{margin-top:16px}
 .btn.ghost{background:transparent;color:var(--text);box-shadow:inset 0 0 0 1.5px rgba(242,234,219,.5)}
 .btn.ghost:hover{box-shadow:inset 0 0 0 1.5px var(--cane),0 0 24px -8px var(--cane)}
 
-/* ---------- home hero: the restaurant goes from afternoon to neon night ---------- */
-#hero{position:relative;height:150svh;padding:0}
+/* ---------- home hero: scroll plays the film from afternoon to neon night ---------- */
+#hero{position:relative;height:480svh;padding:0}
 #hero .stage{position:sticky;top:0;height:100svh;overflow:hidden;background:var(--night)}
-#hv,.hv-still{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform-origin:50% 60%;will-change:transform}
-.hv-still{opacity:0;transition:opacity .8s}
-.still #hv{display:none}.still .hv-still{opacity:1}
-/* top shade keeps the header readable; the bottom melts into the page colour */
-.shade{position:absolute;inset:0;pointer-events:none;background:
-  linear-gradient(rgba(11,15,30,.55),transparent 22%),
-  linear-gradient(transparent 62%,rgba(11,15,30,.65) 82%,var(--night))}
-.dim{position:absolute;inset:0;background:var(--night);opacity:0;pointer-events:none}
-/* the film sits in a slowly pushing camera; grading layers on top unify it with the page */
-.cam{position:absolute;inset:0;animation:push 18s cubic-bezier(.2,.6,.3,1) both}
-@keyframes push{from{transform:scale(1.001)}to{transform:scale(1.07)}}
+#film{position:absolute;inset:0;width:100%;height:100%;display:block}
+/* grading layers unify the film with the page */
 .grade{position:absolute;inset:0;pointer-events:none;mix-blend-mode:soft-light;background:linear-gradient(180deg,rgba(40,70,170,.55),rgba(30,40,90,.25) 45%,rgba(240,170,90,.35) 78%,rgba(11,15,30,.4))}
 .vignette{position:absolute;inset:0;pointer-events:none;background:radial-gradient(120% 90% at 50% 58%,transparent 48%,rgba(6,8,18,.78) 100%)}
-.grain{position:absolute;inset:-50%;pointer-events:none;opacity:.11;mix-blend-mode:overlay;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:grain .9s steps(5) infinite}
+.grain{position:absolute;inset:-50%;pointer-events:none;opacity:.1;mix-blend-mode:overlay;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:grain .9s steps(5) infinite}
 @keyframes grain{20%{transform:translate(-4%,3%)}40%{transform:translate(3%,-5%)}60%{transform:translate(-6%,-2%)}80%{transform:translate(5%,4%)}}
-@media (prefers-reduced-motion:reduce){.cam,.grain{animation:none}}
-.hero-copy{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:space-between;text-align:center;padding:96px 16px 44px;will-change:transform,opacity}
-.hero-copy p{font-size:clamp(16px,1.8vw,19px);font-weight:500;color:#EDE6DA;max-width:34ch;margin:0 auto;text-shadow:0 2px 16px rgba(0,0,0,.7);max-width:44ch}
-.later{opacity:0;transform:translateY(16px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
-.ready .later{opacity:1;transform:none}
-.ready .later.b{transition-delay:.25s}
-/* the sign starts as an unlit glass tube and switches on with the restaurant's neon */
-.sign{font:italic 600 clamp(68px,12vw,160px)/.92 var(--display);font-variation-settings:"SOFT" 100,"opsz" 144;letter-spacing:-.02em;color:rgba(255,255,255,.06);-webkit-text-stroke:1.5px rgba(244,235,221,.35);transition:color .2s}
-.sign small{display:block;font:600 max(.2em,16px)/1.2 var(--body);letter-spacing:.06em;margin-top:.7em;color:rgba(255,255,255,.08);-webkit-text-stroke:0}
-.sign.lit{color:#F2FFF8;-webkit-text-stroke:0;text-shadow:0 0 4px #fff,0 0 14px var(--neon),0 0 36px var(--neon),0 0 80px rgba(125,255,196,.45);animation:flick 1.3s steps(1) both}
-.sign.lit small{color:#FFE9C7;text-shadow:0 0 10px rgba(240,179,91,.9),0 0 28px rgba(240,179,91,.6);animation:flick 1.2s steps(1) .5s both}
-@keyframes flick{0%{opacity:.25}8%{opacity:1}12%{opacity:.3}18%{opacity:1}26%{opacity:.45}30%,100%{opacity:1}}
-.cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:22px}
-/* a few fireflies keep the last frame alive */
-.flies{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity 2s}
-.ready .flies{opacity:1}
+.shade{position:absolute;inset:0;pointer-events:none;background:
+  linear-gradient(rgba(11,15,30,.6),transparent 26%),
+  linear-gradient(90deg,rgba(11,15,30,.7),transparent 46%),
+  linear-gradient(transparent 60%,rgba(11,15,30,.75) 84%,var(--night))}
+.dim{position:absolute;inset:0;background:var(--night);opacity:0;pointer-events:none}
+.flies{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity 1.2s}
+.night .flies{opacity:1}
 .flies i{position:absolute;width:5px;height:5px;border-radius:50%;background:#FFF3A8;box-shadow:0 0 8px 3px rgba(255,226,120,.75);animation:fly var(--d,9s) ease-in-out infinite alternate,blink 2.6s ease-in-out infinite}
 @keyframes fly{to{transform:translate(var(--x,30px),var(--y,-40px))}}
 @keyframes blink{50%{opacity:.15}}
-.hint{position:absolute;left:50%;bottom:16px;translate:-50% 0;width:2px;height:30px;background:linear-gradient(var(--cane),transparent);animation:drip 1.8s ease-in-out infinite;transition:opacity .4s}
+@media (prefers-reduced-motion:reduce){.grain{animation:none}}
+
+/* the sign: an unlit glass tube by day, switches on with the restaurant's neon */
+.sign{position:absolute;left:0;right:0;top:clamp(84px,11vh,120px);text-align:center;pointer-events:none;
+  font:italic 600 clamp(66px,11vw,150px)/.92 var(--display);font-variation-settings:"SOFT" 100,"opsz" 144;letter-spacing:-.02em;
+  color:rgba(255,255,255,.08);-webkit-text-stroke:1.5px rgba(244,235,221,.45);transition:color .25s,text-shadow .25s}
+.sign small{display:block;font:600 max(.19em,16px)/1.2 var(--body);letter-spacing:.06em;margin-top:.7em;color:rgba(244,235,221,.75);-webkit-text-stroke:0;transition:color .25s,text-shadow .25s}
+.sign.lit{color:#F2FFF8;-webkit-text-stroke:0;text-shadow:0 0 4px #fff,0 0 14px var(--neon),0 0 36px var(--neon),0 0 80px rgba(125,255,196,.45);animation:flick .9s steps(1) both}
+.sign.lit small{color:#FFE9C7;text-shadow:0 0 10px rgba(240,179,91,.9),0 0 28px rgba(240,179,91,.6)}
+@keyframes flick{0%{opacity:.3}10%{opacity:1}16%{opacity:.4}24%,100%{opacity:1}}
+
+/* the facts, one at a time, driven by scroll position */
+.beats{position:absolute;left:0;right:0;bottom:clamp(40px,9vh,90px);width:min(1120px,100% - 32px);margin-inline:auto;height:0}
+.beat{position:absolute;left:0;bottom:0;max-width:470px;opacity:0;visibility:hidden;will-change:opacity,transform}
+.beat h2{font-size:clamp(36px,4.6vw,60px);color:var(--paper);text-shadow:0 2px 24px rgba(0,0,0,.6)}
+.beat p{margin-top:12px;font-size:clamp(16px,1.6vw,19px);font-weight:500;color:#E3DCCF;max-width:38ch;text-shadow:0 2px 14px rgba(0,0,0,.8)}
+.beat .cta{justify-content:flex-start}
+.cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:22px}
+.rail{position:absolute;right:clamp(16px,3vw,40px);top:50%;translate:0 -50%;list-style:none;padding:0;margin:0;display:grid;gap:18px}
+.rail::before{content:"";position:absolute;left:50%;top:4px;bottom:4px;width:2px;margin-left:-1px;background:rgba(244,235,221,.2)}
+.rail li{position:relative;width:10px;height:10px;border-radius:50%;background:var(--night);box-shadow:0 0 0 2px rgba(244,235,221,.35);transition:background .3s,box-shadow .3s}
+.rail li.on{background:var(--cane);box-shadow:0 0 0 2px var(--cane),0 0 12px var(--cane)}
+.hint{position:absolute;left:50%;bottom:22px;translate:-50% 0;font-size:14px;font-weight:600;color:rgba(244,235,221,.8);display:flex;flex-direction:column;align-items:center;gap:6px;transition:opacity .3s}
+.hint i{width:2px;height:30px;background:linear-gradient(var(--cane),transparent);animation:drip 1.8s ease-in-out infinite}
 @keyframes drip{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
-/* on tall phone screens the restaurant fills the lower half, so the line moves up under the sign */
-.tag-top{display:none}
-@media (max-width:720px){.hero-copy{padding:92px 16px 104px}.hint{display:none}.tag-top{display:block;margin-top:14px!important}.tag-low{display:none}}
+@media (max-width:720px){
+  .shade{background:linear-gradient(rgba(11,15,30,.65),transparent 34%),linear-gradient(transparent 52%,rgba(11,15,30,.85) 78%,var(--night))}
+  .beats{bottom:104px}
+  .beat{right:0;text-align:center;max-width:none}
+  .beat p{margin-inline:auto}
+  .beat .cta{justify-content:center}
+  .rail{right:10px;gap:14px}
+  .hint{bottom:100px}
+}
 
 /* ---------- sections ---------- */
 section{padding:120px 0}
@@ -118,7 +129,7 @@ section{padding:120px 0}
 
 /* day / night compare */
 /* rises over the darkening hero so there is no hard edge between them */
-#daynight{position:relative;margin-top:-28svh;padding-top:40px;background:linear-gradient(transparent,var(--night) 24svh)}
+#daynight{position:relative;margin-top:-16svh;padding-top:40px;background:linear-gradient(transparent,var(--night) 24svh)}
 .compare{position:relative;aspect-ratio:4/3;border-radius:22px;overflow:hidden;box-shadow:0 40px 90px -40px #000,0 0 0 1px rgba(240,179,91,.25);--x:50%;touch-action:pan-y}
 .compare img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .compare .day{clip-path:inset(0 calc(100% - var(--x)) 0 0)}

@@ -34,7 +34,9 @@ const vgMark=t=>`<span class="vg${t==='n'?' n':''}" role="img" aria-label="${t==
 
 /* ---------- header ---------- */
 const head=$('.head');
-const solid=()=>head.classList.toggle('solid',scrollY>40||!document.body.classList.contains('home'));
+/* on the home page the header stays clear over the film and turns solid once the film is done */
+const heroEl=$('#hero');
+const solid=()=>head.classList.toggle('solid',heroEl?scrollY>heroEl.offsetHeight-innerHeight*1.1:true);
 solid();addEventListener('scroll',solid,{passive:true});
 
 /* ---------- toast ---------- */
