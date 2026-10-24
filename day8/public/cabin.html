@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Book the Cabin, Pragya Bamboo Restaurant</title>
+<meta name="description" content="Book the bamboo cabin on stilts, the neon hall or a table under the thatch at Pragya Bamboo Restaurant, NH 15, Madhabpur.">
+<meta name="theme-color" content="#0F1229">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;700&family=Yatra+One&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230F1229'/%3E%3Crect x='13' y='4' width='6' height='24' rx='3' fill='%23E4B24C'/%3E%3Cpath d='M12 11h8M12 19h8' stroke='%235e4a1c' stroke-width='2'/%3E%3C/svg%3E">
+</head>
+<body>
+
+<header class="head"><div class="wrap">
+  <a class="logo" href="./" aria-label="Pragya Bamboo Restaurant, home"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="12" y="2" width="7" height="28" rx="3.5" fill="#E4B24C"/><path d="M11 10h9M11 19h9" stroke="#6b4a17" stroke-width="2"/><path d="M19 13c5-4 9-3 11-1-4 2-7 3-11 1z" fill="#5CFFB0"/></svg><div><b>Pragya</b><span>Bamboo Restaurant</span></div></a>
+  <nav class="nav" aria-label="Pages"><a href="./">Home</a><a href="menu.html">Menu</a><a href="cabin.html" aria-current="page">Cabin</a></nav>
+  <button id="cartBtn" aria-label="Your order">Order <i>0</i></button>
+</div></header>
+
+<main>
+  <div class="phead"><div class="wrap cab-hero">
+    <div>
+      <h1>Book your spot.</h1>
+      <p class="lede">Pick where you'd like to sit, tell us when, and the team confirms on WhatsApp. Groups and birthdays welcome.</p>
+    </div>
+    <div class="stack" id="stack" aria-hidden="true">
+      <img class="p2" src="img/hall-neon.webp" alt="">
+      <img class="p1" src="img/cabin.webp" alt="">
+    </div>
+  </div></div>
+
+  <section style="padding-top:20px">
+    <form class="wrap" id="bookf">
+      <fieldset style="border:0;padding:0">
+        <legend class="sr" style="font:400 clamp(30px,4vw,42px)/1.1 var(--display);margin-bottom:18px">Where would you like to sit?</legend>
+        <div class="spots">
+          <label class="spot"><input type="radio" name="spot" value="The cabin" checked><img src="img/cabin.webp" alt="" loading="lazy"><span class="tick" aria-hidden="true">✓</span><div><b>The cabin</b><p>Upstairs on bamboo stilts, private and lantern-lit. Best for gatherings.</p></div></label>
+          <label class="spot"><input type="radio" name="spot" value="The neon hall"><img src="img/hall-neon.webp" alt="" loading="lazy"><span class="tick" aria-hidden="true">✓</span><div><b>The neon hall</b><p>Bamboo walls, green and violet lights. Lively after dark.</p></div></label>
+          <label class="spot"><input type="radio" name="spot" value="Under the thatch"><img src="img/hut-road.webp" alt="" loading="lazy"><span class="tick" aria-hidden="true">✓</span><div><b>Under the thatch</b><p>Open-air seats under the trees. Lovely in the afternoon.</p></div></label>
+        </div>
+      </fieldset>
+      <div class="book">
+        <h3>Your details</h3>
+        <label>Name<input name="n" required autocomplete="name"></label>
+        <label>Phone<input name="p" required type="tel" inputmode="tel" autocomplete="tel"></label>
+        <label>Date<input name="d" type="date" required></label>
+        <label>Time<input name="t" type="time" required value="19:30" min="09:00" max="23:30"></label>
+        <label>Guests<select name="g"><option>2</option><option selected>4</option><option>6</option><option>8</option><option>10</option><option>12+</option></select></label>
+        <label>Occasion<select name="o"><option>Just dinner</option><option>Birthday</option><option>Family gathering</option><option>Friends night out</option><option>Anniversary</option><option>Other</option></select></label>
+        <div class="full" style="display:grid;gap:8px;margin-top:6px"><button class="btn" type="submit">Send booking on WhatsApp</button><small>Opens WhatsApp with your details filled in. Open every day, 9 am to midnight.</small></div>
+      </div>
+    </form>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="big">See you under<br>the thatch.</div>
+    <div class="row"><span>NH 15, Dangiyapar, Madhabpur, Assam</span><span>081330 24155</span></div>
+  </div>
+</footer>
+<div class="preview">Preview, website by Unbias.xai.</div>
+
+<script src="js/site.js"></script>
+<script>
+/* the two photos fan apart in 3D as the page scrolls, and lean toward the mouse */
+const st=$('#stack'),p1=$('.p1',st),p2=$('.p2',st);let mx=0;
+function fan(){const k=clamp(scrollY/400);
+  p1.style.transform=`rotateY(${-14+k*10+mx*8}deg) rotateZ(${-3+k*2}deg) translateZ(${40-k*20}px)`;
+  p2.style.transform=`rotateY(${16-k*8+mx*8}deg) rotateZ(${4-k*2}deg) translate(${k*-14}px,${k*-30}px)`}
+if(!reduce){addEventListener('scroll',()=>requestAnimationFrame(fan),{passive:true});
+  addEventListener('pointermove',e=>{if(e.pointerType!=='mouse')return;mx=e.clientX/innerWidth-.5;requestAnimationFrame(fan)},{passive:true});fan()}
+</script>
+</body>
+</html>

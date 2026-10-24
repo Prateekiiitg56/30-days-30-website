@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Pragya Bamboo Restaurant</title>
+<meta name="description" content="Bamboo, thatch and neon on NH 15, Madhabpur. Assamese thalis, pork with bamboo shoot, momos and a cabin on stilts for gatherings. Order or book on WhatsApp.">
+<meta name="theme-color" content="#0F1229">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;700&family=Yatra+One&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230F1229'/%3E%3Crect x='13' y='4' width='6' height='24' rx='3' fill='%23E4B24C'/%3E%3Cpath d='M12 11h8M12 19h8' stroke='%235e4a1c' stroke-width='2'/%3E%3C/svg%3E">
+</head>
+<body class="home">
+
+<header class="head"><div class="wrap">
+  <a class="logo" href="./" aria-label="Pragya Bamboo Restaurant, home"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="12" y="2" width="7" height="28" rx="3.5" fill="#E4B24C"/><path d="M11 10h9M11 19h9" stroke="#6b4a17" stroke-width="2"/><path d="M19 13c5-4 9-3 11-1-4 2-7 3-11 1z" fill="#5CFFB0"/></svg><div><b>Pragya</b><span>Bamboo Restaurant</span></div></a>
+  <nav class="nav" aria-label="Pages"><a href="./" aria-current="page">Home</a><a href="menu.html">Menu</a><a href="cabin.html">Cabin</a></nav>
+  <button id="cartBtn" aria-label="Your order">Order <i>0</i></button>
+</div></header>
+
+<main>
+<section id="hero" aria-label="Welcome">
+  <div class="stage">
+    <video id="hv" muted playsinline preload="auto" aria-hidden="true"></video>
+    <img class="hv-still" alt="" aria-hidden="true">
+    <div class="flies" aria-hidden="true"><i style="left:12%;top:58%;--x:40px;--y:-60px;--d:9s;animation-delay:-1s,-0.5s"></i><i style="left:22%;top:70%;--x:-30px;--y:-50px;--d:11s;animation-delay:-3s,-1.5s"></i><i style="left:30%;top:48%;--x:50px;--y:-30px;--d:8s;animation-delay:-2s,-1.0s"></i><i style="left:68%;top:55%;--x:-40px;--y:-70px;--d:10s;animation-delay:-4s,-2.0s"></i><i style="left:78%;top:66%;--x:30px;--y:-40px;--d:12s;animation-delay:-1s,-0.5s"></i><i style="left:86%;top:48%;--x:-50px;--y:-30px;--d:9s;animation-delay:-5s,-2.5s"></i><i style="left:45%;top:74%;--x:20px;--y:-60px;--d:13s;animation-delay:-2s,-1.0s"></i><i style="left:58%;top:40%;--x:-30px;--y:-40px;--d:10s;animation-delay:-6s,-3.0s"></i><i style="left:8%;top:40%;--x:30px;--y:-30px;--d:11s;animation-delay:-3s,-1.5s"></i><i style="left:92%;top:72%;--x:-20px;--y:-50px;--d:9s;animation-delay:-2s,-1.0s"></i></div>
+    <div class="shade"></div>
+    <div class="dim"></div>
+    <div class="hero-copy">
+      <div>
+        <h1 class="sign" id="sign">Pragya<small>Bamboo Restaurant</small></h1>
+        <p class="later tag-top">Bamboo, thatch and neon lights on NH 15, Madhabpur.</p>
+      </div>
+      <div>
+        <p class="later tag-low">Bamboo, thatch and neon lights on NH 15, Madhabpur. Open every day, 9 am to midnight.</p>
+        <div class="cta later b"><a class="btn" href="menu.html">Order food</a><a class="btn ghost" href="cabin.html">Book the cabin</a></div>
+      </div>
+    </div>
+    <div class="hint" aria-hidden="true"></div>
+  </div>
+</section>
+
+<section id="daynight">
+  <div class="wrap dn-grid">
+    <div>
+      <div class="compare" id="cmp">
+        <img src="img/hall-heart.webp" alt="The bamboo hall at night, lit with green and violet neon and a neon heart" loading="lazy">
+        <img class="day" src="img/front.webp" alt="The thatched bamboo restaurant by day, under tall trees" loading="lazy">
+        <span class="tag d">By day</span><span class="tag n">By night</span>
+        <div class="knob"></div>
+        <input type="range" min="0" max="100" value="50" aria-label="Slide between day and night">
+      </div>
+    </div>
+    <div class="sec-head" style="margin:0">
+      <h2>Two places in one.</h2>
+      <p class="lede">In the afternoon it's a quiet thatched hut beside the paddy fields. After dark the bamboo hall lights up in green and violet, and by 10 pm it's the busiest table on NH 15.</p>
+      <div class="facts">
+        <div class="fact"><b>4.1 on Google</b><span>"Better service and atmosphere, must visit."</span></div>
+        <div class="fact"><b>₹1 to ₹400</b><span>per person, from a cup of lal saah to a full thali</span></div>
+        <div class="fact"><b>9 am to midnight</b><span>open every day of the week</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cabin">
+  <div class="wrap cab-grid">
+    <div class="tiltbox" data-tilt="9"><div class="tilt">
+      <img src="img/cabin.webp" alt="The bamboo cabin on stilts with a thatched roof and red lanterns" loading="lazy">
+      <svg class="lamp a" viewBox="0 0 40 80" aria-hidden="true"><path d="M20 0v10" stroke="#7a5a2a" stroke-width="2"/><g fill="#D8343F"><ellipse cx="20" cy="18" rx="13" ry="7"/><ellipse cx="20" cy="31" rx="15" ry="7"/><ellipse cx="20" cy="44" rx="13" ry="7"/></g><path d="M14 52v20M20 52v24M26 52v20" stroke="#E86A73" stroke-width="2"/></svg>
+      <svg class="lamp b" viewBox="0 0 40 80" aria-hidden="true"><path d="M20 0v10" stroke="#7a5a2a" stroke-width="2"/><g fill="#D8343F"><ellipse cx="20" cy="18" rx="13" ry="7"/><ellipse cx="20" cy="31" rx="15" ry="7"/><ellipse cx="20" cy="44" rx="13" ry="7"/></g><path d="M14 52v20M20 52v24M26 52v20" stroke="#E86A73" stroke-width="2"/></svg>
+      <div class="note"><b>From a guest</b>"Love the creative theme and mostly the CABIN!! Best for gatherings."</div>
+    </div></div>
+    <div>
+      <h2>The cabin on stilts.</h2>
+      <p class="lede">Climb the bamboo stairs to a private room under the thatch, with red lanterns, string lights and the trees all around. It's the spot guests ask for first.</p>
+      <ul class="cab-list">
+        <li>Birthdays and family dinners</li>
+        <li>A night out with friends</li>
+        <li>Book ahead on WhatsApp, the team keeps it ready</li>
+      </ul>
+      <div class="cta" style="justify-content:flex-start"><a class="btn ghost" href="cabin.html?spot=The%20cabin">Book the cabin</a></div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="wrap">
+    <div class="sec-head"><h2>What guests say.</h2></div>
+    <div class="hang">
+      <div class="pole" aria-hidden="true"></div>
+      <div class="tags">
+        <figure class="tagcard"><div class="stars" aria-label="5 stars">★★★★★</div><q>Yumm in every bite. Friendly environment and must visit!</q><small>Google review</small></figure>
+        <figure class="tagcard"><div class="stars" aria-label="5 stars">★★★★★</div><q>Food and service give the home vibe. Best for gatherings.</q><small>Google review</small></figure>
+        <figure class="tagcard"><div class="stars" aria-label="5 stars">★★★★★</div><q>Better service and atmosphere, must visit.</q><small>Google review</small></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="favs">
+  <div class="wrap">
+    <div class="sec-head"><h2>Start with these.</h2><p class="lede">Add to your order here, then send it to the kitchen on WhatsApp. Pay when you pick up.</p></div>
+    <div class="fav-grid">
+      <article class="fav"><span class="vg n" role="img" aria-label="Non-veg"></span><h3>Pork with Bamboo Shoot</h3><p>The house special. Slow cooked, Assamese style.</p><div class="row"><b>₹280</b><span class="qty" data-id="pork-with-bamboo-shoot"></span></div></article>
+      <article class="fav"><span class="vg n" role="img" aria-label="Non-veg"></span><h3>Chicken Thali</h3><p>Rice, dal, bhaji, pitika and home-style chicken curry.</p><div class="row"><b>₹250</b><span class="qty" data-id="chicken-thali"></span></div></article>
+      <article class="fav"><span class="vg n" role="img" aria-label="Non-veg"></span><h3>Chicken Momo</h3><p>Eight steamed momos with red chutney.</p><div class="row"><b>₹100</b><span class="qty" data-id="chicken-momo"></span></div></article>
+      <article class="fav"><span class="vg" role="img" aria-label="Veg"></span><h3>Veg Thali</h3><p>A full plate for ₹150. Rice, dal, bhaji, pitika and papad.</p><div class="row"><b>₹150</b><span class="qty" data-id="veg-thali"></span></div></article>
+    </div>
+    <div class="more"><a class="btn ghost" href="menu.html">See the full menu</a></div>
+  </div>
+</section>
+
+<section id="visit">
+  <div class="wrap visit">
+    <div class="ph" role="img" aria-label="The restaurant seen from NH 15"></div>
+    <div>
+      <h2>Find us on NH&nbsp;15.</h2>
+      <div class="vlist">
+        <div><span>Address</span><b>NH 15, near the Gas Agency, Dangiyapar, Madhabpur, Assam 784164</b></div>
+        <div><span>Open</span><b>Every day, 9 am to 12 midnight</b></div>
+        <div><span>Phone and WhatsApp</span><b><a href="tel:+918133024155">081330 24155</a></b></div>
+      </div>
+      <div class="cta" style="justify-content:flex-start"><a class="btn" href="https://www.google.com/maps/search/?api=1&query=PRAGYA+BAMBOO+RESTAURANT+Madhabpur+Assam" target="_blank" rel="noopener">Get directions</a><a class="btn ghost" href="tel:+918133024155">Call</a></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="big">Pragya Bamboo<br>Restaurant</div>
+    <div class="row"><span>NH 15, Dangiyapar, Madhabpur, Assam</span><span>081330 24155</span></div>
+  </div>
+</footer>
+<div class="preview">Preview, website by Unbias.xai. Menu prices are samples.</div>
+
+<script src="js/site.js"></script>
+<script>
+/* ---------- hero: afternoon to neon night, then the page takes over as you scroll ---------- */
+(function(){
+  const hero=$('#hero'),stage=$('.stage',hero),v=$('#hv'),still=$('.hv-still'),sign=$('#sign'),copy=$('.hero-copy'),dim=$('.dim'),hint=$('.hint');
+  const tall=innerWidth/innerHeight<.8, name=tall?'tall':'wide';
+  const LIGHT_AT=tall?2.1:2.3;              // seconds into the video when the neon switches on
+  v.poster=`media/hero-${name}-first.webp`;still.src=`media/hero-${name}-last.webp`;
+  let lit=false;
+  const light=()=>{if(lit)return;lit=true;sign.classList.add('lit')};
+  const ready=()=>stage.classList.add('ready');
+  const finish=()=>{stage.classList.add('still');light();ready()};   // no video: show the night frame, sign on
+  if(reduce){finish();}
+  else{
+    v.src=`media/hero-${name}.mp4`;
+    v.addEventListener('timeupdate',()=>{if(v.currentTime>=LIGHT_AT)light();if(v.currentTime>=LIGHT_AT+1.6)ready()});
+    v.addEventListener('ended',()=>{light();ready()});
+    v.addEventListener('error',finish);
+    v.play().catch(finish);
+    setTimeout(()=>{if(v.paused&&!v.ended&&v.currentTime===0)finish()},4000);   // autoplay blocked (low power mode)
+  }
+  /* scrolling out: the scene sinks into the page colour and the title lifts away */
+  let raf=0;
+  function paint(){raf=0;const k=clamp(scrollY/(hero.offsetHeight-innerHeight));
+    const z=1+k*.08;v.style.transform=still.style.transform=`scale(${z})`;
+    dim.style.opacity=k*.85;copy.style.opacity=1-k*1.3;copy.style.transform=`translateY(${-k*70}px)`;hint.style.opacity=k>.02?0:1}
+  if(!reduce){addEventListener('scroll',()=>{if(!raf)raf=requestAnimationFrame(paint)},{passive:true});paint()}
+})();
+
+/* day / night slider */
+const cmp=$('#cmp'),rng=$('input',cmp);
+rng.addEventListener('input',()=>cmp.style.setProperty('--x',rng.value+'%'));
+/* first time it scrolls into view, sweep from night to day once so people see it moves */
+new IntersectionObserver(([e],o)=>{if(!e.isIntersecting||reduce)return;o.disconnect();
+  const t0=performance.now();(function sweep(t){const k=clamp((t-t0)/1600),v=50+Math.sin(k*Math.PI*2)*28;rng.value=v;cmp.style.setProperty('--x',v+'%');if(k<1)requestAnimationFrame(sweep)})(t0)},{threshold:.6}).observe(cmp);
+</script>
+</body>
+</html>
