@@ -60,6 +60,12 @@ async function post(url, headers, body) {
   }
 }
 
+// The model sometimes writes its planning ("The user is asking...") into the reply instead of answering.
+// Detect that so the turn can be retried rather than shown to the guest.
+const leaked = (t) => /^(the user|user (is|wants|asked)|i need to|i should|we need|okay[,.]|ok[,.]|first,|hmm)/i.test(t)
+  || /\bthe user\b/i.test(t.slice(0, 240));
+const cleanReply = (t) => String(t || '').replace(/<think>[\s\S]*?<\/think>/g, '').trim();
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
   const key = process.env.OPENROUTER_API_KEY;
@@ -82,16 +88,23 @@ export default async function handler(req, res) {
 
   for (let round = 0; round < 3; round++) {
     let msg;
+    let finish;
     for (let a = 0; a < 3 && !msg; a++) {
       if (a) await new Promise((r) => setTimeout(r, 1200 * a));
-      const data = await post(`${baseUrl}/chat/completions`, { authorization: `Bearer ${key}`, 'x-title': 'Guwahati Greens Luit' }, { model, max_tokens: 500,temperature: 0.4, messages: convo, tools: [TOOL] });
+      const data = await post(`${baseUrl}/chat/completions`, { authorization: `Bearer ${key}`, 'x-title': 'Guwahati Greens Luit' }, { model, max_tokens: 700, temperature: 0.4, reasoning: { enabled: false }, messages: convo, tools: [TOOL] });
       msg = data?.choices?.[0]?.message;
+      finish = data?.choices?.[0]?.finish_reason;
     }
     if (!msg) return res.status(502).json({ error: 'Luit is resting for a moment. Please call 60021 83048.' });
     const calls = msg.tool_calls || [];
     if (!calls.length) {
-      const reply = String(msg.content || '').replace(/<think>[\s\S]*?<\/think>/g, '').trim();
-      return res.status(200).json({ reply: reply || 'Thank you! Our team will be in touch shortly.', booked });
+      const reply = cleanReply(msg.content);
+      if ((!reply || finish === 'length' || leaked(reply)) && round < 2) {
+        convo.push({ role: 'system', content: 'Reply to the guest directly now, in character and in the required short format. Never describe your reasoning or mention "the user".' });
+        continue;
+      }
+      const safe = reply && !leaked(reply) ? reply : 'Sorry, I missed that. Could you ask me once more?';
+      return res.status(200).json({ reply: safe || 'Thank you! Our team will be in touch shortly.', booked });
     }
     convo.push(msg);
     for (const c of calls) {

@@ -28,8 +28,9 @@ Add-ons: Steam Rice ₹199 (Veg); Masala Papad ₹199 (Veg); Roasted Papad ₹99
 Mocktails: Levitate Christmas ₹349; Figure Out ₹349; Coco Berry ₹349; Berry Ice Tea ₹299; Virgin Mojito ₹299; African Holiday ₹299; Salted Pineapple ₹349; Sweet and Spicy ₹349; December Fogg ₹349; Real Juice ₹199; Mary's Berry ₹349; Virgin Pina Colada ₹299; Chai Citra ₹349; Spiced Tea ₹349; Fresh Watermelon Juice ₹275; Levitate Style Tea ₹349; Ginger Ale ₹199; Spicy Guava ₹349 (Mild)
 Coffee & Tea: Cappuccino ₹199; Cold Coffee ₹349; Hot Chocolate ₹199; Espresso ₹199; Lemon Ginger Tea ₹149; Masala Tea ₹149; Mocha ₹180; Cafe Au Lait ₹199; Americano Espresso ₹199; Green Tea ₹149; Lemon Tea ₹149; Darjeeling Tea ₹149; Assam Tea ₹149; Jasmine Tea ₹149; Tulsi Ginger Tea ₹149; Vanilla Shake ₹349; Strawberry Shake ₹349; Herbal Tea ₹130; Brownie Shake ₹349
 Rules:
-- Reply in the guest's language (English, Hindi or Assamese; Latin script is fine). Keep replies short (under 70 words). Format for a small chat window: one short opening line, then if you mention more than one dish or option, list them as lines starting with "- " in the form "- **Name**: a few words, price" (max 4 items), then one short question. Use **bold** only for dish, offer or package names. No headings, no emojis. Warm, polished, never pushy.
-- Use only the facts above. Never invent dishes, prices, offers, timings or availability. If unsure, say the team will confirm and share +91 70990 78111.
+- Reply in the guest's language (English, Hindi or Assamese; Latin script is fine). Keep replies short. Format for a small chat window: one short opening line, then if you mention more than one dish or option, list them as lines starting with "- " in the form "- **Name**: a few words, price" (max 4 items), then one short question. Use **bold** only for dish, offer or package names. No headings, no emojis. Warm, polished, never pushy.
+- Use only the facts above. Never invent dishes, prices, offers, timings, availability or facilities. Anything not listed above (for example high chairs, a kids' menu or play area, allergens, Wi-Fi, smoking, dress code, outside cake) is unknown: say you'll check with the team, and share +91 70990 78111. Never claim something exists just because it is common.
+- Be direct and specific: answer the question in the first sentence. Maximum 60 words and 4 bullet points. When you need booking details, ask for them in one short sentence, not as a list.
 - Do not promote alcohol or quote drink prices for alcohol; if asked about the bar, say there is a full bar with craft cocktails and suggest mocktails too. Never serve or encourage drinks to anyone who says they are under 18.
 - Sunset tables go first: when someone wants an evening table, suggest booking for around 6 pm to catch the sunset and the 1+1 first round.
 - To book a table you need: name, phone number, date, time, number of guests. Optionally the occasion and a décor package. When you have all required details and the guest confirms, call capture_reservation once, then say the Levitate team will confirm on WhatsApp shortly.
@@ -81,6 +82,12 @@ async function post(url, headers, body) {
   }
 }
 
+// The model sometimes writes its planning ("The user is asking...") into the reply instead of answering.
+// Detect that so the turn can be retried rather than shown to the guest.
+const leaked = (t) => /^(the user|user (is|wants|asked)|i need to|i should|we need|okay[,.]|ok[,.]|first,|hmm)/i.test(t)
+  || /\bthe user\b/i.test(t.slice(0, 240));
+const cleanReply = (t) => String(t || '').replace(/<think>[\s\S]*?<\/think>/g, '').trim();
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
   const key = process.env.OPENROUTER_API_KEY;
@@ -103,16 +110,23 @@ export default async function handler(req, res) {
 
   for (let round = 0; round < 3; round++) {
     let msg;
+    let finish;
     for (let a = 0; a < 3 && !msg; a++) {
       if (a) await new Promise((r) => setTimeout(r, 1200 * a));
-      const data = await post(`${baseUrl}/chat/completions`, { authorization: `Bearer ${key}`, 'x-title': 'Levitate Skye' }, { model, max_tokens: 500,temperature: 0.4, messages: convo, tools: [TOOL] });
+      const data = await post(`${baseUrl}/chat/completions`, { authorization: `Bearer ${key}`, 'x-title': 'Levitate Skye' }, { model, max_tokens: 700, temperature: 0.4, reasoning: { enabled: false }, messages: convo, tools: [TOOL] });
       msg = data?.choices?.[0]?.message;
+      finish = data?.choices?.[0]?.finish_reason;
     }
     if (!msg) return res.status(502).json({ error: 'Skye is resting for a moment. Please call +91 70990 78111.' });
     const calls = msg.tool_calls || [];
     if (!calls.length) {
-      const reply = String(msg.content || '').replace(/<think>[\s\S]*?<\/think>/g, '').trim();
-      return res.status(200).json({ reply: reply || 'Thank you! Our team will be in touch shortly.', booked });
+      const reply = cleanReply(msg.content);
+      if ((!reply || finish === 'length' || leaked(reply)) && round < 2) {
+        convo.push({ role: 'system', content: 'Reply to the guest directly now, in character and in the required short format. Never describe your reasoning or mention "the user".' });
+        continue;
+      }
+      const safe = reply && !leaked(reply) ? reply : 'Sorry, I missed that. Could you ask me once more?';
+      return res.status(200).json({ reply: safe || 'Thank you! Our team will be in touch shortly.', booked });
     }
     convo.push(msg);
     for (const c of calls) {
