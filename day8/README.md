@@ -21,8 +21,8 @@ A website demo for Pragya Bamboo Restaurant, a thatched bamboo restaurant on NH 
 
 ## 🛠️ Stack
 
-- Plain HTML, CSS and JavaScript, Yatra One + Mukta
-- Hero videos generated with Google Flow (Veo) from the restaurant's own photo
+- Plain HTML, CSS and JavaScript, Fraunces + Manrope
+- Hero videos generated with Google Flow (Veo) from the restaurant's own photo, denoised and colour graded with ffmpeg, plus CSS grading layers (vignette, colour wash, film grain, slow camera push)
 - Vercel serverless function `api/chat.js` calling an OpenAI-compatible API (OpenRouter by default) with a `capture_reservation` tool
 
 ## 🚀 Run locally

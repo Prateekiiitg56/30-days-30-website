@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Pragya Bamboo Restaurant</title>
 <meta name="description" content="Bamboo, thatch and neon on NH 15, Madhabpur. Assamese thalis, pork with bamboo shoot, momos and a cabin on stilts for gatherings. Order or book on WhatsApp.">
-<meta name="theme-color" content="#0F1229">
+<meta name="theme-color" content="#0B0F1E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;700&family=Yatra+One&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,500..700,100;1,9..144,500..700,100&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/site.css">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230F1229'/%3E%3Crect x='13' y='4' width='6' height='24' rx='3' fill='%23E4B24C'/%3E%3Cpath d='M12 11h8M12 19h8' stroke='%235e4a1c' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230B0F1E'/%3E%3Crect x='13' y='4' width='6' height='24' rx='3' fill='%23E4B24C'/%3E%3Cpath d='M12 11h8M12 19h8' stroke='%235e4a1c' stroke-width='2'/%3E%3C/svg%3E">
 </head>
 <body class="home">
 
@@ -22,8 +22,13 @@
 <main>
 <section id="hero" aria-label="Welcome">
   <div class="stage">
-    <video id="hv" muted playsinline preload="auto" aria-hidden="true"></video>
-    <img class="hv-still" alt="" aria-hidden="true">
+    <div class="cam">
+      <video id="hv" muted playsinline preload="auto" aria-hidden="true"></video>
+      <img class="hv-still" alt="" aria-hidden="true">
+    </div>
+    <div class="grade"></div>
+    <div class="vignette"></div>
+    <div class="grain"></div>
     <div class="flies" aria-hidden="true"><i style="left:12%;top:58%;--x:40px;--y:-60px;--d:9s;animation-delay:-1s,-0.5s"></i><i style="left:22%;top:70%;--x:-30px;--y:-50px;--d:11s;animation-delay:-3s,-1.5s"></i><i style="left:30%;top:48%;--x:50px;--y:-30px;--d:8s;animation-delay:-2s,-1.0s"></i><i style="left:68%;top:55%;--x:-40px;--y:-70px;--d:10s;animation-delay:-4s,-2.0s"></i><i style="left:78%;top:66%;--x:30px;--y:-40px;--d:12s;animation-delay:-1s,-0.5s"></i><i style="left:86%;top:48%;--x:-50px;--y:-30px;--d:9s;animation-delay:-5s,-2.5s"></i><i style="left:45%;top:74%;--x:20px;--y:-60px;--d:13s;animation-delay:-2s,-1.0s"></i><i style="left:58%;top:40%;--x:-30px;--y:-40px;--d:10s;animation-delay:-6s,-3.0s"></i><i style="left:8%;top:40%;--x:30px;--y:-30px;--d:11s;animation-delay:-3s,-1.5s"></i><i style="left:92%;top:72%;--x:-20px;--y:-50px;--d:9s;animation-delay:-2s,-1.0s"></i></div>
     <div class="shade"></div>
     <div class="dim"></div>
@@ -160,9 +165,9 @@
   /* scrolling out: the scene sinks into the page colour and the title lifts away */
   let raf=0;
   function paint(){raf=0;const k=clamp(scrollY/(hero.offsetHeight-innerHeight));
-    const z=1+k*.08;v.style.transform=still.style.transform=`scale(${z})`;
-    dim.style.opacity=k*.85;copy.style.opacity=1-k*1.3;copy.style.transform=`translateY(${-k*70}px)`;hint.style.opacity=k>.02?0:1}
-  if(!reduce){addEventListener('scroll',()=>{if(!raf)raf=requestAnimationFrame(paint)},{passive:true});paint()}
+    if(!reduce){const z=1+k*.08;v.style.transform=still.style.transform=`scale(${z})`;copy.style.transform=`translateY(${-k*70}px)`}
+    dim.style.opacity=k*.85;copy.style.opacity=1-k*1.3;hint.style.opacity=k>.02?0:1;document.body.classList.toggle('in-hero',k<.5)}
+  addEventListener('scroll',()=>{if(!raf)raf=requestAnimationFrame(paint)},{passive:true});paint()
 })();
 
 /* day / night slider */
