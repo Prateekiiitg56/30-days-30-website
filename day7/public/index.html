@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Eighteenth South, Lokhra Road, Guwahati</title>
+<meta name="description" content="Eighteenth South: pizzas, sizzlers, pasta, shakes and coffee in a room of lit arches, emerald velvet and red booths. Lokhra Road, Kala Pahar, Guwahati.">
+<meta name="theme-color" content="#0F3D33">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..800;1,6..96,400..700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --plaster:#FBFAF6; --marble:#EFEDE7; --stone:#D9D5CC;
+  --emerald:#0F3D33; --emerald2:#155244; --velvet:#7A1426; --velvet2:#5C0E1C;
+  --gold:#C9A14E; --gold2:#E6C77E; --ink:#171B19; --mute:#5B625E; --hedge:#4E7E33;
+  --led:255,214,150;
+  --serif:'Bodoni Moda',Didot,'Times New Roman',serif; --sans:'Figtree',system-ui,sans-serif;
+  --hw:520px; --h:720px; --D:5600px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--plaster);color:var(--ink);font:400 17px/1.6 var(--sans);overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.wrap{width:min(1180px,100% - 32px);margin-inline:auto}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.02;letter-spacing:-.01em}
+h2{font-size:clamp(40px,6vw,76px)}
+.lede{font-size:clamp(17px,1.6vw,19px);color:var(--mute);max-width:52ch}
+
+/* ---------- nav ---------- */
+.nav{position:fixed;inset:0 0 auto;z-index:40;display:flex;align-items:center;justify-content:space-between;padding:14px clamp(16px,3vw,36px);transition:background .4s,box-shadow .4s}
+.nav.solid{background:rgba(251,250,246,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 1px 0 rgba(23,27,25,.08)}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--serif);font-weight:600;font-size:19px}
+.brand i{display:grid;place-items:center;width:34px;height:40px;border-radius:17px 17px 3px 3px;background:var(--ink);color:var(--gold2);font-style:normal;font-size:15px;letter-spacing:-.04em}
+.nav nav{display:flex;gap:6px}
+.nav nav a{text-decoration:none;font-size:15px;padding:8px 12px;border-radius:99px}
+.nav nav a:hover{background:rgba(23,27,25,.06)}
+.nav .cta{background:var(--emerald);color:#fff}
+.nav .cta:hover{background:var(--emerald2)}
+@media(max-width:760px){.nav nav a:not(.cta){display:none}}
+
+/* ---------- hero: walk through the arches ---------- */
+#hero{height:520svh;position:relative;background:#E8E4DB}
+.stage{position:sticky;top:0;height:100svh;overflow:hidden;perspective:820px;perspective-origin:50% 46%;background:radial-gradient(120% 90% at 50% 45%,#F4F1EA 0%,#E2DDD2 60%,#CFC8BB 100%)}
+.world{position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d;will-change:transform}
+.pl{position:absolute;transform-style:preserve-3d}
+/* planes are centred on the world origin, then rotated and pushed into place */
+.floor,.ceil{width:calc(var(--hw)*2);height:var(--D);left:calc(var(--hw)*-1);top:calc(var(--D)/-2)}
+.floor{transform:translate3d(0,calc(var(--h)/2),calc(var(--D)/-2)) rotateX(90deg);
+  background:
+    radial-gradient(60% 6% at 50% 100%,rgba(var(--led),.25),transparent),
+    repeating-linear-gradient(0deg,transparent 0 318px,rgba(120,112,100,.18) 318px 320px),
+    linear-gradient(90deg,transparent 49.8%,rgba(120,112,100,.18) 49.8% 50.2%,transparent 50.2%),
+    linear-gradient(115deg,transparent 30%,rgba(160,150,135,.18) 31%,transparent 33%,transparent 62%,rgba(160,150,135,.14) 63%,transparent 64.5%),
+    linear-gradient(#ECE9E2,#F6F4EF);
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 30%);mask-image:linear-gradient(to bottom,transparent 0,#000 30%)}
+.ceil{transform:translate3d(0,calc(var(--h)/-2),calc(var(--D)/-2)) rotateX(90deg);
+  background:linear-gradient(90deg,#E9E6DF,#F7F5F0 50%,#E9E6DF);
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 30%);mask-image:linear-gradient(to bottom,transparent 0,#000 30%)}
+.wall{width:var(--D);height:var(--h);left:calc(var(--D)/-2);top:calc(var(--h)/-2);
+  background:
+    linear-gradient(to bottom,transparent 72%,#8A1A2E 72%,#6E1222 86%,#3F0A13 86.5%,transparent 87%),
+    repeating-linear-gradient(90deg,transparent 0 40px,rgba(0,0,0,.05) 40px 42px,transparent 42px 236px,rgba(0,0,0,.05) 236px 238px,transparent 238px 280px),
+    linear-gradient(to bottom,transparent 8%,rgba(0,0,0,.05) 8% 8.4%,transparent 8.4% 66%,rgba(0,0,0,.05) 66% 66.4%,transparent 66.4%),
+    linear-gradient(to bottom,#F5F3EE,#FBFAF7 40%,#ECE9E2)}
+.wall.l{transform:translate3d(calc(var(--hw)*-1),0,calc(var(--D)/-2)) rotateY(90deg);-webkit-mask-image:linear-gradient(to right,#000 55%,transparent);mask-image:linear-gradient(to right,#000 55%,transparent)}
+.wall.r{transform:translate3d(var(--hw),0,calc(var(--D)/-2)) rotateY(-90deg);-webkit-mask-image:linear-gradient(to left,#000 55%,transparent);mask-image:linear-gradient(to left,#000 55%,transparent)}
+/* a plaster partition with a lit arch cut through it, like the niches on their walls */
+.gate{width:calc(var(--hw)*2 + 4px);height:calc(var(--h) + 4px);left:calc(var(--hw)*-1 - 2px);top:calc(var(--h)/-2 - 2px);overflow:hidden}
+.gate .hole{position:absolute;left:50%;bottom:0;width:58%;height:84%;transform:translateX(-50%);border-radius:999px 999px 0 0;
+  box-shadow:inset 0 0 0 3px rgba(var(--led),.95),inset 0 0 28px 6px rgba(var(--led),.55),0 0 0 2px rgba(var(--led),.7),0 0 46px 10px rgba(var(--led),.5),0 0 0 3000px var(--plaster)}
+.gate .hedge{position:absolute;bottom:0;height:9%;width:21%;background:
+  radial-gradient(circle at 20% 30%,#7DB052 0 7px,transparent 8px) 0 0/22px 18px,
+  radial-gradient(circle at 70% 60%,#5F9440 0 8px,transparent 9px) 0 0/26px 20px,
+  linear-gradient(#5E9140,#3E6B28);border-radius:8px 8px 0 0}
+.gate .hedge.a{left:0}.gate .hedge.b{right:0}
+.gate .shade{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.03),transparent 30%,rgba(0,0,0,.06));pointer-events:none}
+.frame{width:300px;height:410px;left:-150px;top:-230px;border:6px solid var(--gold);border-radius:150px 150px 4px 4px;overflow:hidden;background:#222;box-shadow:0 0 0 2px #8C6C2C,0 18px 40px rgba(0,0,0,.25)}
+.frame img{width:100%;height:100%;object-fit:cover}
+.disc{width:190px;height:190px;left:-95px;top:-95px;border-radius:50%;
+  background:radial-gradient(circle,#2F2A25 0 52%,#4A4239 60%,rgba(var(--led),.95) 63%,rgba(var(--led),.25) 70%,transparent 74%)}
+.endwall{width:calc(var(--hw)*2 + 4px);height:calc(var(--h) + 4px);left:calc(var(--hw)*-1 - 2px);top:calc(var(--h)/-2 - 2px);background:var(--plaster);display:grid;place-items:end center}
+.endwall .niche{width:62%;height:86%;border-radius:999px 999px 0 0;overflow:hidden;box-shadow:0 0 0 4px rgba(var(--led),.95),0 0 60px 14px rgba(var(--led),.55)}
+.endwall .niche img{width:100%;height:100%;object-fit:cover}
+.vignette{position:absolute;inset:0;pointer-events:none;background:radial-gradient(90% 80% at 50% 50%,transparent 55%,rgba(40,32,24,.28))}
+
+.copy{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;padding:0 16px}
+.scene{grid-area:1/1;align-self:center;text-align:center;max-width:900px;opacity:0;will-change:opacity,transform,filter}
+.scene.end{align-self:end;margin-bottom:5svh}
+@media(max-width:700px){.scene.end{margin-bottom:max(96px,13svh)}}
+.scene .plate{display:inline-block;padding:22px 30px 26px;border-radius:28px;background:rgba(251,250,246,.78);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 20px 60px rgba(60,45,25,.14)}
+.scene h1{font-size:clamp(48px,9.5vw,128px);font-weight:600;letter-spacing:-.02em}
+.scene h1 em{font-style:italic;font-weight:500}
+.scene .q{font-family:var(--serif);font-weight:700;font-size:clamp(34px,6.4vw,84px);line-height:1.02;letter-spacing:-.01em}
+.scene p{margin-top:12px;font-size:clamp(15px,1.5vw,18px);color:var(--mute)}
+.scene .acts{margin-top:22px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;pointer-events:auto}
+.btn{display:inline-flex;align-items:center;gap:8px;border:0;cursor:pointer;text-decoration:none;font-weight:600;font-size:16px;padding:14px 22px;border-radius:99px;transition:transform .25s,background .25s}
+.btn:hover{transform:translateY(-2px)}
+.btn.e{background:var(--emerald);color:#fff}.btn.e:hover{background:var(--emerald2)}
+.btn.o{background:transparent;box-shadow:inset 0 0 0 1.5px currentColor}
+.btn.g{background:var(--gold);color:var(--ink)}.btn.g:hover{background:var(--gold2)}
+.hint{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);font-size:13px;color:var(--mute);display:flex;flex-direction:column;align-items:center;gap:8px;transition:opacity .4s}
+.hint b{width:22px;height:34px;border-radius:11px 11px 4px 4px;box-shadow:inset 0 0 0 1.5px var(--mute);position:relative}
+.hint b::after{content:"";position:absolute;left:50%;top:7px;width:3px;height:7px;margin-left:-1.5px;border-radius:2px;background:var(--mute);animation:dot 1.8s infinite}
+@keyframes dot{0%{transform:translateY(0);opacity:1}70%{transform:translateY(10px);opacity:0}100%{opacity:0}}
+.progress{position:absolute;right:clamp(14px,2.4vw,30px);top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px}
+.progress i{width:8px;height:12px;border-radius:4px 4px 1px 1px;background:rgba(23,27,25,.18);transition:background .3s,height .3s}
+.progress i.on{background:var(--emerald);height:20px}
+
+/* ---------- arch photo frames (motif used across the page) ---------- */
+.arch{border-radius:999px 999px 6px 6px;overflow:hidden;position:relative;background:var(--stone)}
+.arch img{width:100%;height:100%;object-fit:cover}
+.arch.lit{box-shadow:0 0 0 3px rgba(var(--led),.9),0 0 34px 6px rgba(var(--led),.4)}
+
+/* ---------- the room ---------- */
+#room{padding:clamp(80px,12vw,150px) 0;background:var(--plaster)}
+.room{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(32px,6vw,90px);align-items:center}
+.room h2{max-width:11ch}
+.room .lede{margin-top:22px}
+.facts{margin-top:36px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;border-top:1px solid rgba(23,27,25,.12);padding-top:22px}
+.facts b{display:block;white-space:nowrap;font-family:var(--serif);font-size:clamp(24px,2.5vw,32px);font-weight:600;line-height:1.1}
+.facts span{font-size:14px;color:var(--mute)}
+.tiltbox{perspective:1100px}
+.trio{position:relative;aspect-ratio:1/1.05;transform-style:preserve-3d;transition:transform .2s ease-out}
+.trio .arch{position:absolute}
+.trio .a1{left:16%;top:0;width:58%;height:88%;transform:translateZ(0)}
+.trio .a2{left:0;bottom:2%;width:34%;height:46%;transform:translateZ(70px);box-shadow:0 30px 50px rgba(0,0,0,.22)}
+.trio .a3{right:0;bottom:8%;width:32%;height:44%;transform:translateZ(110px);box-shadow:0 30px 50px rgba(0,0,0,.25)}
+.trio .tag{position:absolute;left:52%;top:6%;transform:translateZ(150px);background:var(--ink);color:#fff;font-size:13px;padding:8px 14px;border-radius:99px;white-space:nowrap}
+@media(max-width:860px){.room{grid-template-columns:minmax(0,1fr)}.trio{max-width:520px;margin-inline:auto}}
+@media(max-width:520px){.facts{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------- menu ---------- */
+#menu{background:var(--emerald);color:#F3EFE4;padding:clamp(80px,12vw,150px) 0;position:relative;overflow:hidden}
+#menu::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.025) 0 2px,transparent 2px 14px);pointer-events:none}
+#menu .lede{color:rgba(243,239,228,.72)}
+.mhead{display:flex;justify-content:space-between;align-items:end;gap:30px;flex-wrap:wrap}
+.feat{margin-top:56px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,3vw,36px);perspective:1200px}
+.card{transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.card .arch{aspect-ratio:3/4;box-shadow:0 0 0 4px var(--gold),0 30px 60px rgba(0,0,0,.35)}
+.card h3{margin-top:18px;font-size:clamp(22px,2.4vw,30px);font-weight:600}
+.card p{font-size:15px;color:rgba(243,239,228,.7);margin-top:4px}
+@media(max-width:700px){.feat{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.feat .card:first-child{grid-column:1/-1}.feat .card:first-child .arch{aspect-ratio:4/3.4}}
+.tabs{margin-top:72px;display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{flex:none;border:0;cursor:pointer;background:rgba(255,255,255,.07);color:#F3EFE4;padding:11px 18px;border-radius:99px;font-size:15px;transition:background .25s,color .25s}
+.tabs button:hover{background:rgba(255,255,255,.14)}
+.tabs button[aria-selected=true]{background:var(--gold);color:var(--ink);font-weight:600}
+.board{margin-top:26px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 56px;min-height:220px}
+.board li{list-style:none;display:flex;align-items:baseline;gap:12px;padding:16px 0;border-bottom:1px solid rgba(243,239,228,.14);font-family:var(--serif);font-size:clamp(20px,2vw,24px);opacity:0;transform:translateY(10px) rotateX(-30deg);transform-origin:50% 0;animation:in .55s cubic-bezier(.2,.7,.2,1) forwards}
+.board li small{font-family:var(--sans);font-size:14px;color:rgba(243,239,228,.6);margin-left:auto;text-align:right}
+@keyframes in{to{opacity:1;transform:none}}
+.vg{flex:none;width:13px;height:13px;border:1.5px solid #4CAF50;display:grid;place-items:center;transform:translateY(-1px)}
+.vg::after{content:"";width:6px;height:6px;border-radius:50%;background:#4CAF50}
+.vg.n{border-color:#E0533D}.vg.n::after{background:#E0533D}
+.mnote{margin-top:26px;font-size:15px;color:rgba(243,239,228,.7)}
+.mnote a{color:var(--gold2)}
+@media(max-width:700px){.board{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------- gatherings (tufted velvet) ---------- */
+#gather{background:
+  radial-gradient(circle at 50% 50%,rgba(0,0,0,.45) 0 2px,rgba(0,0,0,.18) 3px,transparent 10px) 0 0/56px 56px,
+  radial-gradient(circle at 50% 50%,rgba(0,0,0,.45) 0 2px,rgba(0,0,0,.18) 3px,transparent 10px) 28px 28px/56px 56px,
+  radial-gradient(70% 90% at 30% 40%,#8E1B30,var(--velvet) 50%,var(--velvet2));
+  color:#FBF2EC;padding:clamp(80px,11vw,140px) 0}
+.gather{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(30px,6vw,80px);align-items:center}
+.gather .lede{color:rgba(251,242,236,.78);margin-top:20px}
+.occ{margin-top:30px;display:flex;flex-wrap:wrap;gap:10px}
+.occ span{padding:9px 16px;border-radius:99px;background:rgba(0,0,0,.22);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18);font-size:15px}
+.gather .arch{aspect-ratio:4/5;max-width:420px;justify-self:center;width:100%}
+@media(max-width:820px){.gather{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------- booking ---------- */
+#book{padding:clamp(80px,11vw,140px) 0;background:var(--marble)}
+.book{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(30px,6vw,80px)}
+form.res{background:var(--plaster);border-radius:28px;padding:clamp(22px,3vw,36px);box-shadow:0 30px 70px rgba(40,35,25,.1);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
+form.res label{display:grid;gap:6px;font-size:14px;font-weight:600;color:var(--mute)}
+form.res .full{grid-column:1/-1}
+form.res input,form.res select{width:100%;border:1px solid rgba(23,27,25,.16);background:#fff;border-radius:14px;padding:13px 14px;font-size:16px;font-weight:400;color:var(--ink)}
+form.res input:focus,form.res select:focus{outline:2px solid var(--emerald);outline-offset:0;border-color:transparent}
+form.res .btn{justify-content:center}
+.book .alt{margin-top:28px;display:grid;gap:12px}
+.book .alt a{display:flex;gap:14px;align-items:center;text-decoration:none;font-weight:600}
+.book .alt a span{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--emerald);color:#fff}
+@media(max-width:820px){.book{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:480px){form.res{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------- visit ---------- */
+#visit{padding:clamp(80px,11vw,140px) 0 60px;background:var(--plaster)}
+.visit{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,6vw,80px);align-items:start}
+.visit dl{margin-top:30px;display:grid;gap:22px}
+.visit dt{font-size:14px;color:var(--mute)}
+.visit dd{font-family:var(--serif);font-size:clamp(22px,2.4vw,28px);line-height:1.25}
+.review{background:var(--ink);color:#F3EFE4;border-radius:28px;padding:clamp(26px,4vw,44px);position:relative;overflow:hidden}
+.review blockquote{font-family:var(--serif);font-style:italic;font-size:clamp(26px,3.2vw,40px);line-height:1.15}
+.review cite{display:block;margin-top:18px;font-style:normal;font-size:15px;color:rgba(243,239,228,.65)}
+.review .stars{display:flex;align-items:baseline;gap:10px;margin-bottom:22px;color:var(--gold2)}
+.review .stars b{font-family:var(--serif);font-size:44px;color:#fff}
+.review .arch{position:absolute;right:-30px;top:-50px;width:150px;height:200px;opacity:.16}
+@media(max-width:820px){.visit{grid-template-columns:minmax(0,1fr)}}
+footer{background:var(--ink);color:rgba(243,239,228,.7);padding:70px 0 120px;font-size:15px}
+footer .big{font-family:var(--serif);font-weight:700;color:#F3EFE4;font-size:clamp(38px,7vw,96px);line-height:1}
+footer .row{margin-top:40px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+
+/* ---------- Archie chat ---------- */
+#fab{position:fixed;right:20px;bottom:20px;z-index:60;border:0;cursor:pointer;display:flex;align-items:center;gap:10px;padding:8px 18px 8px 8px;border-radius:30px 30px 30px 30px;background:var(--ink);color:#fff;font-weight:600;box-shadow:0 14px 40px rgba(0,0,0,.3);transition:transform .25s}
+#fab:hover{transform:translateY(-3px)}
+#fab i{width:36px;height:42px;border-radius:18px 18px 4px 4px;background:var(--plaster);box-shadow:inset 0 0 0 2px rgba(var(--led),1),0 0 14px rgba(var(--led),.8);display:grid;place-items:center;font-style:normal;font-family:var(--serif);color:var(--ink);font-size:16px}
+#nudge{position:fixed;right:20px;bottom:86px;z-index:60;max-width:270px;background:var(--plaster);border-radius:18px;padding:14px 38px 14px 16px;font-size:15px;box-shadow:0 18px 50px rgba(0,0,0,.18);cursor:pointer;opacity:0;transform:translateY(10px);pointer-events:none;transition:.4s}
+#nudge.on{opacity:1;transform:none;pointer-events:auto}
+#nudgeX{position:absolute;right:8px;top:8px;border:0;background:none;cursor:pointer;width:26px;height:26px;border-radius:50%;color:var(--mute)}
+#chat{position:fixed;right:20px;bottom:20px;z-index:70;width:min(390px,calc(100vw - 24px));height:min(600px,calc(100svh - 40px));background:var(--plaster);border-radius:26px;box-shadow:0 30px 80px rgba(0,0,0,.3);display:flex;flex-direction:column;overflow:hidden;opacity:0;transform:translateY(16px) scale(.98);transform-origin:bottom right;pointer-events:none;transition:.35s cubic-bezier(.2,.7,.2,1)}
+#chat.on{opacity:1;transform:none;pointer-events:auto}
+.ch{display:flex;align-items:center;gap:12px;padding:14px 14px 14px 18px;background:var(--emerald);color:#fff}
+.ch i{width:34px;height:40px;border-radius:17px 17px 4px 4px;background:var(--plaster);box-shadow:inset 0 0 0 2px rgba(var(--led),1);display:grid;place-items:center;font-style:normal;font-family:var(--serif);color:var(--ink)}
+.ch b{font-family:var(--serif);font-size:20px;font-weight:600;display:block;line-height:1.1}
+.ch small{font-size:13px;opacity:.75}
+#chatX{margin-left:auto;border:0;background:rgba(255,255,255,.12);color:#fff;width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:18px}
+#msgs{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
+.m{max-width:86%;padding:11px 14px;border-radius:18px;font-size:15px;line-height:1.5}
+.m.b{background:#fff;box-shadow:0 1px 0 rgba(0,0,0,.06);border-bottom-left-radius:6px}
+.m.u{background:var(--emerald);color:#fff;align-self:flex-end;border-bottom-right-radius:6px}
+.m p+p,.m p+ul,.m ul+p{margin-top:6px}
+.m ul{padding-left:18px}
+.typing{display:flex;gap:4px}.typing i{width:7px;height:7px;border-radius:50%;background:var(--mute);animation:bl 1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes bl{50%{opacity:.25}}
+#sug{display:flex;gap:6px;flex-wrap:wrap;padding:0 16px 10px}
+#sug button{border:1px solid rgba(23,27,25,.15);background:#fff;border-radius:99px;padding:7px 12px;font-size:14px;cursor:pointer}
+#sug button:hover{border-color:var(--emerald)}
+#cf{display:flex;gap:8px;padding:12px;border-top:1px solid rgba(23,27,25,.08)}
+#ci{flex:1;min-width:0;border:1px solid rgba(23,27,25,.15);border-radius:99px;padding:12px 16px;font-size:16px;background:#fff}
+#cf button{border:0;background:var(--emerald);color:#fff;border-radius:99px;padding:0 18px;font-weight:600;cursor:pointer}
+@media(max-width:560px){#chat{right:0;bottom:0;width:100vw;height:86svh;border-radius:24px 24px 0 0}}
+#toast{position:fixed;left:50%;bottom:24px;z-index:80;transform:translate(-50%,20px);background:var(--ink);color:#fff;padding:12px 18px;border-radius:99px;font-size:15px;opacity:0;pointer-events:none;transition:.35s}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+.preview{position:fixed;left:14px;bottom:14px;z-index:30;font-size:12px;background:rgba(23,27,25,.82);color:#fff;padding:6px 11px;border-radius:99px}
+@media(max-width:560px){.preview{display:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.board li{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <a class="brand" href="#top"><i>ES</i>Eighteenth South</a>
+  <nav><a href="#room">The room</a><a href="#menu">Menu</a><a href="#visit">Visit</a><a class="cta" href="#book">Book a table</a></nav>
+</header>
+
+<section id="hero" aria-label="Eighteenth South">
+  <div class="stage" id="stage">
+    <div class="world" id="world"></div>
+    <div class="vignette"></div>
+    <div class="copy">
+      <div class="scene" data-at="0"><div class="plate"><h1 id="top">Eighteenth <em>South</em></h1><p>Restaurant and cafe on Lokhra Road, Kala Pahar, Guwahati</p></div></div>
+      <div class="scene" data-at=".3"><div class="plate"><div class="q">When food is<br>flirting on you</div><p>Pizzas, sizzlers, pasta and coffee in a room built for long evenings</p></div></div>
+      <div class="scene" data-at=".57"><div class="plate"><div class="q">Sorry!<br>Diet na ho payega</div><p>Shakes, brownies and a sizzling brownie with ice cream</p></div></div>
+      <div class="scene end" data-at=".9"><div class="plate"><div class="q">Your table is<br>through here</div><p>Open every day until 10:30 pm</p><div class="acts"><a class="btn e" href="#book">Book a table</a><a class="btn o" href="#menu">See the menu</a></div></div></div>
+    </div>
+    <div class="progress" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    <div class="hint" id="hint"><b></b>Scroll to walk in</div>
+  </div>
+</section>
+
+<section id="room">
+  <div class="wrap room">
+    <div>
+      <h2>A room worth dressing up for</h2>
+      <p class="lede">White panelled walls and arches that glow after dark. Emerald velvet chairs, red tufted booths and marble tables. Come for a coffee in the afternoon and stay for dinner.</p>
+      <div class="facts">
+        <div><b>4.2</b><span>on Google, 258+ reviews</span></div>
+        <div><b>₹200–400</b><span>per person</span></div>
+        <div><b>For everyone</b><span>kids' menu and vegan options</span></div>
+      </div>
+    </div>
+    <div class="tiltbox"><div class="trio" id="trio">
+      <div class="arch lit a1"><img src="img/room-day.webp" alt="The dining room with marble tables, emerald chairs and round mirrored ceiling lights" loading="lazy"></div>
+      <div class="arch a2"><img src="img/arch-flirt.webp" alt="Lit arch on the wall reading: When food is flirting on you" loading="lazy"></div>
+      <div class="arch a3"><img src="img/room-night.webp" alt="The room in the evening" loading="lazy"></div>
+      <span class="tag">Lokhra Road, Kala Pahar</span>
+    </div></div>
+  </div>
+</section>
+
+<section id="menu">
+  <div class="wrap">
+    <div class="mhead">
+      <h2>On the menu</h2>
+      <p class="lede">Pizzas, sizzling plates, pasta your way and a long list of shakes and coffee.</p>
+    </div>
+    <div class="feat">
+      <div class="card" data-tilt><div class="arch"><img src="img/burger.webp" alt="Burger and fries served in a woven basket" loading="lazy"></div><h3>Burger in a basket</h3><p>Served with fries</p></div>
+      <div class="card" data-tilt><div class="arch"><img src="img/shake.webp" alt="Chocolate shake in a tall glass" loading="lazy"></div><h3>Thick shakes</h3><p>Chocolate drips included</p></div>
+      <div class="card" data-tilt><div class="arch"><img src="img/cappuccino.webp" alt="Cappuccino with latte art" loading="lazy"></div><h3>Cappuccino</h3><p>For the slow afternoon</p></div>
+    </div>
+    <div class="tabs" role="tablist" id="tabs"></div>
+    <ul class="board" id="board" role="tabpanel"></ul>
+    <p class="mnote">Today's prices are on the menu card. <a href="https://wa.me/919957192669?text=Hi%20Eighteenth%20South%2C%20can%20you%20share%20your%20menu%20with%20prices%3F" target="_blank" rel="noopener">Ask on WhatsApp</a> or ask Archie, bottom right.</p>
+  </div>
+</section>
+
+<section id="gather">
+  <div class="wrap gather">
+    <div>
+      <h2>Birthdays, family lunches, the whole gang</h2>
+      <p class="lede">The red booths seat a crowd. Tell us the date and the headcount and we'll keep your corner ready.</p>
+      <div class="occ"><span>Birthdays</span><span>Family lunch</span><span>Date night</span><span>Friends' night out</span><span>Team dinners</span></div>
+      <div class="acts" style="margin-top:30px"><a class="btn g" href="#book">Plan a party</a></div>
+    </div>
+    <div class="arch lit"><img src="img/arch-diet.webp" alt="Lit arch on the wall reading: Sorry! Diet na ho payega" loading="lazy"></div>
+  </div>
+</section>
+
+<section id="book">
+  <div class="wrap book">
+    <div>
+      <h2>Book a table</h2>
+      <p class="lede" style="margin-top:20px">Send your request and the Eighteenth South team confirms on WhatsApp.</p>
+      <div class="alt">
+        <a href="tel:+919957192669"><span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></span>Call 099571 92669</a>
+        <a href="#" onclick="openChat('I want to book a table');return false"><span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20V10a8 8 0 0 1 16 0v10z"/></svg></span>Or book with Archie, our AI host</a>
+      </div>
+    </div>
+    <form class="res" id="res">
+      <label class="full">Name<input name="n" required autocomplete="name"></label>
+      <label>Phone<input name="p" required type="tel" inputmode="tel" autocomplete="tel"></label>
+      <label>Guests<select name="g"><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>8</option><option>10+</option></select></label>
+      <label>Date<input name="d" required type="date"></label>
+      <label>Time<input name="t" required type="time" value="19:30"></label>
+      <label class="full">Occasion<select name="o"><option>Just dinner</option><option>Birthday</option><option>Anniversary or date</option><option>Family get-together</option><option>Office or team</option></select></label>
+      <button class="btn e full" type="submit">Send request on WhatsApp</button>
+    </form>
+  </div>
+</section>
+
+<section id="visit">
+  <div class="wrap visit">
+    <div>
+      <h2>Find us</h2>
+      <dl>
+        <div><dt>Address</dt><dd>Lokhra Road, Gopinath Nagar, Binowa Nagar, Kala Pahar, Guwahati 781018</dd></div>
+        <div><dt>Hours</dt><dd>Open every day, until 10:30 pm</dd></div>
+        <div><dt>Phone and WhatsApp</dt><dd><a href="tel:+919957192669">099571 92669</a></dd></div>
+      </dl>
+      <div class="acts" style="margin-top:30px;display:flex;gap:10px;flex-wrap:wrap"><a class="btn e" href="https://www.google.com/maps/search/?api=1&query=Eighteenth+South+Lokhra+Road+Guwahati" target="_blank" rel="noopener">Get directions</a><a class="btn o" href="tel:+919957192669">Call us</a></div>
+    </div>
+    <div class="review">
+      <div class="stars"><b>4.2</b>★★★★ on Google</div>
+      <blockquote>“The atmosphere of the place was classy but cozy and comfortable.”</blockquote>
+      <cite>Manisha Patowary, Google review</cite>
+      <div class="arch"><img src="img/monogram.webp" alt="" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="big">Sorry! Diet na<br>ho payega.</div>
+    <div class="row"><span>Eighteenth South, Lokhra Road, Kala Pahar, Guwahati</span><span>099571 92669</span></div>
+  </div>
+</footer>
+
+<div class="preview">Preview, website by Unbias.xai</div>
+<div id="nudge" role="button" tabindex="0">Hungry? Ask me what's good or book a table.<button id="nudgeX" aria-label="Dismiss">✕</button></div>
+<button id="fab" aria-label="Chat with Archie"><i>ES</i>Ask Archie</button>
+<div id="chat" role="dialog" aria-label="Chat with Archie">
+  <div class="ch"><i>ES</i><div><b>Archie</b><small>AI host, Eighteenth South</small></div><button id="chatX" aria-label="Close chat">✕</button></div>
+  <div id="msgs" aria-live="polite"></div>
+  <div id="sug"><button>What's good here?</button><button>Veg options?</button><button>Book a table for 4</button><button>Birthday party</button></div>
+  <form id="cf"><input id="ci" placeholder="Ask about food, timings, bookings…" autocomplete="off" aria-label="Message"><button>Send</button></form>
+</div>
+<div id="toast" role="status"></div>
+
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v));
+
+/* ---------- build the corridor ---------- */
+const GAP=1150, FIRST=-380, GATES=4;
+const world=$('#world'), stage=$('#stage'), hero=$('#hero');
+const el=(cls,style,html='')=>{const d=document.createElement('div');d.className='pl '+cls;if(style)d.style.transform=style;d.innerHTML=html;world.append(d);return d};
+el('floor');el('ceil');el('wall l');el('wall r');
+const gates=[];
+for(let i=0;i<GATES;i++)gates.push(el('gate',`translateZ(${FIRST-i*GAP}px)`,'<div class="hole"></div><div class="hedge a"></div><div class="hedge b"></div><div class="shade"></div>'));
+const END=FIRST-GATES*GAP+80;
+el('endwall',`translateZ(${END}px)`,'<div class="niche"><img src="img/room-wide.webp" alt=""></div>');
+/* framed photos hung on the side walls between the arches, and mirrored lights on the ceiling */
+const pics=['burger','arch-flirt','shake','room-night','cappuccino','arch-diet'];
+const frames=[];
+function hang(){
+  frames.forEach(f=>f.remove());frames.length=0;
+  const hw=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--hw'));
+  const h=parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--h'));
+  pics.forEach((p,i)=>{const left=i%2===0, z=FIRST-GAP*(Math.floor(i/2)+.5)-((i%2)*140);
+    frames.push(el('frame',`translate3d(${left?-hw+4:hw-4}px,${-h*.06}px,${z}px) rotateY(${left?90:-90}deg) scale(${Math.min(1,h/720)})`,`<img src="img/${p}.webp" alt="">`))});
+  for(let i=0;i<GATES+1;i++)frames.push(el('disc',`translate3d(0,${-h/2+2}px,${FIRST-GAP*(i+.5)}px) rotateX(90deg)`));
+}
+function size(){
+  const W=innerWidth,H=innerHeight,r=document.documentElement.style;
+  const hw=Math.round(Math.min(560,Math.max(190,W*(W<700?.56:.42)))), h=Math.round(Math.min(800,H*.92));
+  r.setProperty('--hw',hw+'px');r.setProperty('--h',h+'px');
+  stage.style.perspective=(W<700?560:860)+'px';
+  hang();
+}
+size();addEventListener('resize',size);
+
+/* ---------- scroll and pointer, smoothed ---------- */
+const scenes=$$('.scene'), dots=$$('.progress i'), nav=$('#nav'), hint=$('#hint');
+const TRAVEL=-(END)-1050;   // stop with the end niche filling the view
+let p=0,tp=0,mx=0,my=0,tmx=0,tmy=0;
+function readScroll(){const r=hero.getBoundingClientRect();tp=clamp(-r.top/(r.height-innerHeight));nav.classList.toggle('solid',r.bottom<80)}
+addEventListener('scroll',readScroll,{passive:true});readScroll();
+addEventListener('pointermove',e=>{if(e.pointerType!=='mouse')return;tmx=e.clientX/innerWidth-.5;tmy=e.clientY/innerHeight-.5},{passive:true});
+const ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
+function frame(){
+  p+= (tp-p)*(reduce?1:.085); mx+=(tmx-mx)*.06; my+=(tmy-my)*.06;
+  const cam=ease(p)*TRAVEL, bob=Math.sin(p*Math.PI*8)*3;
+  world.style.transform=`rotateX(${my*-3}deg) rotateY(${mx*5}deg) translate3d(0,${bob}px,${cam}px)`;
+  gates.forEach((g,i)=>{const z=FIRST-i*GAP+cam;  // distance in front of (-) or behind (+) the screen
+    g.style.opacity=z>520?0:clamp((520-z)/420)*clamp(1-(-z-2600)/1800,.35,1);
+    g.style.visibility=z>520?'hidden':'visible'});
+  scenes.forEach(s=>{const at=+s.dataset.at, d=(p-at)/.13, last=at>.8;
+    const o=last?clamp(1+d*1.4):clamp(1-Math.abs(d)*.85);
+    s.style.opacity=o; s.style.transform=`translateY(${(last?Math.min(0,d):d)*-26}px) scale(${.96+o*.04})`; s.style.filter=o<1?`blur(${(1-o)*6}px)`:'none';
+    s.style.pointerEvents=o>.6?'auto':'none'});
+  const k=Math.min(3,Math.round(p/.3));dots.forEach((d,i)=>d.classList.toggle('on',i===k));
+  hint.style.opacity=p<.03?1:0;
+  requestAnimationFrame(frame);
+}
+frame();
+
+/* ---------- 3D tilt on the room photos and dish cards ---------- */
+function tilt(box,target,amt){box.addEventListener('pointermove',e=>{if(e.pointerType!=='mouse'||reduce)return;const r=box.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;target.style.transform=`rotateY(${x*amt}deg) rotateX(${-y*amt}deg)`});box.addEventListener('pointerleave',()=>target.style.transform='')}
+tilt($('.tiltbox'),$('#trio'),14);
+$$('[data-tilt]').forEach(c=>tilt(c,c,12));
+
+/* ---------- menu ---------- */
+/* [name, 'v' veg | 'n' non-veg | '' either, note] */
+const MENU={
+ 'Pizzas':[['Margherita','v'],['Farmhouse','v'],['Paneer Tikka','v'],['Peri Peri Chicken','n'],['BBQ Chicken','n'],['Pepperoni','n'],['Chicken Supreme','n']],
+ 'Sizzlers':[['Veg Sizzler','v'],['Mexican Chicken Sizzler','n'],['Peri Peri Chicken Sizzler','n'],['Grilled Chicken Sizzler','n']],
+ 'Pasta':[['Arrabbiata','','veg or chicken'],['Alfredo','','veg or chicken'],['Pink Sauce','','veg or chicken'],['Spaghetti Aglio e Olio','','veg or chicken']],
+ 'Continental':[['Fish and Chips','n'],['Grilled Chicken','n','with mash and sautéed veggies'],['Grilled Fish','n'],['Burger in a basket','','with fries']],
+ 'All-day omelettes':[['Spanish Omelette','n'],['Masala Omelette','n'],['Cheese Omelette','n'],['Chicken Cheese Omelette','n']],
+ 'Shakes and iced':[['Cold Coffee','v'],['Iced Latte','v'],['Iced Americano','v'],['Peach Iced Tea','v'],['Passion Fruit Iced Tea','v'],['Green Apple Iced Tea','v'],['Strawberry Iced Tea','v'],['Chocolate Shake','v']],
+ 'Hot drinks':[['Cappuccino','v'],['Latte','v'],['Masala Chai','v'],['Lemon Tea','v'],['Green Tea','v']],
+ 'Desserts':[['Ice Cream','v'],['Chocolate Brownie','v'],['Sizzling Brownie','v','with ice cream']]
+};
+const tabs=$('#tabs'),board=$('#board');
+function show(cat){
+  $$('#tabs button').forEach(b=>b.setAttribute('aria-selected',b.textContent===cat));
+  board.innerHTML=MENU[cat].map(([n,t,note],i)=>`<li style="animation-delay:${i*45}ms">${t?`<span class="vg${t==='n'?' n':''}" aria-label="${t==='n'?'Non-veg':'Veg'}"></span>`:''}${n}${note?`<small>${note}</small>`:''}</li>`).join('');
+}
+Object.keys(MENU).forEach((c,i)=>{const b=document.createElement('button');b.role='tab';b.textContent=c;b.onclick=()=>show(c);tabs.append(b)});
+show('Pizzas');
+
+/* ---------- booking form to WhatsApp ---------- */
+const dIn=$('#res [name=d]');dIn.min=new Date().toISOString().slice(0,10);dIn.value=dIn.min;
+$('#res').onsubmit=e=>{e.preventDefault();const f=new FormData(e.target);
+  const d=new Date(f.get('d')+'T00:00').toLocaleDateString('en-IN',{weekday:'short',day:'numeric',month:'short'});
+  const msg=`Hi Eighteenth South, I'd like to book a table.\nName: ${f.get('n')}\nPhone: ${f.get('p')}\nDate: ${d}\nTime: ${f.get('t')}\nGuests: ${f.get('g')}\nOccasion: ${f.get('o')}`;
+  open('https://wa.me/919957192669?text='+encodeURIComponent(msg),'_blank','noopener')};
+
+/* ---------- Archie ---------- */
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('on'),3200)}
+const hist=[];let busy=false;
+/* Render the assistant's reply as clean HTML: escape everything, then allow **bold**, "- " bullet lists and paragraphs. */
+function fmt(t){const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');const bold=s=>esc(s).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\*(.+?)\*/g,'$1');
+const out=[];let list=null;for(const raw of String(t).replace(/\r/g,'').split('\n')){const l=raw.trim();const m=l.match(/^(?:[-*•]|\d+[.)])\s+(.*)/);
+if(m){if(!list){list=[];out.push(list)}list.push(m[1])}else{list=null;if(l)out.push(l)}}
+return out.map(x=>Array.isArray(x)?'<ul>'+x.map(i=>'<li>'+bold(i)+'</li>').join('')+'</ul>':'<p>'+bold(x)+'</p>').join('')}
+function add(t,w){const d=document.createElement('div');d.className='m '+w;if(w==='b')d.innerHTML=fmt(t);else d.textContent=t;$('#msgs').append(d);$('#msgs').scrollTop=1e9}
+function openChat(q){hideNudge();$('#chat').classList.add('on');$('#fab').style.visibility='hidden';
+ if(!$('#msgs').children.length)add("Hi! I'm **Archie**, the AI host at Eighteenth South. Ask me what's good, or I can book you a table.",'b');
+ if(q)send(q);else $('#ci').focus()}
+function closeChat(){$('#chat').classList.remove('on');$('#fab').style.visibility=''}
+function hideNudge(){$('#nudge').classList.remove('on')}
+$('#fab').onclick=()=>openChat();$('#chatX').onclick=closeChat;
+$('#nudge').onclick=e=>{if(e.target.closest('#nudgeX')){hideNudge();return}openChat("What's good here?")};
+$('#sug').onclick=e=>{if(e.target.tagName==='BUTTON')send(e.target.textContent)};
+$('#cf').onsubmit=e=>{e.preventDefault();const v=$('#ci').value.trim();if(v){$('#ci').value='';send(v)}};
+addEventListener('keydown',e=>{if(e.key==='Escape'&&$('#chat').classList.contains('on'))closeChat()});
+async function send(t){if(busy)return;busy=true;$('#sug').style.display='none';add(t,'u');hist.push({role:'user',content:t});
+const ty=document.createElement('div');ty.className='m b typing';ty.innerHTML='<i></i><i></i><i></i>';$('#msgs').append(ty);$('#msgs').scrollTop=1e9;
+try{const r=await fetch('/api/chat',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({messages:hist})});const j=await r.json();ty.remove();
+const reply=j.reply||j.error||'Archie could not answer. Please try again in a moment.';add(reply,'b');if(j.reply)hist.push({role:'assistant',content:reply});if(j.booked)toast('Table request sent to the Eighteenth South team')}
+catch{ty.remove();add('No connection. Check your internet and try again.','b')}busy=false}
+/* One gentle prompt once the guest has walked past the hero, so it never covers the hero buttons */
+let nudged=false;addEventListener('scroll',()=>{if(nudged||hero.getBoundingClientRect().bottom>innerHeight*.4)return;nudged=true;setTimeout(()=>{if(!$('#chat').classList.contains('on'))$('#nudge').classList.add('on')},2500)},{passive:true});
+</script>
+</body>
+</html>
