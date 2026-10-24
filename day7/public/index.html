@@ -54,31 +54,23 @@ h2{font-size:clamp(38px,6vw,72px)}
 .stage{position:sticky;top:0;height:100svh;overflow:hidden;perspective:820px;perspective-origin:50% 46%;background:radial-gradient(120% 90% at 50% 45%,#F8F2E8 0%,#EADFCD 60%,#D9CAB2 100%)}
 .world{position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d;will-change:transform}
 .pl{position:absolute;transform-style:preserve-3d}
-/* planes are centred on the world origin, then rotated and pushed into place */
-.floor,.ceil{width:calc(var(--hw)*2);height:var(--D);left:calc(var(--hw)*-1);top:calc(var(--D)/-2)}
-.floor{transform:translate3d(0,calc(var(--h)/2),calc(var(--D)/-2)) rotateX(90deg);
-  background:
-    radial-gradient(60% 6% at 50% 100%,rgba(var(--led),.25),transparent),
-    repeating-linear-gradient(0deg,transparent 0 318px,rgba(140,120,95,.16) 318px 320px),
+/* corridor planes: short segments sized and placed from JS, textures only here */
+.floor{background:
+    repeating-linear-gradient(0deg,transparent 0 278px,rgba(140,120,95,.16) 278px 280px),
     linear-gradient(90deg,transparent 49.8%,rgba(140,120,95,.16) 49.8% 50.2%,transparent 50.2%),
-    linear-gradient(115deg,transparent 30%,rgba(170,150,120,.16) 31%,transparent 33%,transparent 62%,rgba(170,150,120,.12) 63%,transparent 64.5%),
-    linear-gradient(#EDE5D8,#F7F2EA);
-  -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 30%);mask-image:linear-gradient(to bottom,transparent 0,#000 30%)}
-.ceil{transform:translate3d(0,calc(var(--h)/-2),calc(var(--D)/-2)) rotateX(90deg);
-  background:linear-gradient(90deg,#EBE3D6,#F8F4EC 50%,#EBE3D6);
-  -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 30%);mask-image:linear-gradient(to bottom,transparent 0,#000 30%)}
-.wall{width:var(--D);height:var(--h);left:calc(var(--D)/-2);top:calc(var(--h)/-2);
-  background:
+    linear-gradient(115deg,transparent 30%,rgba(170,150,120,.14) 31%,transparent 33%,transparent 62%,rgba(170,150,120,.1) 63%,transparent 64.5%),
+    #F2ECE2}
+.ceil{background:linear-gradient(90deg,#EBE3D6,#F8F4EC 50%,#EBE3D6)}
+.wall{background:
     linear-gradient(to bottom,transparent 72%,#6A2230 72%,#521823 86%,#2E0C12 86.5%,transparent 87%),
     repeating-linear-gradient(90deg,transparent 0 40px,rgba(90,70,45,.07) 40px 42px,transparent 42px 236px,rgba(90,70,45,.07) 236px 238px,transparent 238px 280px),
     linear-gradient(to bottom,transparent 8%,rgba(90,70,45,.07) 8% 8.4%,transparent 8.4% 66%,rgba(90,70,45,.07) 66% 66.4%,transparent 66.4%),
     linear-gradient(to bottom,#F3ECE1,#FAF6EF 40%,#ECE3D5)}
-.wall.l{transform:translate3d(calc(var(--hw)*-1),0,calc(var(--D)/-2)) rotateY(90deg);-webkit-mask-image:linear-gradient(to right,#000 55%,transparent);mask-image:linear-gradient(to right,#000 55%,transparent)}
-.wall.r{transform:translate3d(var(--hw),0,calc(var(--D)/-2)) rotateY(-90deg);-webkit-mask-image:linear-gradient(to left,#000 55%,transparent);mask-image:linear-gradient(to left,#000 55%,transparent)}
+.stage.lite{background:linear-gradient(#F3EDE2 0 38%,#E6DCCB 38% 60%,#EDE5D8 60%)}
 /* a plaster partition with a lit arch cut through it, like the niches on their walls */
 .gate{width:calc(var(--hw)*2 + 4px);height:calc(var(--h) + 4px);left:calc(var(--hw)*-1 - 2px);top:calc(var(--h)/-2 - 2px);overflow:hidden}
 .gate .hole{position:absolute;left:50%;bottom:0;width:58%;height:84%;transform:translateX(-50%);border-radius:999px 999px 0 0;
-  box-shadow:inset 0 0 0 3px rgba(var(--led),.95),inset 0 0 28px 6px rgba(var(--led),.5),0 0 0 2px rgba(var(--led),.7),0 0 46px 10px rgba(var(--led),.45),0 0 0 3000px var(--plaster2)}
+  box-shadow:inset 0 0 0 3px rgba(var(--led),.95),inset 0 0 28px 6px rgba(var(--led),.5),0 0 0 2px rgba(var(--led),.7),0 0 46px 10px rgba(var(--led),.45),0 0 0 1400px var(--plaster2)}
 .gate .hedge{position:absolute;bottom:0;height:9%;width:21%;background:
   radial-gradient(circle at 20% 30%,#7C9D4F 0 7px,transparent 8px) 0 0/22px 18px,
   radial-gradient(circle at 70% 60%,#5E8442 0 8px,transparent 9px) 0 0/26px 20px,
@@ -98,7 +90,7 @@ h2{font-size:clamp(38px,6vw,72px)}
 .scene{grid-area:1/1;align-self:center;text-align:center;max-width:900px;opacity:0;will-change:opacity,transform,filter}
 .scene.end{align-self:end;margin-bottom:5svh}
 @media(max-width:700px){.scene.end{margin-bottom:max(96px,13svh)}}
-.scene .plate{display:inline-block;padding:22px 30px 26px;border-radius:28px;background:rgba(251,248,242,.8);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 20px 60px rgba(80,55,25,.14)}
+.scene .plate{display:inline-block;padding:22px 30px 26px;border-radius:28px;background:rgba(251,248,242,.92);box-shadow:0 20px 60px rgba(80,55,25,.14)}
 .scene h1{font-size:clamp(46px,9vw,120px);letter-spacing:-.01em}
 .scene h1 span{color:var(--wine)}
 .scene .q{font-family:var(--serif);font-size:clamp(34px,6.2vw,80px);line-height:1.04}
@@ -509,32 +501,43 @@ const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v));
 const WA='919957192669';
 
 /* ---------- build the corridor ---------- */
-const GAP=1150, FIRST=-380, GATES=4;
+/* Phones (and every iPhone/iPad) get a lighter corridor: no ceiling planes and a shorter draw distance,
+   because iOS Safari reloads the page ("A problem repeatedly occurred") when 3D layers use too much GPU memory. */
+const IOS=/iP(hone|ad|od)/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+const LITE=IOS||matchMedia('(max-width:700px)').matches;
+const GAP=1120, FIRST=-380, GATES=4, SEG=GAP, NEAR=FIRST+SEG/2+400, DRAW=LITE?2300:4200;
 const world=$('#world'), stage=$('#stage'), hero=$('#hero');
+if(LITE)stage.classList.add('lite');
 const el=(cls,style,html='')=>{const d=document.createElement('div');d.className='pl '+cls;if(style)d.style.transform=style;d.innerHTML=html;world.append(d);return d};
-el('floor');el('ceil');el('wall l');el('wall r');
+const box=(cls,w,h,t)=>{const d=el(cls,t);Object.assign(d.style,{width:w+'px',height:h+'px',left:-w/2+'px',top:-h/2+'px'});return d};
 const gates=[];
 for(let i=0;i<GATES;i++)gates.push(el('gate',`translateZ(${FIRST-i*GAP}px)`,'<div class="hole"></div><div class="hedge a"></div><div class="hedge b"></div><div class="shade"></div>'));
 const END=FIRST-GATES*GAP+80;
-el('endwall',`translateZ(${END}px)`,'<div class="niche"><img src="img/room-wide.webp" alt=""></div>');
-/* framed photos hung on the side walls between the arches, and mirrored lights on the ceiling */
+const endwall=el('endwall',`translateZ(${END}px)`,'<div class="niche"><img src="img/room-wide.webp" alt=""></div>');
+/* everything except the gates is rebuilt on resize; each piece remembers its depth so far or passed pieces can be dropped */
 const pics=['burger','arch-flirt','shake','room-night','cappuccino','arch-diet'];
-const frames=[];
-function hang(hw,h){
-  frames.forEach(f=>f.remove());frames.length=0;
+let parts=[];
+function build(hw,h){
+  parts.forEach(x=>x.el.remove());parts=[];
+  const add=(e,z)=>parts.push({el:e,z});
+  for(let i=0;NEAR-i*SEG>END-SEG;i++){const z=NEAR-(i+.5)*SEG;
+    add(box('wall',SEG,h,`translate3d(${-hw}px,0,${z}px) rotateY(90deg)`),z);
+    add(box('wall',SEG,h,`translate3d(${hw}px,0,${z}px) rotateY(-90deg)`),z);
+    add(box('floor',hw*2,SEG,`translate3d(0,${h/2}px,${z}px) rotateX(90deg)`),z);
+    if(!LITE)add(box('ceil',hw*2,SEG,`translate3d(0,${-h/2}px,${z}px) rotateX(90deg)`),z)}
   pics.forEach((p,i)=>{const left=i%2===0, z=FIRST-GAP*(Math.floor(i/2)+.5)-((i%2)*140);
-    frames.push(el('frame',`translate3d(${left?-hw+4:hw-4}px,${-h*.06}px,${z}px) rotateY(${left?90:-90}deg) scale(${Math.min(1,h/720)})`,`<img src="img/${p}.webp" alt="">`))});
-  for(let i=0;i<GATES+1;i++)frames.push(el('disc',`translate3d(0,${-h/2+2}px,${FIRST-GAP*(i+.5)}px) rotateX(90deg)`));
+    add(el('frame',`translate3d(${left?-hw+4:hw-4}px,${-h*.06}px,${z}px) rotateY(${left?90:-90}deg) scale(${Math.min(1,h/720)})`,`<img src="img/${p}.webp" alt="">`),z)});
+  for(let i=0;i<GATES+1;i++){const z=FIRST-GAP*(i+.5);add(el('disc',`translate3d(0,${-h/2+2}px,${z}px) rotateX(90deg)`),z)}
 }
 let lastW=0;
 function size(){
   const W=innerWidth,H=innerHeight,r=document.documentElement.style;
-  if(W===lastW&&frames.length)return;   // ignore height-only resizes from the mobile address bar
+  if(W===lastW&&parts.length)return;   // ignore height-only resizes from the mobile address bar
   lastW=W;
   const hw=Math.round(Math.min(560,Math.max(190,W*(W<700?.56:.42)))), h=Math.round(Math.min(800,H*.92));
   r.setProperty('--hw',hw+'px');r.setProperty('--h',h+'px');
   stage.style.perspective=(W<700?560:860)+'px';
-  hang(hw,h);
+  build(hw,h);
 }
 size();addEventListener('resize',size);
 
@@ -552,11 +555,15 @@ function frame(){
     const cam=ease(p)*TRAVEL, bob=Math.sin(p*Math.PI*8)*3;
     world.style.transform=`rotateX(${my*-3}deg) rotateY(${mx*5}deg) translate3d(0,${bob}px,${cam}px)`;
     gates.forEach((g,i)=>{const z=FIRST-i*GAP+cam;  // distance in front of (+) or behind (-) the screen
-      g.style.opacity=z>520?0:clamp((520-z)/420)*clamp(1-(-z-2600)/1800,.35,1);
-      g.style.visibility=z>520?'hidden':'visible'});
+      const on=z<=520&&z>-DRAW-400;g.style.display=on?'':'none';
+      if(on)g.style.opacity=clamp((520-z)/420)*clamp(1-(-z-2600)/1800,.35,1)});
+    /* only draw what is near the camera; fade the far end like haze */
+    parts.forEach(x=>{const z=x.z+cam,on=z<SEG*.5+700&&z>-DRAW;x.el.style.display=on?'':'none';
+      if(on)x.el.style.opacity=clamp(1-(-z-DRAW*.55)/(DRAW*.45))});
+    endwall.style.display=END+cam>-DRAW-1200?'':'none';
     scenes.forEach(s=>{const at=+s.dataset.at, d=(p-at)/.13, last=at>.8;
       const o=last?clamp(1+d*1.4):clamp(1-Math.abs(d)*.85);
-      s.style.opacity=o; s.style.transform=`translateY(${(last?Math.min(0,d):d)*-26}px) scale(${.96+o*.04})`; s.style.filter=o<1?`blur(${(1-o)*6}px)`:'none';
+      s.style.opacity=o; s.style.transform=`translateY(${(last?Math.min(0,d):d)*-26}px) scale(${.96+o*.04})`; if(!LITE)s.style.filter=o<1?`blur(${(1-o)*6}px)`:'none';
       s.style.pointerEvents=o>.6?'auto':'none'});
     const k=Math.min(3,Math.round(p/.3));dots.forEach((d,i)=>d.classList.toggle('on',i===k));
     hint.style.opacity=p<.03?1:0;
