@@ -67,6 +67,32 @@ async function post(url, headers, body) {
   }
 }
 
+// Several API keys can be set in OPENROUTER_API_KEYS (comma separated), plus OPENROUTER_API_KEY.
+// Free keys have a daily cap, so a key that is out of quota or rejected is benched until its reset
+// and the next key answers instead.
+const benched = new Map(); // key -> time it may be tried again
+async function complete(keys, url, body) {
+  for (let pass = 0; pass < 2; pass++) {
+    for (const key of keys) {
+      if ((benched.get(key) || 0) > Date.now()) continue;
+      try {
+        const r = await fetch(url, { method: 'POST', headers: { 'content-type': 'application/json', authorization: `Bearer ${key}`, 'x-title': 'Pragya Baanhi' }, body: JSON.stringify(body) });
+        if (r.ok) return await r.json();
+        const text = await r.text();
+        console.error('Upstream', r.status, `key ...${key.slice(-4)}`, text.slice(0, 200));
+        if (r.status === 429) {
+          const reset = Number(text.match(/X-RateLimit-Reset\D+(\d{13})/)?.[1]);
+          benched.set(key, reset > Date.now() ? reset : Date.now() + 60 * 1000);
+        } else if ([401, 402, 403].includes(r.status)) benched.set(key, Date.now() + 10 * 60 * 1000);
+      } catch (e) {
+        console.error('Upstream error', e.message);
+      }
+    }
+    if (!pass) await new Promise((r) => setTimeout(r, 1200));
+  }
+  return null;
+}
+
 // The model sometimes writes its planning ("The user is asking...") into the reply instead of answering.
 // Detect that so the turn can be retried rather than shown to the guest.
 const leaked = (t) => /^(the user|user (is|wants|asked)|i need to|i should|we need|okay[,.]|ok[,.]|first,|hmm)/i.test(t)
@@ -83,8 +109,8 @@ const trimList = (t) => {
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
-  const key = process.env.OPENROUTER_API_KEY;
-  if (!key) return res.status(503).json({ error: 'Baanhi is not configured yet.' });
+  const keys = [...new Set(`${process.env.OPENROUTER_API_KEYS || ''},${process.env.OPENROUTER_API_KEY || ''}`.split(/[\s,]+/).filter(Boolean))];
+  if (!keys.length) return res.status(503).json({ error: 'Baanhi is not configured yet.' });
   const ip = req.headers['x-forwarded-for']?.split(',')[0].trim() || 'x';
   if (limited(ip)) return res.status(429).json({ error: 'Too many messages. Please try again in a few minutes.' });
 
@@ -104,12 +130,9 @@ export default async function handler(req, res) {
   for (let round = 0; round < 3; round++) {
     let msg;
     let finish;
-    for (let a = 0; a < 3 && !msg; a++) {
-      if (a) await new Promise((r) => setTimeout(r, 1200 * a));
-      const data = await post(`${baseUrl}/chat/completions`, { authorization: `Bearer ${key}`, 'x-title': 'Pragya Baanhi' }, { model, max_tokens: 700, temperature: 0.4, reasoning: { enabled: false }, messages: convo, tools: [TOOL] });
-      msg = data?.choices?.[0]?.message;
-      finish = data?.choices?.[0]?.finish_reason;
-    }
+    const data = await complete(keys, `${baseUrl}/chat/completions`, { model, max_tokens: 700, temperature: 0.4, reasoning: { enabled: false }, messages: convo, tools: [TOOL] });
+    msg = data?.choices?.[0]?.message;
+    finish = data?.choices?.[0]?.finish_reason;
     if (!msg) return res.status(502).json({ error: 'Baanhi is resting for a moment. Please call 081330 24155.' });
     const calls = msg.tool_calls || [];
     if (!calls.length) {

@@ -31,6 +31,6 @@ A website demo for Pragya Bamboo Restaurant, a thatched bamboo restaurant on NH 
 npx vercel dev
 ```
 
-Set `OPENROUTER_API_KEY` in a `.env` file (optional: `MODEL`, `BASE_URL`, `LEAD_WEBHOOK_URL`).
+Set `OPENROUTER_API_KEY` in a `.env` file, or several keys comma separated in `OPENROUTER_API_KEYS` (a key that runs out of free quota is skipped until it resets). Optional: `MODEL`, `BASE_URL`, `LEAD_WEBHOOK_URL`.
 
 > Demo built by [Unbias.xai](https://unbiasxai.xyz). Photos belong to Pragya Bamboo Restaurant. Menu prices are samples.

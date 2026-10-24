@@ -79,6 +79,7 @@ h2+.lede{margin-top:16px}
 .grain{position:absolute;inset:-50%;pointer-events:none;opacity:.1;mix-blend-mode:overlay;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:grain .9s steps(5) infinite}
 @keyframes grain{20%{transform:translate(-4%,3%)}40%{transform:translate(3%,-5%)}60%{transform:translate(-6%,-2%)}80%{transform:translate(5%,4%)}}
 .shade{position:absolute;inset:0;pointer-events:none;background:
+  radial-gradient(60% 34% at 50% 20%,rgba(11,15,30,.5),transparent 70%),
   linear-gradient(rgba(11,15,30,.6),transparent 26%),
   linear-gradient(90deg,rgba(11,15,30,.7),transparent 46%),
   linear-gradient(transparent 60%,rgba(11,15,30,.75) 84%,var(--night))}
@@ -93,9 +94,9 @@ h2+.lede{margin-top:16px}
 /* the sign: an unlit glass tube by day, switches on with the restaurant's neon */
 .sign{position:absolute;left:0;right:0;top:clamp(84px,11vh,120px);text-align:center;pointer-events:none;
   font:italic 600 clamp(66px,11vw,150px)/.92 var(--display);font-variation-settings:"SOFT" 100,"opsz" 144;letter-spacing:-.02em;
-  color:rgba(255,255,255,.08);-webkit-text-stroke:1.5px rgba(244,235,221,.45);transition:color .25s,text-shadow .25s}
-.sign small{display:block;font:600 max(.19em,16px)/1.2 var(--body);letter-spacing:.06em;margin-top:.7em;color:rgba(244,235,221,.75);-webkit-text-stroke:0;transition:color .25s,text-shadow .25s}
-.sign.lit{color:#F2FFF8;-webkit-text-stroke:0;text-shadow:0 0 4px #fff,0 0 14px var(--neon),0 0 36px var(--neon),0 0 80px rgba(125,255,196,.45);animation:flick .9s steps(1) both}
+  color:var(--paper);text-shadow:0 2px 6px rgba(6,8,18,.55),0 6px 40px rgba(6,8,18,.65);transition:color .25s,text-shadow .25s}
+.sign small{display:block;font:600 max(.19em,16px)/1.2 var(--body);letter-spacing:.06em;margin-top:.7em;color:var(--cane);text-shadow:0 1px 4px rgba(6,8,18,.8),0 2px 18px rgba(6,8,18,.7);transition:color .25s,text-shadow .25s}
+.sign.lit{color:#F2FFF8;text-shadow:0 0 4px #fff,0 0 14px var(--neon),0 0 36px var(--neon),0 0 80px rgba(125,255,196,.45);animation:flick .9s steps(1) both}
 .sign.lit small{color:#FFE9C7;text-shadow:0 0 10px rgba(240,179,91,.9),0 0 28px rgba(240,179,91,.6)}
 @keyframes flick{0%{opacity:.3}10%{opacity:1}16%{opacity:.4}24%,100%{opacity:1}}
 
@@ -114,7 +115,7 @@ h2+.lede{margin-top:16px}
 .hint i{width:2px;height:30px;background:linear-gradient(var(--cane),transparent);animation:drip 1.8s ease-in-out infinite}
 @keyframes drip{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
 @media (max-width:720px){
-  .shade{background:linear-gradient(rgba(11,15,30,.65),transparent 34%),linear-gradient(transparent 52%,rgba(11,15,30,.85) 78%,var(--night))}
+  .shade{background:radial-gradient(90% 26% at 50% 16%,rgba(11,15,30,.55),transparent 75%),linear-gradient(rgba(11,15,30,.65),transparent 34%),linear-gradient(transparent 52%,rgba(11,15,30,.85) 78%,var(--night))}
   .beats{bottom:104px}
   .beat{right:0;text-align:center;max-width:none}
   .beat p{margin-inline:auto}
