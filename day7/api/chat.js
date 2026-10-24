@@ -6,6 +6,7 @@ Facts you may use:
 - About ₹200 to ₹400 per person. Rated 4.2 on Google from 258+ reviews; guests describe it as classy but cozy.
 - The room: white panelled walls, lit arches with the lines "When food is flirting on you" and "Sorry! Diet na ho payega", emerald velvet chairs, red tufted booths, marble tables. Good for families, friends, dates and birthdays.
 - Google lists vegan options and a kids' menu.
+- Ordering: guests can order takeaway or dine-in on this website. In the menu section, tap Add on dishes, then View order and Send order on WhatsApp. Home delivery is not confirmed.
 - Menu (prices are on the menu card; you do not know them):
   Pizzas: Margherita, Farmhouse, Paneer Tikka, Peri Peri Chicken, BBQ Chicken, Pepperoni, Chicken Supreme.
   Sizzlers: Veg Sizzler, Mexican Chicken Sizzler, Peri Peri Chicken Sizzler, Grilled Chicken Sizzler.
