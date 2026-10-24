@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Levitate Rooftop | Skye, AI concierge preview</title>
+<meta name="description" content="Preview of Skye, an AI concierge for Levitate Rooftop, Guwahati. Answers guests 24/7 and takes bookings.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#1c1c1f">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,500&family=DM+Mono&family=Hanken+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* Tokens taken from thelevitate.com so the concierge looks native to their site */
+:root{--char-deep:#1c1c1f;--char:#28282b;--char-soft:#34343a;--cream:#f6f4e6;--on-char:#cfc8b4;--muted:#9a968a;
+  --brass:#ae9876;--brass-bright:#c8b594;--amber:#d9a566;--cobalt:#003f91;--line:#f6f4e624;
+  --disp:'Cormorant Garamond',Georgia,serif;--body:'Hanken Grotesk',system-ui,sans-serif;--mono:'DM Mono',ui-monospace,monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--char-deep);overflow:hidden}
+body{font:400 15px/1.5 var(--body);color:var(--cream)}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+svg{width:18px;height:18px;flex:none}
+:focus-visible{outline:2px solid var(--brass-bright);outline-offset:2px;border-radius:6px}
+#site{position:fixed;inset:0;width:100%;height:100%;border:0;background:var(--char-deep)}
+
+/* Preview tag */
+.tag{position:fixed;left:16px;bottom:16px;z-index:5;display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:rgba(28,28,31,.88);backdrop-filter:blur(8px);border:1px solid var(--line);font:400 11px/1 var(--mono);letter-spacing:.06em;color:var(--on-char);text-decoration:none}
+.tag b{width:6px;height:6px;border-radius:50%;background:var(--amber)}
+
+/* Launcher sits above the site's own WhatsApp button */
+.fab{position:fixed;right:24px;bottom:92px;z-index:10;display:flex;align-items:center;gap:10px;min-height:52px;padding:0 20px 0 14px;border-radius:999px;background:var(--brass);color:var(--char-deep);font-weight:600;box-shadow:0 12px 32px rgba(0,0,0,.45);transition:transform .2s,background .2s}
+.fab:hover{background:var(--brass-bright);transform:translateY(-2px)}
+.fab .moon{width:28px;height:28px;border-radius:50%;background:var(--char-deep);color:var(--brass-bright);display:grid;place-items:center}
+.fab .moon svg{width:16px;height:16px}
+.nudge{position:fixed;right:24px;bottom:156px;z-index:10;max-width:260px;padding:14px 38px 14px 16px;border-radius:14px 14px 4px 14px;background:var(--cream);color:var(--char-deep);font-size:14px;box-shadow:0 12px 32px rgba(0,0,0,.35);opacity:0;transform:translateY(8px);visibility:hidden;transition:opacity .35s,transform .35s,visibility .35s;cursor:pointer}
+.nudge.on{opacity:1;transform:none;visibility:visible}
+.nudge button{position:absolute;top:8px;right:8px;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;color:#6b6a62}
+.nudge button svg{width:14px;height:14px}
+
+/* Panel */
+.chat{position:fixed;right:24px;bottom:24px;z-index:20;width:min(390px,calc(100vw - 32px));height:min(620px,calc(100dvh - 48px));display:flex;flex-direction:column;background:var(--char-deep);border:1px solid var(--line);border-radius:18px;box-shadow:0 28px 70px rgba(0,0,0,.55);overflow:hidden;opacity:0;transform:translateY(14px) scale(.985);visibility:hidden;transition:opacity .25s,transform .25s,visibility .25s}
+.chat.on{opacity:1;transform:none;visibility:visible}
+.chead{position:relative;padding:18px 18px 16px;background:linear-gradient(180deg,#06316e 0%,var(--char-deep) 100%);border-bottom:1px solid var(--line)}
+.chead small{display:block;font:400 10.5px/1 var(--mono);letter-spacing:.12em;color:var(--brass-bright);margin-bottom:8px}
+.chead b{display:block;font:600 30px/1 var(--disp)}
+.chead b i{font-weight:500;color:var(--brass-bright)}
+.chead p{color:var(--on-char);font-size:13px;margin-top:6px;display:flex;align-items:center;gap:6px}
+.chead p:before{content:"";width:7px;height:7px;border-radius:50%;background:#7bd389}
+.chead button{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;color:var(--on-char)}
+.chead button:hover{background:rgba(246,244,230,.08)}
+#msgs{flex:1;overflow:auto;padding:16px;display:flex;flex-direction:column;gap:10px;scrollbar-width:thin}
+.m{max-width:86%;padding:10px 14px;border-radius:14px;font-size:14.5px;line-height:1.5}
+.m.b{background:var(--char-soft);color:var(--cream);border-bottom-left-radius:4px}
+.m.u{background:var(--brass);color:var(--char-deep);align-self:flex-end;border-bottom-right-radius:4px}
+.m p+p,.m p+ul,.m ul+p{margin-top:6px}
+.m ul{padding-left:18px;margin:4px 0}.m li+li{margin-top:3px}
+.m b{font-weight:600;color:var(--brass-bright)}
+.typing{display:flex;gap:5px;padding:14px}
+.typing i{width:7px;height:7px;border-radius:50%;background:var(--muted);animation:blink 1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes blink{50%{opacity:.25}}
+#sug{display:flex;flex-wrap:wrap;gap:8px;padding:0 16px 12px}
+#sug button{min-height:34px;padding:0 12px;border-radius:999px;border:1px solid rgba(174,152,118,.45);font-size:13px;color:var(--on-char)}
+#sug button:hover{border-color:var(--brass-bright);color:var(--cream)}
+#cf{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line)}
+#ci{flex:1;min-width:0;min-height:46px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--char);color:var(--cream);font:inherit;font-size:16px}
+#ci::placeholder{color:var(--muted)}
+#cf button{width:46px;height:46px;border-radius:50%;background:var(--brass);color:var(--char-deep);display:grid;place-items:center}
+.foot{padding:0 16px 10px;font:400 10.5px/1.4 var(--mono);color:var(--muted);text-align:center}
+.toast{position:fixed;left:50%;top:84px;z-index:30;transform:translate(-50%,-10px);opacity:0;visibility:hidden;padding:12px 18px;border-radius:999px;background:var(--cream);color:var(--char-deep);font-weight:600;font-size:14px;box-shadow:0 12px 30px rgba(0,0,0,.35);transition:.3s}
+.toast.on{opacity:1;visibility:visible;transform:translate(-50%,0)}
+
+@media (max-width:640px){
+  .fab{right:16px;bottom:84px;padding:0 16px 0 12px}
+  .nudge{right:16px;bottom:146px}
+  .tag{display:none}
+  .chat{right:0;left:0;bottom:0;width:100%;height:min(86dvh,680px);border-radius:18px 18px 0 0}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<iframe id="site" src="https://www.thelevitate.com/" title="Levitate Rooftop website"></iframe>
+
+<a class="tag" href="https://unbiasxai.xyz" target="_blank" rel="noopener"><b></b>PREVIEW · AI CONCIERGE BY UNBIAS.XAI</a>
+
+<div class="nudge" id="nudge" role="status">Sunset tables go first. Want me to check one for tonight?<button id="nudgeX" aria-label="Dismiss"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+<button class="fab" id="fab" aria-label="Chat with Skye, Levitate's AI concierge"><span class="moon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></span>Ask Skye</button>
+
+<div class="chat" id="chat" role="dialog" aria-label="Chat with Skye">
+  <div class="chead">
+    <small>LEVITATE · AI CONCIERGE</small>
+    <b>Skye <i>at your service</i></b>
+    <p>Replies instantly, 24/7</p>
+    <button id="chatX" aria-label="Close chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div id="msgs" aria-live="polite"></div>
+  <div id="sug">
+    <button>Table for 2 tonight at sunset</button>
+    <button>Is the 1+1 on today?</button>
+    <button>Birthday décor packages</button>
+    <button>Group dinner for 15</button>
+    <button>Best veg dishes?</button>
+    <button>Live music this weekend?</button>
+  </div>
+  <form id="cf"><input id="ci" placeholder="Ask about tables, menu, offers…" autocomplete="off" aria-label="Message"><button aria-label="Send"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.4 20.4 21 12 3.4 3.6 3.4 10l12.6 2-12.6 2z"/></svg></button></form>
+  <p class="foot">Demo by Unbias.xai. Bookings go to the Levitate team.</p>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const $=s=>document.querySelector(s);
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('on'),3200)}
+const hist=[];let busy=false;
+/* Render the assistant's reply as clean HTML: escape everything, then allow **bold**, "- " bullet lists and paragraphs. */
+function fmt(t){const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');const bold=s=>esc(s).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\*(.+?)\*/g,'$1');
+const out=[];let list=null;for(const raw of String(t).replace(/\r/g,'').split('\n')){const l=raw.trim();const m=l.match(/^(?:[-*•]|\d+[.)])\s+(.*)/);
+if(m){if(!list){list=[];out.push(list)}list.push(m[1])}else{list=null;if(l)out.push(l)}}
+return out.map(x=>Array.isArray(x)?'<ul>'+x.map(i=>'<li>'+bold(i)+'</li>').join('')+'</ul>':'<p>'+bold(x)+'</p>').join('')}
+function add(t,w){const d=document.createElement('div');d.className='m '+w;if(w==='b')d.innerHTML=fmt(t);else d.textContent=t;$('#msgs').append(d);$('#msgs').scrollTop=1e9}
+function openChat(q){hideNudge();$('#chat').classList.add('on');$('#fab').style.visibility='hidden';
+ if(!$('#msgs').children.length)add("Good evening! I'm **Skye**, Levitate's concierge. I can book a table, plan a celebration, or tell you what's on tonight. How can I help?",'b');
+ if(q)send(q);else $('#ci').focus()}
+function closeChat(){$('#chat').classList.remove('on');$('#fab').style.visibility=''}
+function hideNudge(){$('#nudge').classList.remove('on')}
+$('#fab').onclick=()=>openChat();$('#chatX').onclick=closeChat;
+$('#nudge').onclick=e=>{if(e.target.closest('#nudgeX')){hideNudge();return}openChat('Can I get a sunset table tonight?')};
+$('#sug').onclick=e=>{if(e.target.tagName==='BUTTON')send(e.target.textContent)};
+$('#cf').onsubmit=e=>{e.preventDefault();const v=$('#ci').value.trim();if(v){$('#ci').value='';send(v)}};
+addEventListener('keydown',e=>{if(e.key==='Escape'&&$('#chat').classList.contains('on'))closeChat()});
+async function send(t){if(busy)return;busy=true;$('#sug').style.display='none';add(t,'u');hist.push({role:'user',content:t});
+const ty=document.createElement('div');ty.className='m b typing';ty.innerHTML='<i></i><i></i><i></i>';$('#msgs').append(ty);$('#msgs').scrollTop=1e9;
+try{const r=await fetch('/api/chat',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({messages:hist})});const j=await r.json();ty.remove();
+const reply=j.reply||j.error||'Skye could not answer. Please try again in a moment.';add(reply,'b');if(j.reply)hist.push({role:'assistant',content:reply});if(j.booked)toast('Booking request sent to the Levitate team')}
+catch{ty.remove();add('No connection. Check your internet and try again.','b')}busy=false}
+/* One gentle prompt after the page settles, so the owner notices the concierge */
+setTimeout(()=>{if(!$('#chat').classList.contains('on'))$('#nudge').classList.add('on')},4500);
+</script>
+</body>
+</html>
