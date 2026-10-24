@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#F4EEE4">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Gloock&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 /* Palette taken from the room: warm-lit plaster, bottle-green velvet chairs, wine booths, brass trim */
 :root{
@@ -184,36 +184,68 @@ h2{font-size:clamp(38px,6vw,72px)}
 #cartbar.bump{animation:bump .4s}
 @keyframes bump{40%{transform:translate(-50%,0) scale(1.06)}}
 #cart{position:fixed;inset:0;z-index:75;pointer-events:none}
-#cart .scrim{position:absolute;inset:0;background:rgba(20,15,10,.45);opacity:0;transition:opacity .35s}
-#cart .sheet{position:absolute;right:0;top:0;bottom:0;width:min(440px,100%);background:var(--plaster2);display:flex;flex-direction:column;transform:translateX(100%);transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+#cart .scrim{position:absolute;inset:0;background:rgba(20,15,10,.5);opacity:0;transition:opacity .35s}
+/* the drawer is the cashier's counter; the bill prints out of a slot at the top */
+#cart .sheet{position:absolute;right:0;top:0;bottom:0;width:min(440px,100%);display:flex;flex-direction:column;transform:translateX(100%);transition:transform .45s cubic-bezier(.2,.8,.2,1);
+  background:radial-gradient(120% 60% at 50% 0%,#2E4A40,var(--deep) 70%);color:var(--cream-on-dark)}
 #cart.on{pointer-events:auto}#cart.on .scrim{opacity:1}#cart.on .sheet{transform:none}
-.sh{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid rgba(32,28,23,.08)}
-.sh h3{font-size:28px}
-.x{border:0;background:rgba(32,28,23,.06);width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:18px}
-.sb{flex:1;overflow-y:auto;overflow-x:hidden;padding:8px 20px 20px}
-.ci{display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid rgba(32,28,23,.08)}
-.ci .nm{flex:1;min-width:0;font-family:var(--serif);font-size:19px;line-height:1.2}
-.ci .nm small{display:block;font-family:var(--sans);font-size:13.5px;color:var(--mute)}
-.ci .qty{background:var(--stone);box-shadow:none}
-.ci .lt{min-width:62px;text-align:right;font-variant-numeric:tabular-nums}
-.empty{padding:40px 0;text-align:center;color:var(--mute)}
-.ofields{margin-top:18px;display:grid;gap:12px}
-.seg{display:grid;grid-template-columns:1fr 1fr;background:var(--stone);border-radius:14px;padding:4px}
-.seg label{position:relative;text-align:center;padding:10px;border-radius:11px;cursor:pointer;font-weight:600;font-size:15px}
-.seg input{position:absolute;opacity:0}
-.seg label:has(input:checked){background:var(--plaster2);box-shadow:0 2px 8px rgba(0,0,0,.08)}
-.ofields .two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
-.ofields label.f{min-width:0;display:grid;gap:5px;font-size:13.5px;font-weight:600;color:var(--mute)}
-.ofields input,.ofields textarea{width:100%;border:1px solid rgba(32,28,23,.16);background:#fff;border-radius:12px;padding:11px 13px;font-size:16px;font-weight:400;color:var(--ink)}
-.ofields textarea{resize:none;height:64px}
-.sf{padding:16px 20px calc(16px + env(safe-area-inset-bottom));border-top:1px solid rgba(32,28,23,.08);background:var(--plaster2)}
-.sf .tot{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}
-.sf .tot b{font-family:var(--serif);font-weight:400;font-size:28px}
-.sf .tot small{font-size:13px;color:var(--mute)}
+.sh{display:flex;align-items:center;justify-content:space-between;padding:16px 20px 10px}
+.sh h3{font-size:26px}
+.x{border:0;background:rgba(239,230,214,.1);color:var(--cream-on-dark);width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:18px}
+.sb{flex:1;overflow-y:auto;overflow-x:hidden;padding:0 22px 26px}
+.slot{height:16px;margin:4px 6px 0;border-radius:8px;background:#0B1712;box-shadow:inset 0 3px 6px rgba(0,0,0,.6),0 1px 0 rgba(255,255,255,.08);position:relative;z-index:2}
+.feed{margin:-8px 16px 0;overflow:hidden;padding:0 6px 24px}
+.paper{--pp:#FFFDF6;position:relative;background:var(--pp);color:#2B2620;font:400 14px/1.45 'Courier Prime','Courier New',monospace;padding:26px 18px 22px;
+  box-shadow:0 14px 30px rgba(0,0,0,.35);background-image:linear-gradient(90deg,rgba(0,0,0,.025),transparent 8%,transparent 92%,rgba(0,0,0,.025))}
+.paper::after{content:"";position:absolute;left:0;right:0;bottom:-10px;height:10px;
+  background:linear-gradient(-45deg,transparent 7px,var(--pp) 0) 0 0/14px 10px repeat-x,linear-gradient(45deg,transparent 7px,var(--pp) 0) 0 0/14px 10px repeat-x}
+.paper.print{animation:print 1.1s cubic-bezier(.25,.7,.2,1) both}
+@keyframes print{0%{transform:translateY(-100%)}55%{transform:translateY(-12%)}70%{transform:translateY(-14%)}100%{transform:none}}
+.paper .c{text-align:center}
+.paper .shop{font-family:var(--serif);font-size:24px;letter-spacing:.02em;line-height:1.1;margin-bottom:4px}
+.paper .sm{font-size:12px;color:#6B6152}
+.paper hr{border:0;border-top:1.5px dashed #B9AE9C;margin:12px 0}
+.paper hr.dbl{border-top:3px double #B9AE9C}
+.paper .meta{display:grid;grid-template-columns:1fr auto;font-size:12.5px;gap:0 10px}
+.paper .meta span:nth-child(even){text-align:right}
+.paper .th,.paper .tr{display:grid;grid-template-columns:minmax(0,1fr) 78px 64px;gap:6px;align-items:start}
+.paper .th{font-weight:700;font-size:12.5px}
+.paper .th span:not(:first-child),.paper .tr>span:not(:first-child){text-align:right}
+.paper .tr{padding:5px 0}
+.paper .tr .it small{display:block;font-size:11.5px;color:#7A705F}
+.paper .tr .it small.rate{color:#9A8F7C}
+.paper .qty,.paper .qty.on{height:24px;background:none;box-shadow:none;border:1px solid #CFC5B3;border-radius:4px;justify-self:end;color:#2B2620}
+.paper .qty button{height:22px;min-width:22px;font-size:14px;font-family:inherit}
+.paper .qty b{min-width:16px;font-size:13px}
+.paper .row2{display:flex;justify-content:space-between;padding:2px 0}
+.paper .grand{font-weight:700;font-size:18px;padding:4px 0}
+.paper .empty{padding:18px 0;text-align:center;color:#7A705F}
+.paper fieldset{border:0;display:grid;gap:8px}
+.paper .ty{display:flex;gap:16px;flex-wrap:wrap}
+.paper .ty label{cursor:pointer;display:flex;gap:6px;align-items:center}
+.paper .ty input{appearance:none;-webkit-appearance:none;width:auto;margin:0}
+.paper .ty input::before{content:"[ ]";font:700 14px 'Courier Prime',monospace}
+.paper .ty input:checked::before{content:"[x]"}
+.paper .ty input:focus-visible{outline:2px solid var(--bottle)}
+.paper .fl{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:end;gap:8px}
+.paper .fl span{font-weight:700;font-size:12.5px;white-space:nowrap}
+.paper .fl input,.paper .fl textarea{width:100%;min-width:0;border:0;border-bottom:1.5px dotted #A89C88;background:transparent;font:400 15px 'Courier Prime',monospace;color:#2B2620;padding:3px 2px;border-radius:0}
+.paper .fl textarea{resize:none;height:44px}
+.paper .fl:has(textarea){align-items:start}.paper .fl:has(textarea) span{padding-top:4px}
+.paper .fl input:focus,.paper .fl textarea:focus{outline:0;border-bottom-color:var(--bottle);background:rgba(29,58,49,.05)}
+.paper .bye{font-weight:700;letter-spacing:.06em}
+.paper .bar{height:38px;margin:10px auto 2px;width:76%;background:repeating-linear-gradient(90deg,#2B2620 0 2px,transparent 2px 4px,#2B2620 4px 5px,transparent 5px 8px,#2B2620 8px 11px,transparent 11px 12px,#2B2620 12px 13px,transparent 13px 16px)}
+.paper .stamp{flex:none;transform:rotate(-8deg);border:2px solid rgba(90,28,37,.55);color:rgba(90,28,37,.6);font:700 12px 'Courier Prime',monospace;letter-spacing:.08em;padding:3px 8px;border-radius:4px;pointer-events:none}
+.sf{padding:12px 22px calc(14px + env(safe-area-inset-bottom));background:rgba(0,0,0,.18)}
 .sf .btn{width:100%}
-@media(max-width:560px){#cart .sheet{top:auto;height:92svh;width:100%;border-radius:22px 22px 0 0;transform:translateY(100%)}
+.sf .btn.g{font-size:16px}
+.sf small{display:block;text-align:center;margin-top:8px;font-size:12.5px;color:rgba(239,230,214,.6)}
+@media(max-width:560px){#cart .sheet{top:auto;height:94svh;width:100%;border-radius:22px 22px 0 0;transform:translateY(100%)}
+  .sb{padding:0 12px 22px}.feed{margin:-8px 8px 0}.paper{padding:24px 14px 20px;font-size:13.5px}
+  .paper .th,.paper .tr{grid-template-columns:minmax(0,1fr) 74px 58px}
   #cartbar{left:12px;right:12px;bottom:12px;transform:translateY(160%);justify-content:space-between}#cartbar.on{transform:none}
   @keyframes bump{40%{transform:scale(1.04)}}}
+@media(prefers-reduced-motion:reduce){.paper.print{animation:none}}
 
 /* ---------- gatherings (tufted velvet) ---------- */
 #gather{background:
@@ -237,7 +269,7 @@ form.res{background:var(--plaster2);border-radius:28px;padding:clamp(20px,3vw,36
 form.res label{display:grid;gap:6px;font-size:14px;font-weight:600;color:var(--mute);min-width:0}
 form.res .full{grid-column:1/-1}
 form.res input,form.res select{width:100%;min-width:0;border:1px solid rgba(32,28,23,.16);background:#fff;border-radius:14px;padding:13px 14px;font-size:16px;font-weight:400;color:var(--ink)}
-form.res input:focus,form.res select:focus,.ofields input:focus,.ofields textarea:focus{outline:2px solid var(--bottle);outline-offset:0;border-color:transparent}
+form.res input:focus,form.res select:focus{outline:2px solid var(--bottle);outline-offset:0;border-color:transparent}
 .book .alt{margin-top:28px;display:grid;gap:12px}
 .book .alt a{display:flex;gap:14px;align-items:center;text-decoration:none;font-weight:600}
 .book .alt a span{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--bottle);color:var(--cream-on-dark)}
@@ -425,18 +457,38 @@ body.has-cart #nudge{bottom:150px}
 <button id="cartbar" aria-label="View your order"><span id="cbtxt">0 items</span><b>View order</b></button>
 <div id="cart" aria-hidden="true">
   <div class="scrim" data-close></div>
-  <div class="sheet" role="dialog" aria-label="Your order">
-    <div class="sh"><h3>Your order</h3><button class="x" data-close aria-label="Close">✕</button></div>
+  <div class="sheet" role="dialog" aria-label="Your bill">
+    <div class="sh"><h3>Your bill</h3><button class="x" data-close aria-label="Close">✕</button></div>
     <div class="sb">
-      <div id="clist"></div>
-      <form class="ofields" id="ofrm">
-        <div class="seg" role="radiogroup" aria-label="Order type"><label><input type="radio" name="type" value="Takeaway" checked>Takeaway</label><label><input type="radio" name="type" value="Dine-in, ready when I arrive">Dine-in</label></div>
-        <div class="two"><label class="f">Name<input name="n" required autocomplete="name"></label><label class="f">Phone<input name="p" required type="tel" inputmode="tel" autocomplete="tel"></label></div>
-        <label class="f">Pickup or arrival time<input name="t" type="time"></label>
-        <label class="f">Note for the kitchen<textarea name="note" placeholder="Less spicy, extra cheese…"></textarea></label>
-      </form>
+      <div class="slot"></div>
+      <div class="feed"><div class="paper" id="paper">
+        <div class="c"><div class="shop">EIGHTEENTH SOUTH</div><div class="sm">Lokhra Road, Kala Pahar, Guwahati 781018<br>Ph: 099571 92669</div></div>
+        <hr>
+        <div class="meta"><span>Bill No: <b id="bno"></b></span><span id="bdate"></span><span>Order: <b id="btype">TAKEAWAY</b></span><span id="btime"></span></div>
+        <hr>
+        <div class="th"><span>ITEM</span><span>QTY</span><span>AMT</span></div>
+        <hr>
+        <div id="clist"></div>
+        <hr>
+        <div class="row2"><span>Sub-total</span><span id="bsub">₹0</span></div>
+        <div class="row2 sm"><span>CGST @2.5%</span><span id="bcg">₹0</span></div>
+        <div class="row2 sm"><span>SGST @2.5%</span><span id="bsg">₹0</span></div>
+        <hr class="dbl">
+        <div class="row2 grand"><span>GRAND TOTAL</span><span id="ctot">₹0</span></div>
+        <div class="row2" style="align-items:center"><span class="sm" id="bcount"></span><span class="stamp">UNPAID</span></div>
+        <hr>
+        <form id="ofrm"><fieldset>
+          <div class="ty" role="radiogroup" aria-label="Order type"><label><input type="radio" name="type" value="Takeaway" checked>TAKEAWAY</label><label><input type="radio" name="type" value="Dine-in">DINE-IN</label></div>
+          <label class="fl"><span>NAME:</span><input name="n" required autocomplete="name"></label>
+          <label class="fl"><span>PHONE:</span><input name="p" required type="tel" inputmode="tel" autocomplete="tel"></label>
+          <label class="fl"><span id="tlabel">PICKUP AT:</span><input name="t" type="time"></label>
+          <label class="fl"><span>NOTE:</span><textarea name="note" placeholder="less spicy, extra cheese"></textarea></label>
+        </fieldset></form>
+        <hr>
+        <div class="c"><div class="bye">THANK YOU! VISIT AGAIN</div><div class="sm">Sorry! Diet na ho payega.</div><div class="bar" aria-hidden="true"></div><div class="sm" id="bcode"></div></div>
+      </div></div>
     </div>
-    <div class="sf"><div class="tot"><span>Total <small>(confirmed on WhatsApp)</small></span><b id="ctot">₹0</b></div><button class="btn e" form="ofrm" type="submit">Send order on WhatsApp</button></div>
+    <div class="sf"><button class="btn g" form="ofrm" type="submit">Send order on WhatsApp</button><small>Pay at the counter. The team confirms your order on WhatsApp.</small></div>
   </div>
 </div>
 
@@ -559,23 +611,35 @@ show('Pizzas');
 
 const cartEl=$('#cart'),bar=$('#cartbar');
 function totals(){let n=0,sum=0;for(const id in cart){n+=cart[id];sum+=cart[id]*ITEMS[id].pr}return{n,sum}}
+const TAX=.025, billNo=String(Math.floor(1000+Math.random()*9000));
+const money=n=>'₹'+(Math.round(n*100)/100).toLocaleString('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2});
+function bill(){const {n,sum}=totals(),tax=sum*TAX;return{n,sum,tax,grand:Math.round(sum+2*tax)}}
 function renderCart(bump){
-  const {n,sum}=totals();
+  const {n,sum,tax,grand}=bill();
   bar.classList.toggle('on',n>0);document.body.classList.toggle('has-cart',n>0);
   $('#cbtxt').textContent=`${n} item${n===1?'':'s'}, ${rs(sum)}`;
   if(bump&&!reduce){bar.classList.remove('bump');void bar.offsetWidth;bar.classList.add('bump')}
-  $('#clist').innerHTML=n?Object.keys(cart).map(id=>{const it=ITEMS[id];return `<div class="ci"><span class="nm">${it.n}${it.note?`<small>${it.note}</small>`:''}</span><span class="qty on" data-id="${id}"></span><span class="lt">${rs(it.pr*cart[id])}</span></div>`}).join(''):'<p class="empty">Your order is empty. Add something from the menu.</p>';
-  $('#ctot').textContent=rs(sum);
+  $('#clist').innerHTML=n?Object.keys(cart).map(id=>{const it=ITEMS[id];return `<div class="tr"><span class="it">${it.n}${it.note?`<small>${it.note}</small>`:''}<small class="rate">@ ${rs(it.pr)}</small></span><span class="qty on" data-id="${id}"></span><span>${it.pr*cart[id]}.00</span></div>`}).join(''):'<p class="empty">No items yet.<br>Add something from the menu.</p>';
+  $('#bsub').textContent=money(sum);$('#bcg').textContent=money(tax);$('#bsg').textContent=money(tax);
+  $('#ctot').textContent=rs(grand);
+  $('#bcount').textContent=n?`Items: ${Object.keys(cart).length}   Qty: ${n}   (rounded off)`:'';
   paintQty();
 }
-function openCart(){cartEl.classList.add('on');cartEl.setAttribute('aria-hidden','false');document.body.style.overflow='hidden'}
+function stampTime(){const d=new Date();
+  $('#bno').textContent=billNo;$('#bcode').textContent=`*ES${billNo}${String(d.getDate()).padStart(2,'0')}*`;
+  $('#bdate').textContent=d.toLocaleDateString('en-GB',{day:'2-digit',month:'2-digit',year:'2-digit'});
+  $('#btime').textContent=d.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',hour12:true}).toUpperCase()}
+function openCart(){stampTime();$('#cart .sb').scrollTop=0;cartEl.classList.add('on');cartEl.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';
+  const pp=$('#paper');pp.classList.remove('print');void pp.offsetWidth;pp.classList.add('print')}
 function closeCart(){cartEl.classList.remove('on');cartEl.setAttribute('aria-hidden','true');document.body.style.overflow=''}
 bar.onclick=openCart;
 cartEl.addEventListener('click',e=>{if(e.target.closest('[data-close]'))closeCart()});
-$('#ofrm').onsubmit=e=>{e.preventDefault();const {n,sum}=totals();if(!n){toast('Add something to your order first');return}
+$('#ofrm').addEventListener('change',e=>{if(e.target.name!=='type')return;const dine=e.target.value==='Dine-in';
+  $('#btype').textContent=dine?'DINE-IN':'TAKEAWAY';$('#tlabel').textContent=dine?'ARRIVING AT:':'PICKUP AT:'});
+$('#ofrm').onsubmit=e=>{e.preventDefault();const {n,sum,tax,grand}=bill();if(!n){toast('Add something to your order first');return}
   const f=new FormData(e.target);
-  const lines=Object.keys(cart).map(id=>`${cart[id]} x ${ITEMS[id].n} (${rs(ITEMS[id].pr*cart[id])})`).join('\n');
-  const msg=`Hi Eighteenth South, I'd like to place an order.\n\n${lines}\n\nTotal: ${rs(sum)}\nType: ${f.get('type')}${f.get('t')?`\nTime: ${f.get('t')}`:''}\nName: ${f.get('n')}\nPhone: ${f.get('p')}${f.get('note')?`\nNote: ${f.get('note')}`:''}`;
+  const lines=Object.keys(cart).map(id=>`${cart[id]} x ${ITEMS[id].n} = ${rs(ITEMS[id].pr*cart[id])}`).join('\n');
+  const msg=`*New order, Bill No ${billNo}*\n${$('#bdate').textContent}, ${$('#btime').textContent}\n\n${lines}\n\nSub-total: ${money(sum)}\nCGST + SGST (5%): ${money(2*tax)}\n*Grand total: ${rs(grand)}*\n\nOrder: ${f.get('type')}${f.get('t')?`, ${f.get('type')==='Dine-in'?'arriving':'pickup'} at ${new Date('2000-01-01T'+f.get('t')).toLocaleTimeString('en-IN',{hour:'numeric',minute:'2-digit',hour12:true})}`:''}\nName: ${f.get('n')}\nPhone: ${f.get('p')}${f.get('note')?`\nNote: ${f.get('note')}`:''}`;
   open(`https://wa.me/${WA}?text=`+encodeURIComponent(msg),'_blank','noopener')};
 renderCart();
 

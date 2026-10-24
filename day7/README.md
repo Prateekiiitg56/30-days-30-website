@@ -12,7 +12,7 @@ A website demo for Eighteenth South, a restaurant and cafe on Lokhra Road, Kala 
 
 - 🏛️ **3D walk through the arches** — the hero is a CSS 3D corridor of lit arches; scrolling walks you through it, past framed photos on the walls and mirrored ceiling lights, to the dining room.
 - 🖼️ **Arch motif everywhere** — photos sit in arch frames with 3D pointer tilt.
-- 🛒 **Order on WhatsApp** — tabbed menu with veg/non-veg marks, Add buttons, a cart drawer (takeaway or dine-in) that sends the full order with total to the restaurant's WhatsApp.
+- 🛒 **Order on WhatsApp** — tabbed menu with veg/non-veg marks, Add buttons, a restaurant-style printed bill (bill no, CGST/SGST, grand total, takeaway or dine-in) that sends the full order with total to the restaurant's WhatsApp.
 - 🎈 **Parties** — a tufted red-velvet section for birthdays and groups.
 - 📅 **Book a table** — form sends a ready-made booking message to the restaurant's WhatsApp.
 - 🤖 **Archie, the AI host** — answers 24/7 from the restaurant's facts and menu, never invents prices, and takes table bookings.
