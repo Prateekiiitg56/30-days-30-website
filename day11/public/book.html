@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Book, The Bamboo Cafe by Anaya</title>
+<meta name="description" content="Book a table, a celebration or the Wednesday Ladies Special at The Bamboo Cafe by Anaya, near ISBT, Garchuk, Guwahati.">
+<meta name="theme-color" content="#2E1C12">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Outfit:wght@400..600&family=Parisienne&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232E1C12'/%3E%3Ccircle cx='16' cy='16' r='11' fill='none' stroke='%23F5E58C' stroke-width='2'/%3E%3Ctext x='16' y='20' font-size='11' text-anchor='middle' fill='%23F5E58C' font-family='serif'%3EB%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<header class="head"><div class="wrap">
+  <a class="logo" href="./" aria-label="The Bamboo Cafe by Anaya, home"><i aria-hidden="true">B</i><div><b>BAMBOO</b><span>Cafe by Anaya</span></div></a>
+  <nav class="nav" aria-label="Pages"><a href="./">Home</a><a href="menu.html">Menu</a><a href="book.html" aria-current="page">Book</a></nav>
+  <button id="cartBtn" aria-label="Your bill">Bill <i>0</i></button>
+</div></header>
+
+<main>
+  <div class="phead"><div class="wrap">
+    <div class="blamp" aria-hidden="true"></div>
+    <h1>Save a table.</h1>
+    <p class="lede">Choose what you're planning, tell us when, and the team confirms on WhatsApp.</p>
+  </div></div>
+  <section style="padding-top:70px">
+    <form class="wrap" id="bookf">
+      <fieldset class="kinds">
+        <legend>What are you planning?</legend>
+        <label class="kind"><input type="radio" name="kind" value="A table" checked><img src="img/windows-night.webp" alt="" loading="lazy"><span class="tick" aria-hidden="true">✓</span><div><b>A table</b><p>Coffee by the window, lunch or a long evening with live music.</p></div></label>
+        <label class="kind"><input type="radio" name="kind" value="A celebration"><img src="img/logo-wall.webp" alt="" loading="lazy"><span class="tick" aria-hidden="true">✓</span><div><b>A celebration</b><p>Birthdays and get-togethers, with cake from the café bakery.</p></div></label>
+        <label class="kind"><input type="radio" name="kind" value="Wednesday Ladies Special"><img src="img/mojito.webp" alt="" loading="lazy"><span class="tick" aria-hidden="true">✓</span><div><b>Wednesday Ladies Special</b><p>Bring your girls for midweek offers and surprises.</p></div></label>
+      </fieldset>
+      <div class="book">
+        <h3>Your details</h3>
+        <label>Name<input name="n" required autocomplete="name"></label>
+        <label>Phone<input name="p" required type="tel" inputmode="tel" autocomplete="tel"></label>
+        <label>Date<input name="d" type="date" required></label>
+        <label>Time<input name="t" type="time" required value="19:30" min="10:30" max="22:30"></label>
+        <label>Guests<select name="g"><option>2</option><option selected>4</option><option>6</option><option>8</option><option>10 to 20</option><option>20 or more</option></select></label>
+        <label>Seating<select name="seat"><option>By the window</option><option>Near the music</option><option>Quiet corner</option><option>Any</option></select></label>
+        <label class="full">Anything else<input name="note" placeholder="A cake, a song request, a high chair"></label>
+        <div class="full" style="display:grid;gap:8px;margin-top:6px"><button class="btn" type="submit">Send booking on WhatsApp</button><small>Opens WhatsApp with your details filled in. Open every day, 10:30 am to 11 pm.</small></div>
+      </div>
+    </form>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="big"><span>The</span><b>BAMBOO</b><span>Cafe</span></div>
+    <div class="row"><span>Dream City Hotel, near ISBT, Garchuk, Guwahati</span><span>099676 63017</span></div>
+  </div>
+</footer>
+<div class="preview">Preview, website by Unbias.xai. Most menu prices are samples.</div>
+
+<script src="js/site.js"></script>
+</body>
+</html>
