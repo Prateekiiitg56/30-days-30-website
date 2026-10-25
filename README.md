@@ -14,6 +14,7 @@ A challenge to build **30 websites in 30 days** — one project per day, each ex
 | 06  | [Levitate Rooftop AI concierge](day6) | [levitate-concierge.vercel.app](https://levitate-concierge.vercel.app) | ✅ Done |
 | 07  | [Eighteenth South](day7) | [eighteensouth-demo.vercel.app](https://eighteensouth-demo.vercel.app) | ✅ Done |
 | 08  | [Pragya Bamboo Restaurant](day8) | [pragya-bamboo.vercel.app](https://pragya-bamboo.vercel.app) | ✅ Done |
+| 09  | [Uttsah by Sachika](day9) | [uttsah-demo.vercel.app](https://uttsah-demo.vercel.app) | ✅ Done |
 | ... | ...     | ... | ... |
 | 30  | Day 30  | — | 🔜 Coming Soon |
 
