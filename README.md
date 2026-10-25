@@ -17,6 +17,7 @@ A challenge to build **30 websites in 30 days** — one project per day, each ex
 | 09  | [Uttsah by Sachika](day9) | [uttsah-demo.vercel.app](https://uttsah-demo.vercel.app) | ✅ Done |
 | 10  | [Nadi Teera](day10) | [naditeera-demo.vercel.app](https://naditeera-demo.vercel.app) | ✅ Done |
 | 11  | [The Bamboo Cafe by Anaya](day11) | [bamboocafe-demo.vercel.app](https://bamboocafe-demo.vercel.app) | ✅ Done |
+| 12  | [The Maroon Room](day12) | [maroonroom-demo.vercel.app](https://maroonroom-demo.vercel.app) | ✅ Done |
 | ... | ...     | ... | ... |
 | 30  | Day 30  | — | 🔜 Coming Soon |
 
