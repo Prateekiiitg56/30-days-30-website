@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Restaurant & Cafe | Kumar's Green Resort, Guwahati</title>
+<meta name="description" content="Grilled bhetki, tandoori pomfret, Bengali and Mughlai specials and continental dishes. Book a table on WhatsApp.">
+<meta name="theme-color" content="#08160F">
+<meta property="og:title" content="Restaurant & Cafe | Kumar's Green Resort, Guwahati"><meta property="og:description" content="Grilled bhetki, tandoori pomfret, Bengali and Mughlai specials and continental dishes. Book a table on WhatsApp."><meta property="og:image" content="img/night-palms.webp">
+<link rel="icon" href="data:image/svg+xml,<svg viewBox='0 0 32 32' aria-hidden='true'><path d='M16 29C9 25 5 19 6 11c6-1 12 2 14 8 1-6-1-11-6-15 9 1 14 7 13 15-1 6-5 9-11 10z' fill='%239BF2B8' opacity='.9'/><path d='M16 29c0-8 2-14 7-20' stroke='%23E8CD8F' stroke-width='1.4' fill='none'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+<header class="head"><div class="wrap">
+  <a class="brand" href="index.html" aria-label="Kumar's Green Resort home"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 29C9 25 5 19 6 11c6-1 12 2 14 8 1-6-1-11-6-15 9 1 14 7 13 15-1 6-5 9-11 10z" fill="#9BF2B8" opacity=".9"/><path d="M16 29c0-8 2-14 7-20" stroke="#E8CD8F" stroke-width="1.4" fill="none"/></svg><span><b>Kumar's</b><small>GREEN RESORT</small></span></a>
+  <button id="menuBtn" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+  <nav class="nav" aria-label="Main"><a href="stay.html">Stay</a><a href="dine.html" aria-current="page">Dine</a><a href="celebrate.html">Celebrate</a><a href="visit.html">Visit</a><a class="btn" href="stay.html#book">Book a stay</a></nav>
+</div></header>
+<main>
+
+<section class="phero"><img src="img/pavilion-night2.webp" srcset="img/pavilion-night2-s.webp 760w, img/pavilion-night2.webp 1600w" sizes="100vw" alt="The garden pavilion restaurant at night" fetchpriority="high">
+  <canvas class="flies" aria-hidden="true"></canvas>
+  <div class="wrap"><p class="kicker">Restaurant, cafe and bar</p><h1>Dinner by the fountains.</h1><p>Bengali, Mughlai, North Indian and continental cooking, open every day from 10 am to 10:30 pm. About ₹1,000 for two.</p>
+  <div class="btns"><a class="btn" href="#menu">See the menu</a><a class="btn ghost" href="#table">Book a table</a></div></div>
+</section>
+
+<section class="sec" id="menu">
+  <div class="wrap"><div class="rise"><p class="kicker">The menu</p><h2>From the specials board.</h2>
+    <p class="lede">Tap Add on anything you'd like ready when you arrive. Your list goes into the table request below, and the team shares today's full menu card and prices on WhatsApp.</p></div>
+    <div class="tabs" role="tablist" aria-label="Menu sections"><button role="tab" data-board="b-specials" aria-selected="true">Today's specials</button><button role="tab" data-board="b-festive" aria-selected="false">Festive menu</button><button role="tab" data-board="b-mains" aria-selected="false">Continental mains</button><button role="tab" data-board="b-starters" aria-selected="false">Continental starters</button></div>
+    <div class="board" id="b-specials" role="tabpanel"><article><div><h3>Pomfret Moharani</h3><p>Pomfret in a rich, silky gravy of cashew, poppy seed and aromatic spices.</p><small>Bengali khajana</small></div><button class="pick" data-dish="Pomfret Moharani" aria-pressed="false">Add</button></article><article><div><h3>Special Grilled Fish</h3><p>Bhetki fillet in a signature spice blend, grilled and served with lemon butter and vegetables.</p><small>Kolkata bhetki</small></div><button class="pick" data-dish="Special Grilled Fish" aria-pressed="false">Add</button></article><article><div><h3>Laziz Tikka Masala</h3><p>Chicken tikka in a creamy, mildly spiced tomato gravy.</p><small>UP style</small></div><button class="pick" data-dish="Laziz Tikka Masala" aria-pressed="false">Add</button></article><article><div><h3>Tandoori Pomfret</h3><p>Fresh pomfret in tandoori spices, char-grilled, with onion salad, lemon and mint chutney.</p><small>From the tandoor</small></div><button class="pick" data-dish="Tandoori Pomfret" aria-pressed="false">Add</button></article><article><div><h3>Banzara Murgh</h3><p>Tender chicken in a rich, smoky and creamy masala.</p><small>House favourite</small></div><button class="pick" data-dish="Banzara Murgh" aria-pressed="false">Add</button></article><article><div><h3>Mutton Kuzhambu</h3><p>A traditional mutton curry with a careful blend of spices and herbs.</p><small>South Indian</small></div><button class="pick" data-dish="Mutton Kuzhambu" aria-pressed="false">Add</button></article><article><div><h3>Doi Ilish</h3><p>Hilsa cooked gently in yogurt and mustard, a true Bengali classic.</p><small>Kolkata style</small></div><button class="pick" data-dish="Doi Ilish" aria-pressed="false">Add</button></article><article><div><h3>Murgh Musallam</h3><p>A whole chicken in a rich, aromatic gravy with spices and nuts.</p><small>Mughlai</small></div><button class="pick" data-dish="Murgh Musallam" aria-pressed="false">Add</button></article></div><div class="board" id="b-festive" role="tabpanel" hidden><article><div><h3>Golbarir Kosha Mangsho</h3><p>Slow-cooked, deeply spiced mutton in the Kolkata kosha style.</p><small>Khasi goat</small></div><button class="pick" data-dish="Golbarir Kosha Mangsho" aria-pressed="false">Add</button></article><article><div><h3>Murgh Musallam</h3><p>Whole chicken, rich gravy, nuts and festive spices.</p><small>Royal Mughlai</small></div><button class="pick" data-dish="Murgh Musallam" aria-pressed="false">Add</button></article><article><div><h3>Doi Ilish</h3><p>Hilsa in yogurt and mustard, made for the puja season.</p><small>Bengali</small></div><button class="pick" data-dish="Doi Ilish" aria-pressed="false">Add</button></article><article><div><h3>Pomfret Machher Jhal</h3><p>Pomfret in a fiery mustard and chilli curry.</p><small>Bengali</small></div><button class="pick" data-dish="Pomfret Machher Jhal" aria-pressed="false">Add</button></article></div><div class="board" id="b-mains" role="tabpanel" hidden><article><div><h3>Grilled Chicken with Mushroom Sauce</h3><p>Grilled chicken breast, creamy mushroom sauce, sautéed vegetables and mash.</p><small>Continental</small></div><button class="pick" data-dish="Grilled Chicken with Mushroom Sauce" aria-pressed="false">Add</button></article><article><div><h3>Chicken Alfredo Pasta</h3><p>Fettuccine in a creamy Parmesan Alfredo sauce with grilled chicken.</p><small>Continental</small></div><button class="pick" data-dish="Chicken Alfredo Pasta" aria-pressed="false">Add</button></article><article><div><h3>Spaghetti Aglio e Olio</h3><p>Spaghetti with garlic, olive oil, herbs and chilli flakes.</p><small>Vegetarian</small></div><button class="pick" data-dish="Spaghetti Aglio e Olio" aria-pressed="false">Add</button></article><article><div><h3>Grilled Vegetable Steak</h3><p>Seasonal vegetables, herb butter, mashed potatoes and pepper sauce.</p><small>Vegetarian</small></div><button class="pick" data-dish="Grilled Vegetable Steak" aria-pressed="false">Add</button></article></div><div class="board" id="b-starters" role="tabpanel" hidden><article><div><h3>Spinach and Cheese Croquettes</h3><p>Golden-fried croquettes with a creamy spinach and cheese filling.</p><small>Vegetarian</small></div><button class="pick" data-dish="Spinach and Cheese Croquettes" aria-pressed="false">Add</button></article><article><div><h3>Chicken Cordon Bleu Bites</h3><p>Crispy chicken bites stuffed with ham and cheese, with a dipping sauce.</p><small>Starter</small></div><button class="pick" data-dish="Chicken Cordon Bleu Bites" aria-pressed="false">Add</button></article><article><div><h3>Chicken Goujons</h3><p>Tender chicken strips in crispy crumbs with a honey mustard dip.</p><small>Starter</small></div><button class="pick" data-dish="Chicken Goujons" aria-pressed="false">Add</button></article><article><div><h3>Chicken Steak Bites</h3><p>Grilled chicken steak cubes in a creamy black pepper sauce.</p><small>In pepper sauce</small></div><button class="pick" data-dish="Chicken Steak Bites" aria-pressed="false">Add</button></article><article><div><h3>Bruschetta</h3><p>Toasted garlic bread with fresh tomato, basil, olive oil and herbs.</p><small>Vegetarian</small></div><button class="pick" data-dish="Bruschetta" aria-pressed="false">Add</button></article><article><div><h3>Jalapeño Poppers</h3><p>Crispy jalapeños stuffed with cream cheese and herbs, with a tangy dip.</p><small>Vegetarian</small></div><button class="pick" data-dish="Jalapeño Poppers" aria-pressed="false">Add</button></article></div>
+    <div class="offer"><b>5%</b><div><strong>off your dining bill</strong><br>Scan the QR at your table, post a Google review with a photo, and show it to the team.</div></div>
+  </div>
+</section>
+
+<section class="mural"><img src="img/mural-dance.webp" srcset="img/mural-dance-s.webp 760w, img/mural-dance.webp 1600w" sizes="100vw" alt="Bihu dancers painted on the dining hall wall" loading="lazy" decoding="async">
+  <div class="wrap mural-in">
+    <div class="rise"><p class="kicker" style="color:var(--gold-l)">The dining hall</p><h2 style="max-width:13ch">Walls that dance the Bihu.</h2>
+      <p class="lede" style="color:rgba(243,238,225,.85)">The hall is painted floor to ceiling with Bihu dancers, dhol players and tribal festivals of the Northeast. Every table has a story behind it.</p></div>
+    <video class="phone" src="vid/mural.mp4" poster="vid/mural.jpg" autoplay muted loop playsinline preload="metadata" aria-label="A walk past the murals into the dining hall"></video>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap"><div class="rise"><p class="kicker">Where to sit</p><h2>Three moods, one kitchen.</h2></div>
+    <div class="ways">
+      <div class="tile" data-tilt><img src="img/dining-hall.webp" srcset="img/dining-hall-s.webp 760w, img/dining-hall.webp 1600w" sizes="(max-width:760px) 100vw, 50vw" alt="The main dining hall" loading="lazy" decoding="async"><div class="t"><h3>The dining hall</h3><p>Big tables for family lunches, under the dance murals.</p></div></div>
+      <div class="tile" data-tilt><img src="img/cafe-coffee.webp" srcset="img/cafe-coffee-s.webp 760w, img/cafe-coffee.webp 1600w" sizes="(max-width:760px) 100vw, 50vw" alt="The coffee cafe with its coffee-sack wall" loading="lazy" decoding="async"><div class="t"><h3>The coffee cafe</h3><p>Coffee, shakes and quick bites by the coffee-sack wall.</p></div></div>
+      <div class="tile" data-tilt><img src="img/restaurant-night.webp" srcset="img/restaurant-night-s.webp 760w, img/restaurant-night.webp 1600w" sizes="(max-width:760px) 100vw, 50vw" alt="The glass pavilion at night" loading="lazy" decoding="async"><div class="t"><h3>The garden pavilion</h3><p>Glass walls and green-lit palms. The best seat at night.</p></div></div>
+      <div class="tile" data-tilt><img src="img/cafe-window.webp" srcset="img/cafe-window-s.webp 760w, img/cafe-window.webp 1600w" sizes="(max-width:760px) 100vw, 50vw" alt="Cafe seating by the window" loading="lazy" decoding="async"><div class="t"><h3>Window tables</h3><p>Quiet tables in the light, with a bar for guests of legal age.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec night" id="table">
+  <div class="wrap split" style="align-items:start">
+    <div class="rise"><p class="kicker">Book a table</p><h2>Tell us when you're coming.</h2>
+      <p class="lede">Families, friends, office lunches. Send the time and how many of you, and the team keeps a table ready.</p>
+      <p class="picked" id="picked"></p></div>
+    <form class="formcard" data-wa="Table booking">
+      <h3>Reserve a table</h3>
+      <div class="fields">
+        <label>Your name<input name="Name" required autocomplete="name"></label>
+        <label>Phone<input name="Phone" type="tel" required autocomplete="tel" inputmode="tel"></label>
+        <label>Date<input name="Date" type="date" required></label>
+        <label>Time<input name="Time" type="time" required min="10:00" max="22:00"></label>
+        <label>Guests<input name="Guests" type="number" min="1" max="200" value="4" required></label>
+        <label>Seating<select name="Seating"><option>Any</option><option>Dining hall</option><option>Garden pavilion</option><option>Coffee cafe</option></select></label>
+        <input type="hidden" name="Pre-order" id="dishes">
+        <label class="full">Occasion or note<textarea name="Note" placeholder="A birthday, a high chair, less spicy…"></textarea></label>
+      </div>
+      <button class="btn">Send on WhatsApp</button><small>Opens WhatsApp with your details and any dishes you added.</small>
+    </form>
+  </div>
+</section>
+
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <div class="grid">
+      <div><a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 29C9 25 5 19 6 11c6-1 12 2 14 8 1-6-1-11-6-15 9 1 14 7 13 15-1 6-5 9-11 10z" fill="#9BF2B8" opacity=".9"/><path d="M16 29c0-8 2-14 7-20" stroke="#E8CD8F" stroke-width="1.4" fill="none"/></svg><span><b>Kumar's</b><small>GREEN RESORT &amp; WEDDING LAWN</small></span></a>
+        <span style="margin-top:14px">Rooms, a restaurant, a coffee cafe and a wedding lawn on NH-37, Guwahati.</span></div>
+      <div><h4>Visit</h4><span>NH-37, opposite Nezone</span><span>Pub Boragaon, Guwahati 781035</span><a href="visit.html">Directions</a></div>
+      <div><h4>Talk to us</h4><a href="tel:+919365773300">+91 93657 73300</a><a href="https://wa.me/919365773300" target="_blank" rel="noopener">WhatsApp</a><a href="#" data-chat>Ask Sabuj, our AI concierge</a></div>
+      <div><h4>Follow</h4><a href="https://www.instagram.com/kumarsgreenresort/" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/kumarsgreenresort/" target="_blank" rel="noopener">Facebook</a><span>Restaurant 10 am to 10:30 pm</span></div>
+    </div>
+    <div class="base"><span>© 2026 Kumar's Green Resort &amp; Wedding Lawn, Guwahati</span><span>Demo website by Unbias.xai</span></div>
+  </div>
+</footer>
+<script src="js/site.js" defer></script>
+</body>
+</html>
