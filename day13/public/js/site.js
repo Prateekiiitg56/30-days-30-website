@@ -36,21 +36,26 @@ $$('canvas.flies').forEach(cv=>{
   new IntersectionObserver(([e])=>{const was=run;run=e.isIntersecting;if(run&&!was)requestAnimationFrame(draw)}).observe(cv);
 });
 
-/* ---------- HOME: the night walk. Scrolling moves a camera forward through lit photos of the grounds ---------- */
+/* ---------- HOME: the night walk. Scrolling drifts slowly forward through lit photos of the grounds;
+   each scene holds, then dissolves into the next while the camera keeps pushing in ---------- */
 const walk=$('.walk');
 if(walk){
   const planes=$$('.plane',walk),caps=$$('.cap',walk),ticks=$$('.meter i',walk),title=$('.walk-title',walk),cue=$('.cue',walk);
-  const D=small?1300:1600,N=planes.length;let last=-1,raf=0;
+  const N=planes.length,ease=x=>x*x*(3-2*x);let last=-1,raf=0;
   const frame=()=>{raf=0;
     const r=walk.getBoundingClientRect(),span=walk.offsetHeight-innerHeight;
-    const p=clamp(-r.top/span),cam=p*(N-1)*D;
-    planes.forEach((pl,i)=>{const z=cam-i*D;
-      const o=z>0?clamp(1-z/(D*.2)):clamp((z+D*1.6)/(D*.8));
-      pl.style.transform=`translate(-50%,-50%) translateZ(${z.toFixed(1)}px)`;pl.style.opacity=o.toFixed(3);
-      pl.style.visibility=o<.01?'hidden':'visible'});
-    title.style.opacity=clamp(1-p*9);title.style.transform=`translateY(${-p*240}px)`;cue.style.opacity=clamp(1-p*12);
-    const k=p<.04?-1:Math.min(N-1,Math.round(cam/D));
-    if(k!==last){last=k;caps.forEach((c,i)=>c.classList.toggle('on',i===k));ticks.forEach((t,i)=>t.classList.toggle('on',i===Math.max(0,k)))}};
+    const p=clamp(-r.top/span),raw=p*(N-1),i0=Math.min(N-2,Math.floor(raw)),f=raw-i0;
+    const t=i0+ease(clamp((f-.32)/.36));            // hold each scene, then blend over the middle third
+    planes.forEach((pl,i)=>{const d=raw-i;            // camera position relative to this scene, -1..1
+      const o=i?clamp(t-i+1):1;                        // later scenes sit on top and open from the centre, like light spreading
+      pl.style.visibility=o<.002||i<Math.floor(t)?'hidden':'visible';
+      if(o>=1||o<=0){pl.style.webkitMaskImage=pl.style.maskImage='none';pl.style.opacity=o?1:0}
+      else{const R=-30+o*170,m=`radial-gradient(ellipse 75% 85% at 50% 58%,#000 ${R.toFixed(1)}%,transparent ${(R+30).toFixed(1)}%)`;
+        pl.style.webkitMaskImage=pl.style.maskImage=m;pl.style.opacity=clamp(o*3).toFixed(3)}
+      pl.style.transform=`scale(${(1.05+clamp(d,-1,1)*.05).toFixed(4)})`;pl.style.zIndex=i});
+    title.style.opacity=clamp(1-p*8);title.style.transform=`translateY(${-p*200}px)`;cue.style.opacity=clamp(1-p*12);
+    const k=p<.035?-1:Math.round(t);
+    if(k!==last){last=k;caps.forEach((c,i)=>c.classList.toggle('on',i===k));ticks.forEach((x,i)=>x.classList.toggle('on',i===Math.max(0,k)))}};
   const req=()=>{if(!raf)raf=requestAnimationFrame(frame)};
   if(!reduce){frame();addEventListener('scroll',req,{passive:true});addEventListener('resize',req)}
   else{caps[0]?.classList.add('on')}
