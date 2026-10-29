@@ -22,7 +22,7 @@ function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');clea
 $$('canvas.flies').forEach(cv=>{
   if(reduce)return;
   const ctx=cv.getContext('2d');let W,H,dpr=Math.min(devicePixelRatio||1,2),run=false;
-  const N=small?24:46,P=[];
+  const N=cv.hasAttribute('data-few')?(small?10:18):(small?24:46),P=[];
   const size=()=>{W=cv.clientWidth;H=cv.clientHeight;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)};
   size();addEventListener('resize',size);
   for(let i=0;i<N;i++)P.push({x:Math.random(),y:.25+Math.random()*.75,r:1+Math.random()*2.2,s:.2+Math.random()*.6,a:Math.random()*6.28,g:Math.random()<.3});
@@ -45,7 +45,7 @@ if(walk){
     const r=walk.getBoundingClientRect(),span=walk.offsetHeight-innerHeight;
     const p=clamp(-r.top/span),cam=p*(N-1)*D;
     planes.forEach((pl,i)=>{const z=cam-i*D;
-      const o=z>0?clamp(1-z/(D*.32)):clamp((z+D*1.6)/(D*.8));
+      const o=z>0?clamp(1-z/(D*.2)):clamp((z+D*1.6)/(D*.8));
       pl.style.transform=`translate(-50%,-50%) translateZ(${z.toFixed(1)}px)`;pl.style.opacity=o.toFixed(3);
       pl.style.visibility=o<.01?'hidden':'visible'});
     title.style.opacity=clamp(1-p*9);title.style.transform=`translateY(${-p*240}px)`;cue.style.opacity=clamp(1-p*12);
